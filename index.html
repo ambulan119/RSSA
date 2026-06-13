@@ -365,6 +365,62 @@ ul{
         display:none;
     }
 }
+
+.equipment-detail{
+    display:flex;
+    gap:20px;
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    height:100%;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.equipment-detail:hover{
+    transform:translateY(-5px);
+}
+
+.equipment-detail img{
+    width:180px;
+    height:140px;
+    object-fit:cover;
+    border-radius:12px;
+    flex-shrink:0;
+}
+
+.equipment-detail h4{
+    color:#0d6efd;
+    font-weight:700;
+}
+
+.feature-box{
+    background:#fff;
+    padding:25px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    height:100%;
+}
+
+.feature-box i{
+    font-size:40px;
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+@media(max-width:768px){
+
+    .equipment-detail{
+        flex-direction:column;
+    }
+
+    .equipment-detail img{
+        width:100%;
+        height:220px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -426,18 +482,6 @@ ul{
             </a>
         </h3>
 
-                <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        
-        <p class="mb-0 text-center">
-            © Ambulans 119 RSSA |
-            <a href="https://instagram.com/amb119rssa"
-               target="_blank"
-               class="fw-bold text-danger text-decoration-none">
-                <i class="bi bi-instagram"></i>
-                @amb119rssa
-            </a>
-        </p>
     </div>
 
 </div>
@@ -595,152 +639,160 @@ sesuai kebutuhan pasien.
 
 </section>
 
-<!-- KEUNGGULAN -->
-<section class="py-5 bg-light-blue">
+<!-- SPESIFIKASI AMBULANS -->
+<section class="py-5 bg-light">
 
 <div class="container">
 
-<h2 class="section-title">
-Keunggulan Ambulans 119 RSSA
-</h2>
+<div class="row align-items-center mb-5">
+
+    <div class="col-lg-6">
+        <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/kabin.jpg"
+             class="img-fluid rounded-4 shadow-lg"
+             alt="Kabin Ambulans 119 RSSA">
+    </div>
+
+    <div class="col-lg-6">
+
+        <h2 class="fw-bold text-primary mb-4">
+            Spesifikasi Ambulans 119 RSSA
+        </h2>
+
+        <p class="lead">
+            Ambulans 119 RSSA dirancang untuk pelayanan kegawatdaruratan,
+            rujukan antar fasilitas kesehatan, transport pasien kritis,
+            serta pendampingan medis selama perjalanan.
+        </p>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">✓ Siaga 24 Jam</li>
+            <li class="list-group-item">✓ Dokter dan Perawat Pendamping</li>
+            <li class="list-group-item">✓ Monitoring Pasien Berkelanjutan</li>
+            <li class="list-group-item">✓ Dukungan Ventilator Transport</li>
+            <li class="list-group-item">✓ Sistem Oksigen Sentral</li>
+            <li class="list-group-item">✓ Emergency & Trauma Equipment</li>
+            <li class="list-group-item">✓ Terintegrasi RSSA</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- ALAT MEDIS -->
 
 <div class="row g-4">
 
-    <!-- 24 JAM -->
-    <div class="col-lg-3 col-md-6">
-        <div class="card p-4 text-center h-100">
-            <i class="fas fa-clock fa-3x text-primary mb-3"></i>
-            <h5>Siaga 24 Jam</h5>
-            <p>Pelayanan ambulans tersedia setiap hari selama 24 jam.</p>
-        </div>
-    </div>
+    <!-- DEFIB -->
+    <div class="col-lg-6">
+        <div class="equipment-detail">
 
-    <!-- TIM -->
-    <div class="col-lg-3 col-md-6">
-        <div class="card p-4 text-center h-100">
-            <i class="fas fa-user-doctor fa-3x text-primary mb-3"></i>
-            <h5>Tim Profesional</h5>
-            <p>Dokter, perawat, dan driver ambulans yang terlatih.</p>
-        </div>
-    </div>
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/defib.jpg">
 
-    <!-- MONITORING -->
-    <div class="col-lg-3 col-md-6">
-        <div class="card p-4 text-center h-100">
-            <i class="fas fa-location-dot fa-3x text-primary mb-3"></i>
-            <h5>Monitoring Perjalanan</h5>
-            <p>Pemantauan dan koordinasi layanan secara real-time.</p>
-        </div>
-    </div>
-
-    <!-- RSSA -->
-    <div class="col-lg-3 col-md-6">
-        <div class="card p-4 text-center h-100">
-            <i class="fas fa-hospital fa-3x text-primary mb-3"></i>
-            <h5>Terintegrasi RSSA</h5>
-            <p>Mendukung sistem rujukan dan pelayanan rumah sakit.</p>
-        </div>
-    </div>
-
-    <!-- MONITOR -->
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card p-4 text-center h-100 equipment-card">
-
-                <div class="image-preview">
-                    <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/defib.jpg"
-                        alt="Monitor Defibrillator">
-                </div>
-
-                <i class="fas fa-heart-pulse fa-3x text-danger mb-3"></i>
-
-                <h5>Monitor Defibrillator</h5>
+            <div>
+                <h4>Monitor Defibrillator</h4>
 
                 <p>
-                    Pemantauan EKG, tekanan darah, saturasi oksigen,
-                    serta tindakan defibrilasi.
+                    Perangkat pemantauan pasien kritis yang mampu menampilkan
+                    EKG, tekanan darah non invasif (NIBP), saturasi oksigen (SpO₂),
+                    denyut nadi, hingga tindakan defibrilasi saat henti jantung.
                 </p>
-
             </div>
 
         </div>
-
- <!-- VENTILATOR -->
-<div class="col-lg-3 col-md-6">
-
-    <div class="card p-4 text-center h-100 equipment-card">
-
-        <div class="image-preview">
-            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/t1.jpg"
-                 alt="Transport Ventilator">
-        </div>
-
-        <i class="fas fa-lungs fa-3x text-info mb-3"></i>
-
-        <h5>Transport Ventilator</h5>
-
-        <p>
-            Mendukung pasien dengan gangguan pernapasan
-            selama transportasi.
-        </p>
-
     </div>
 
-</div>
+    <!-- VENTILATOR -->
+    <div class="col-lg-6">
+        <div class="equipment-detail">
 
-<!-- INFUS PUMP -->
-<div class="col-lg-3 col-md-6">
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/t1.jpg">
 
-    <div class="card p-4 text-center h-100 equipment-card">
+            <div>
+                <h4>Transport Ventilator</h4>
 
-        <div class="image-preview">
-            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/mray.jpg"
-                 alt="Syringe & Infusion Pump">
-        </div>
-
-        <i class="fas fa-syringe fa-3x text-success mb-3"></i>
-
-        <h5>Syringe & Infusion Pump</h5>
-
-        <p>
-            Pemberian obat dan cairan secara presisi
-            selama perjalanan pasien.
-        </p>
-
-    </div>
-
-</div>
-
-<!-- EMERGENCY KIT -->
-<div class="col-lg-3 col-md-6">
-
-    <div class="card p-4 text-center h-100 equipment-card">
-
-        <div class="image-preview">
-
-            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/trauma_kit.png"
-                 alt="Emergency Kit Lengkap">
-
-            <div class="preview-caption">
-                Emergency Trauma Kit
-                <br>
-                Ambulans 119 RSSA
+                <p>
+                    Mendukung pasien dengan gangguan pernapasan dan pasien
+                    yang memerlukan bantuan ventilasi mekanik selama perjalanan.
+                </p>
             </div>
 
         </div>
+    </div>
 
-        <i class="fas fa-kit-medical fa-3x text-warning mb-3"></i>
+    <!-- PUMP -->
+    <div class="col-lg-6">
+        <div class="equipment-detail">
 
-        <h5>Emergency Kit Lengkap</h5>
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/mray.jpg">
 
-        <p>
-            Peralatan airway, oksigen, suction,
-            trauma kit, dan emergency drugs.
-        </p>
+            <div>
+                <h4>Syringe & Infusion Pump</h4>
 
+                <p>
+                    Memastikan pemberian obat, sedasi, vasopressor,
+                    maupun cairan infus secara presisi dan terkontrol.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TRAUMA KIT -->
+    <div class="col-lg-6">
+        <div class="equipment-detail">
+
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/trauma_kit.png">
+
+            <div>
+                <h4>Emergency Trauma Kit</h4>
+
+                <p>
+                    Berisi perlengkapan penanganan trauma dan kegawatdaruratan,
+                    termasuk airway kit, cervical collar, balut luka,
+                    bidai, suction dan emergency drugs.
+                </p>
+            </div>
+
+        </div>
     </div>
 
 </div>
+
+<!-- FITUR TAMBAHAN -->
+
+<div class="row mt-5 g-4">
+
+    <div class="col-md-3">
+        <div class="feature-box">
+            <i class="fas fa-wind"></i>
+            <h5>Portable Suction</h5>
+            <p>Membantu membersihkan jalan napas pasien.</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="feature-box">
+            <i class="fas fa-mask-face"></i>
+            <h5>Oksigen Medis</h5>
+            <p>Sistem oksigen untuk pasien kritis dan emergensi.</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="feature-box">
+            <i class="fas fa-bed"></i>
+            <h5>Stretcher</h5>
+            <p>Brankar transport pasien yang aman dan nyaman.</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="feature-box">
+            <i class="fas fa-user-doctor"></i>
+            <h5>Tim Profesional</h5>
+            <p>Dokter, perawat dan driver ambulans terlatih.</p>
+        </div>
+    </div>
 
 </div>
 
@@ -938,15 +990,7 @@ Hubungi Ambulans 119 RSSA
 </h3>
 
 <p class="mt-3">
-    <link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 Melayani 24 Jam Setiap Hari
-    <a href="https://instagram.com/amb119rssa"
-       target="_blank"
-       class="fw-bold text-danger text-decoration-none">
-        <i class="bi bi-instagram"></i>
-        @amb119rssa
-    </a>
 </p>
 
 </div>
@@ -962,8 +1006,8 @@ Melayani 24 Jam Setiap Hari
 Aman Mengantar, Profesional Melayani."
 </h5>
 
-<p class="mb-0 text-center">
-    © Ambulans 119 RSSA |
+<p class="mb-0">
+© Ambulans 119 RSSA
 </p>
 
 </footer>
