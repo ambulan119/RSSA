@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ambulans 119 RSSA</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#f4f6f9;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.hero{
+    background:
+        linear-gradient(
+            rgba(14,133,67,0.65),
+            rgba(10,88,202,0.65)
+        ),
+        url('https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/background.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    padding: 80px 20px;
+}
+
+.hero h1,
+.hero h4,
+.hero p{
+    text-shadow:
+        2px 2px 8px rgba(0,0,0,.6);
+}
+
+.hero .fa-truck-medical{
+    filter: drop-shadow(0 0 15px rgba(255,255,255,.5));
+}
+
+
+.call-box{
+    background:white;
+    color:#042c68;
+    border-radius:15px;
+    padding:20px;
+    font-weight:bold;
+    margin-top:25px;
+    display:inline-block;
+
+    animation:siren 1s infinite;
+}
+
+@keyframes siren{
+    0%{
+        box-shadow:
+        0 0 10px #0d6efd,
+        0 0 20px #0d6efd;
+    }
+
+    50%{
+        box-shadow:
+        0 0 10px #dc3545,
+        0 0 30px #dc3545;
+    }
+
+    100%{
+        box-shadow:
+        0 0 10px #0d6efd,
+        0 0 20px #0d6efd;
+    }
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    font-weight:700;
+    color:#0d6efd;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.3s;
+    height:100%;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.icon-box{
+    font-size:45px;
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+.step{
+    text-align:center;
+    padding:25px;
+}
+
+.step-number{
+    width:60px;
+    height:60px;
+    line-height:60px;
+    border-radius:50%;
+    background:#0d6efd;
+    color:white;
+    margin:auto;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.counter{
+    font-size:40px;
+    font-weight:bold;
+    color:#0d6efd;
+}
+
+.bg-light-blue{
+    background:#eef5ff;
+}
+
+.footer{
+    background:#0d6efd;
+    color:white;
+    padding:30px;
+}
+
+.emergency{
+    background:#dc3545;
+    color:white;
+    border-radius:15px;
+}
+
+ul{
+    padding-left:20px;
+}
+
+.hero-icon{
+    position:relative;
+    display:inline-block;
+    margin-bottom:20px;
+}
+
+.hero-icon i{
+    font-size:110px;
+    color:#fff;
+    animation:
+        ambulanceFloat 3s ease-in-out infinite;
+    filter:
+        drop-shadow(0 0 20px rgba(255,255,255,.5));
+}
+
+/* Lampu kiri */
+.siren-left{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#0d6efd;
+    border-radius:50%;
+    top:15px;
+    left:20px;
+
+    animation:sirenBlue .7s infinite;
+}
+
+/* Lampu kanan */
+.siren-right{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#dc3545;
+    border-radius:50%;
+    top:15px;
+    right:20px;
+
+    animation:sirenRed .7s infinite;
+}
+
+.hero-title{
+    font-size:4rem;
+    font-weight:800;
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 10px rgba(201, 18, 18, 0.884),
+        0 0 20px rgba(255,255,255,.2);
+
+    animation:
+        titleGlow 2s ease-in-out infinite alternate,
+        fadeUp 1.2s ease;
+}
+
+@keyframes ambulanceFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+@keyframes sirenBlue{
+    0%,100%{
+        box-shadow:
+            0 0 5px #0d6efd,
+            0 0 10px #0d6efd;
+        opacity:.3;
+    }
+
+    50%{
+        box-shadow:
+            0 0 20px #0d6efd,
+            0 0 40px #0d6efd;
+        opacity:1;
+    }
+}
+
+@keyframes sirenRed{
+    0%,100%{
+        box-shadow:
+            0 0 20px #dc3545,
+            0 0 40px #dc3545;
+        opacity:1;
+    }
+
+    50%{
+        box-shadow:
+            0 0 5px #dc3545,
+            0 0 10px #dc3545;
+        opacity:.3;
+    }
+}
+
+@keyframes titleGlow{
+    from{
+        text-shadow:
+            0 0 10px rgba(255,255,255,.3);
+    }
+
+    to{
+        text-shadow:
+            0 0 20px rgba(204, 40, 40, 0.8),
+            0 0 40px rgba(196, 8, 8, 0.5);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card:hover i{
+    transform:scale(1.15);
+    transition:.3s;
+}
+
+.fa-heart-pulse{
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+    100%{transform:scale(1);}
+}
+
+.equipment-card{
+    position:relative;
+    overflow:visible;
+}
+
+.image-preview{
+    position:absolute;
+    top:-220px;
+    left:50%;
+    transform:translateX(-50%) scale(.8);
+
+    width:300px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s ease;
+
+    z-index:9999;
+}
+
+.image-preview img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.3);
+    border:4px solid #fff;
+}
+
+.equipment-card:hover .image-preview{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(-50%) scale(1);
+}
+
+.image-preview::after{
+    content:"";
+    position:absolute;
+    bottom:-12px;
+    left:50%;
+    transform:translateX(-50%);
+
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-top:12px solid white;
+}
+
+.flow-card{
+    position:relative;
+    transition:.3s;
+}
+
+.flow-card:hover{
+    transform:translateY(-8px);
+}
+
+.flow-card i{
+    transition:.3s;
+}
+
+.flow-card:hover i{
+    transform:scale(1.15);
+}
+
+.flow-card::after{
+    content:"➜";
+    position:absolute;
+    right:-18px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:28px;
+    color:#0d6efd;
+    font-weight:bold;
+}
+
+.flow-card:last-child::after{
+    display:none;
+}
+
+@media(max-width:991px){
+    .flow-card::after{
+        display:none;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero text-center">
+
+<div class="container">
+
+    <div class="mb-4">
+
+        <div class="hero-icon">
+
+            <i class="fas fa-truck-medical"></i>
+
+            <div class="siren siren-left"></div>
+            <div class="siren siren-right"></div>
+
+        </div>
+
+        <h1 class="hero-title">
+            AMBULANS 119 RSSA
+        </h1>
+        <h4 class="fw-light mb-3">
+            Emergency Medical Service
+        </h4>
+
+        <p class="lead fs-4">
+            Siaga 24 Jam • Cepat Merespon • Profesional Melayani
+        </p>
+
+        <p class="fs-5">
+            Melayani kegawatdaruratan medis, rujukan pasien,
+            evakuasi medis, dan transportasi medis.
+        </p>
+
+    </div>
+
+    <div class="call-box">
+
+        <div class="fs-5">
+            CALL CENTER 24 JAM
+        </div>
+
+        <h2 class="fw-bold mb-2">
+            <a href="tel:0341320118"
+               class="text-decoration-none text-primary">
+                <i class="fas fa-phone"></i>
+                (0341) 320118
+            </a>
+        </h2>
+
+        <h3 class="mb-0">
+            <a href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
+               target="_blank"
+               class="text-decoration-none text-success">
+                <i class="fab fa-whatsapp"></i>
+                0821-3109-0119
+            </a>
+        </h3>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- TENTANG -->
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="section-title">
+Tentang Ambulans 119 RSSA
+</h2>
+
+<div class="row">
+
+<div class="col-lg-6 mb-4">
+
+<div class="card p-4">
+
+<div class="icon-box">
+<i class="fas fa-hospital"></i>
+</div>
+
+<h4>Pelayanan 24 Jam</h4>
+
+<p>
+Ambulans 119 RSSA merupakan layanan transportasi medis
+dan kegawatdaruratan yang beroperasi selama 24 jam
+untuk membantu masyarakat memperoleh pelayanan kesehatan
+secara cepat, aman dan profesional.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-6 mb-4">
+
+<div class="card p-4">
+
+<div class="icon-box">
+<i class="fas fa-user-doctor"></i>
+</div>
+
+<h4>Tim Profesional</h4>
+
+<p>
+Didukung dokter, perawat dan pengemudi ambulans terlatih
+yang siap memberikan pelayanan terbaik selama proses
+penjemputan hingga pengantaran pasien.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LAYANAN -->
+<section class="py-5 bg-light-blue">
+
+<div class="container">
+
+<h2 class="section-title">
+Layanan Kami
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<div class="icon-box">
+<i class="fas fa-truck-medical"></i>
+</div>
+
+<h5>Ambulans Gawat Darurat</h5>
+
+<p>
+Penanganan dan transportasi pasien dalam kondisi
+mengancam jiwa.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<div class="icon-box">
+<i class="fas fa-route"></i>
+</div>
+
+<h5>Ambulans Rujukan</h5>
+
+<p>
+Pemindahan pasien antar fasilitas kesehatan
+secara aman dan terkoordinasi.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4 text-center">
+
+<div class="icon-box">
+<i class="fas fa-heart-pulse"></i>
+</div>
+
+<h5>Pendampingan Medis</h5>
+
+<p>
+Pendampingan tenaga kesehatan selama perjalanan
+sesuai kebutuhan pasien.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- KAPAN HUBUNGI -->
+<section class="py-5">
+
+<div class="container">
+
+<div class="card emergency p-4">
+
+    <div class="text-center mb-4">
+
+        <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/kapan2.png"
+             alt="Kapan Harus Menghubungi Ambulans 119"
+             class="img-fluid emergency-banner">
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- KEUNGGULAN -->
+<section class="py-5 bg-light-blue">
+
+<div class="container">
+
+<h2 class="section-title">
+Keunggulan Ambulans 119 RSSA
+</h2>
+
+<div class="row g-4">
+
+    <!-- 24 JAM -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card p-4 text-center h-100">
+            <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+            <h5>Siaga 24 Jam</h5>
+            <p>Pelayanan ambulans tersedia setiap hari selama 24 jam.</p>
+        </div>
+    </div>
+
+    <!-- TIM -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card p-4 text-center h-100">
+            <i class="fas fa-user-doctor fa-3x text-primary mb-3"></i>
+            <h5>Tim Profesional</h5>
+            <p>Dokter, perawat, dan driver ambulans yang terlatih.</p>
+        </div>
+    </div>
+
+    <!-- MONITORING -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card p-4 text-center h-100">
+            <i class="fas fa-location-dot fa-3x text-primary mb-3"></i>
+            <h5>Monitoring Perjalanan</h5>
+            <p>Pemantauan dan koordinasi layanan secara real-time.</p>
+        </div>
+    </div>
+
+    <!-- RSSA -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card p-4 text-center h-100">
+            <i class="fas fa-hospital fa-3x text-primary mb-3"></i>
+            <h5>Terintegrasi RSSA</h5>
+            <p>Mendukung sistem rujukan dan pelayanan rumah sakit.</p>
+        </div>
+    </div>
+
+    <!-- MONITOR -->
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card p-4 text-center h-100 equipment-card">
+
+                <div class="image-preview">
+                    <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/defib.jpg"
+                        alt="Monitor Defibrillator">
+                </div>
+
+                <i class="fas fa-heart-pulse fa-3x text-danger mb-3"></i>
+
+                <h5>Monitor Defibrillator</h5>
+
+                <p>
+                    Pemantauan EKG, tekanan darah, saturasi oksigen,
+                    serta tindakan defibrilasi.
+                </p>
+
+            </div>
+
+        </div>
+
+ <!-- VENTILATOR -->
+<div class="col-lg-3 col-md-6">
+
+    <div class="card p-4 text-center h-100 equipment-card">
+
+        <div class="image-preview">
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/t1.jpg"
+                 alt="Transport Ventilator">
+        </div>
+
+        <i class="fas fa-lungs fa-3x text-info mb-3"></i>
+
+        <h5>Transport Ventilator</h5>
+
+        <p>
+            Mendukung pasien dengan gangguan pernapasan
+            selama transportasi.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- INFUS PUMP -->
+<div class="col-lg-3 col-md-6">
+
+    <div class="card p-4 text-center h-100 equipment-card">
+
+        <div class="image-preview">
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/mray.jpg"
+                 alt="Syringe & Infusion Pump">
+        </div>
+
+        <i class="fas fa-syringe fa-3x text-success mb-3"></i>
+
+        <h5>Syringe & Infusion Pump</h5>
+
+        <p>
+            Pemberian obat dan cairan secara presisi
+            selama perjalanan pasien.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- EMERGENCY KIT -->
+<div class="col-lg-3 col-md-6">
+
+    <div class="card p-4 text-center h-100 equipment-card">
+
+        <div class="image-preview">
+
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/trauma_kit.png"
+                 alt="Emergency Kit Lengkap">
+
+            <div class="preview-caption">
+                Emergency Trauma Kit
+                <br>
+                Ambulans 119 RSSA
+            </div>
+
+        </div>
+
+        <i class="fas fa-kit-medical fa-3x text-warning mb-3"></i>
+
+        <h5>Emergency Kit Lengkap</h5>
+
+        <p>
+            Peralatan airway, oksigen, suction,
+            trauma kit, dan emergency drugs.
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ALUR PELAYANAN -->
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="section-title">
+    Alur Pelayanan Ambulans 119 RSSA
+</h2>
+
+<div class="row g-4 justify-content-center">
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-phone-volume fa-3x text-success mb-3"></i>
+            <h3>(0341) 320118</h3>
+            <h6>    <a href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
+       target="_blank"
+       class="text-decoration-none text-success fw-bold">
+        <i class="fab fa-whatsapp"></i>
+        0821-3109-0119
+    </a></h6>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+            <h6>Operator Menerima</h6>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-clipboard-check fa-3x text-warning mb-3"></i>
+            <h6>Verifikasi Data</h6>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-truck-medical fa-3x text-danger mb-3"></i>
+            <h6>Dispatch Ambulans</h6>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-heart-pulse fa-3x text-info mb-3"></i>
+            <h6>Penanganan Pasien</h6>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-4 col-6">
+        <div class="card p-3 text-center h-100 flow-card">
+            <i class="fas fa-hospital-user fa-3x text-success mb-3"></i>
+            <h6>Rumah Sakit Tujuan</h6>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TIPS -->
+<section class="py-5 bg-light-blue">
+
+<div class="container">
+
+<h2 class="section-title">
+Tips Saat Menunggu Ambulans
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4 class="text-success">
+<i class="fas fa-circle-check"></i>
+ Yang Harus Dilakukan
+</h4>
+
+<ul>
+<li>Tetap tenang</li>
+<li>Pastikan nomor aktif</li>
+<li>Berikan petunjuk lokasi jelas</li>
+<li>Siapkan identitas pasien</li>
+<li>Siapkan dokumen pendukung</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4 class="text-danger">
+<i class="fas fa-circle-xmark"></i>
+ Yang Tidak Perlu Dilakukan
+</h4>
+
+<ul>
+<li>Memindahkan korban cedera berat</li>
+<li>Memberikan obat tanpa petunjuk tenaga medis</li>
+<li>Menghalangi akses ambulans</li>
+<li>Membuat kerumunan di sekitar pasien</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TARIF AMBULANS -->
+<section class="py-5 bg-light-blue">
+
+<div class="container">
+
+<div class="card border-0 shadow">
+
+    <div class="card-header bg-success text-white text-center py-3">
+        <h2 class="mb-0">
+            <i class="fas fa-file-invoice-dollar"></i>
+            Tarif Pelayanan Ambulans 119 RSSA
+        </h2>
+    </div>
+
+    <div class="card-body text-center">
+
+        <p class="lead">
+            Tarif pelayanan Ambulans 119 RSSA mengacu pada
+            Peraturan Gubernur Jawa Timur Nomor 28 Tahun 2025
+            dan ketentuan yang berlaku.
+        </p>
+
+        <a href="https://docs.google.com/gview?embedded=1&url=https://raw.githubusercontent.com/ambulan119/RSSA/main/Nodin%20dan%20daftar%20tarif%20pelyanan%20ambulan%20pergub%2028%202025.pdf"
+           target="_blank"
+           class="btn btn-danger btn-lg me-2">
+            <i class="fas fa-file-pdf"></i>
+            Lihat PDF Tarif
+        </a>
+
+        <a href="https://docs.google.com/gview?embedded=1&url=https://raw.githubusercontent.com/ambulan119/RSSA/main/Nodin%20dan%20daftar%20tarif%20pelyanan%20ambulan%20pergub%2028%202025.pdf"
+           target="_blank"
+           class="btn btn-success btn-lg">
+            <i class="fas fa-download"></i>
+            Download PDF
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- KONTAK -->
+<section class="py-5">
+
+<div class="container">
+
+<div class="card p-5 text-center">
+
+<h2 class="text-primary mb-4">
+Hubungi Ambulans 119 RSSA
+</h2>
+
+<h3>(0341) 320118</h3>
+
+<h3 class="m-0">
+    <a href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
+       target="_blank"
+       class="text-decoration-none text-success fw-bold">
+        <i class="fab fa-whatsapp"></i>
+        0821-3109-0119
+    </a>
+</h3>
+
+<p class="mt-3">
+Melayani 24 Jam Setiap Hari
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="footer text-center">
+
+<h5>
+"Siaga 24 Jam, Cepat Merespon,
+Aman Mengantar, Profesional Melayani."
+</h5>
+
+<p class="mb-0">
+© Ambulans 119 RSSA
+</p>
+
+</footer>
+
+</body>
+</html>
