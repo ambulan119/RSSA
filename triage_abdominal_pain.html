@@ -1,0 +1,4126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TRIAGE ABDOMINAL PAIN — GODMODE</title>
+
+<style>
+/* =========================================================
+   TRIAGE ABDOMINAL PAIN — GODMODE
+   PREMIUM EDUCATION DECK
+   Standalone HTML / VS Code
+========================================================= */
+
+:root{
+    --bg:#050a0f;
+    --bg2:#09131c;
+    --panel:#0d1a24;
+    --panel2:#112330;
+    --line:#294554;
+    --text:#edf8fc;
+    --muted:#9db3c0;
+
+    --cyan:#39d9ff;
+    --blue:#6ea8ff;
+    --green:#55e39a;
+    --yellow:#ffd166;
+    --orange:#ff9f43;
+    --red:#ff5d73;
+
+    --shadow:0 20px 60px rgba(0,0,0,.42);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+body{
+    user-select:none;
+}
+
+.deck{
+    width:100vw;
+    height:100vh;
+    position:relative;
+}
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+.slide{
+    display:none;
+    width:100%;
+    height:100%;
+    padding:58px 68px 62px;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 12%,
+            rgba(57,217,255,.09),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(110,168,255,.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050d14 0%,
+            #08141e 55%,
+            #050b11 100%
+        );
+}
+
+.slide.active{
+    display:block;
+}
+
+.slide::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.28;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size:42px 42px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #000 20%,
+            #000 80%,
+            transparent
+        );
+}
+
+.slide > *{
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topline{
+    position:absolute;
+    top:22px;
+    left:68px;
+    right:68px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    color:#66818f;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+}
+
+.brand{
+    color:var(--cyan);
+}
+
+.kicker{
+    margin-bottom:12px;
+    color:var(--cyan);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:2.4px;
+    text-transform:uppercase;
+}
+
+h1{
+    margin:0 0 18px;
+    font-size:clamp(48px,6vw,92px);
+    line-height:.96;
+    letter-spacing:-3px;
+}
+
+h2{
+    margin:0 0 18px;
+    font-size:clamp(34px,4vw,58px);
+    line-height:1;
+    letter-spacing:-1.5px;
+}
+
+h3{
+    margin:0 0 10px;
+    font-size:22px;
+}
+
+p{
+    margin:8px 0;
+    color:#d6e5eb;
+    font-size:18px;
+    line-height:1.5;
+}
+
+.subtitle{
+    max-width:900px;
+    color:var(--muted);
+    font-size:22px;
+}
+
+.small{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+}
+
+.hero{
+    max-width:1050px;
+    margin:auto;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(55px,7vw,108px);
+}
+
+.hero .tag{
+    display:inline-block;
+    margin-bottom:22px;
+    padding:9px 15px;
+    border:1px solid rgba(57,217,255,.42);
+    border-radius:999px;
+    color:var(--cyan);
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.quote{
+    max-width:900px;
+    margin:25px auto;
+    font-size:34px;
+    line-height:1.15;
+    font-weight:900;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    position:absolute;
+    bottom:18px;
+    left:68px;
+    right:68px;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#58717e;
+    font-size:10px;
+    letter-spacing:.5px;
+}
+
+/* =========================================================
+   GRID / CARD
+========================================================= */
+
+.grid{
+    display:grid;
+    gap:18px;
+}
+
+.grid2{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.grid3{
+    grid-template-columns:repeat(3,1fr);
+}
+
+.grid4{
+    grid-template-columns:repeat(4,1fr);
+}
+
+.card{
+    padding:22px;
+    border:1px solid var(--line);
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,35,48,.95),
+            rgba(8,21,30,.95)
+        );
+
+    box-shadow:var(--shadow);
+}
+
+.card.compact{
+    padding:16px;
+}
+
+.card.red{
+    border-color:rgba(255,93,115,.45);
+}
+
+.card.yellow{
+    border-color:rgba(255,209,102,.45);
+}
+
+.card.green{
+    border-color:rgba(85,227,154,.42);
+}
+
+.card.cyan{
+    border-color:rgba(57,217,255,.42);
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:7px 11px;
+    border-radius:999px;
+
+    border:1px solid var(--line);
+
+    color:var(--muted);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.badge.red{
+    color:#ffd9df;
+    border-color:rgba(255,93,115,.5);
+    background:rgba(255,93,115,.08);
+}
+
+.badge.yellow{
+    color:#fff2c9;
+    border-color:rgba(255,209,102,.5);
+    background:rgba(255,209,102,.07);
+}
+
+.badge.green{
+    color:#d8ffeb;
+    border-color:rgba(85,227,154,.45);
+    background:rgba(85,227,154,.07);
+}
+
+.badge.cyan{
+    color:#d9f9ff;
+    border-color:rgba(57,217,255,.45);
+    background:rgba(57,217,255,.07);
+}
+
+ul{
+    margin:10px 0 0;
+    padding-left:21px;
+}
+
+li{
+    margin:8px 0;
+    color:#d6e4e9;
+    line-height:1.35;
+}
+
+.cyan-text{color:var(--cyan)}
+.red-text{color:var(--red)}
+.yellow-text{color:var(--yellow)}
+.green-text{color:var(--green)}
+.orange-text{color:var(--orange)}
+.muted{color:var(--muted)}
+
+/* =========================================================
+   CALLOUT
+========================================================= */
+
+.callout{
+    margin-top:18px;
+    padding:18px 20px;
+
+    border-left:4px solid var(--cyan);
+    border-radius:0 15px 15px 0;
+
+    background:rgba(57,217,255,.055);
+}
+
+.callout.red{
+    border-left-color:var(--red);
+    background:rgba(255,93,115,.055);
+}
+
+.callout.yellow{
+    border-left-color:var(--yellow);
+    background:rgba(255,209,102,.05);
+}
+
+/* =========================================================
+   BIG STAT
+========================================================= */
+
+.big-number{
+    color:var(--cyan);
+    font-size:48px;
+    line-height:1;
+    font-weight:950;
+}
+
+/* =========================================================
+   FLOW
+========================================================= */
+
+.flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+}
+
+.flow-node{
+    min-width:145px;
+    padding:17px 20px;
+
+    border:1px solid #355464;
+    border-radius:16px;
+
+    background:#0b1d28;
+    text-align:center;
+    font-weight:900;
+}
+
+.arrow{
+    color:var(--cyan);
+    font-size:25px;
+    font-weight:900;
+}
+
+/* =========================================================
+   TRIAGE LEVELS
+========================================================= */
+
+.triage{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:24px;
+}
+
+.level{
+    min-height:260px;
+    padding:24px;
+
+    border:1px solid;
+    border-radius:22px;
+}
+
+.level h3{
+    font-size:27px;
+}
+
+.level p{
+    font-size:15px;
+}
+
+.level.red{
+    border-color:rgba(255,93,115,.58);
+    background:rgba(255,93,115,.07);
+}
+
+.level.yellow{
+    border-color:rgba(255,209,102,.55);
+    background:rgba(255,209,102,.055);
+}
+
+.level.green{
+    border-color:rgba(85,227,154,.5);
+    background:rgba(85,227,154,.055);
+}
+
+/* =========================================================
+   CASE
+========================================================= */
+
+.case{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:22px;
+    height:calc(100% - 80px);
+}
+
+.patient{
+    padding:26px;
+
+    border:1px solid #2d4757;
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            150deg,
+            #122633,
+            #091720
+        );
+}
+
+.patient-name{
+    margin:8px 0;
+    font-size:28px;
+    font-weight:950;
+}
+
+.vitals{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:18px;
+}
+
+.vital{
+    padding:13px 8px;
+    border:1px solid #243d4a;
+    border-radius:13px;
+    background:#07131b;
+    text-align:center;
+}
+
+.vital b{
+    display:block;
+    font-size:20px;
+}
+
+.vital span{
+    color:var(--muted);
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.7px;
+    text-transform:uppercase;
+}
+
+.question{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+    border:1px dashed #3b5b6d;
+    border-radius:22px;
+
+    background:rgba(10,25,35,.75);
+    text-align:center;
+}
+
+.question strong{
+    display:block;
+    font-size:34px;
+    line-height:1.15;
+}
+
+.question button{
+    margin-top:24px;
+}
+
+.answer{
+    margin-top:20px;
+    color:var(--red);
+    font-size:30px;
+    font-weight:950;
+}
+
+.reason{
+    margin-top:8px;
+    color:#d5e5eb;
+    line-height:1.45;
+}
+
+/* =========================================================
+   INTERACTIVE REVEAL
+========================================================= */
+
+.reveal{
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transform:translateY(12px);
+    transition:
+        max-height .6s ease,
+        opacity .45s ease,
+        transform .45s ease;
+}
+
+.slide.revealed .reveal{
+    max-height:600px;
+    opacity:1;
+    transform:none;
+}
+
+.btn{
+    padding:11px 17px;
+
+    border:1px solid #355466;
+    border-radius:11px;
+
+    background:#0c1d28;
+    color:#e9f7fb;
+
+    cursor:pointer;
+
+    font-weight:900;
+}
+
+.btn:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+}
+
+.btn.red:hover{
+    border-color:var(--red);
+    color:var(--red);
+}
+
+/* =========================================================
+   RED FLAGS
+========================================================= */
+
+.flag{
+    min-height:145px;
+    padding:20px;
+
+    border:1px solid rgba(255,93,115,.35);
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,93,115,.08),
+            rgba(12,25,34,.95)
+        );
+}
+
+.flag .icon{
+    margin-bottom:8px;
+    font-size:30px;
+}
+
+/* =========================================================
+   ECG
+========================================================= */
+
+.ecg{
+    padding:20px;
+    border:1px solid #304957;
+    border-radius:20px;
+    background:#061017;
+}
+
+.ecg-grid{
+    width:100%;
+    height:260px;
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            rgba(100,170,170,.11) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(100,170,170,.11) 1px,
+            transparent 1px
+        );
+
+    background-size:20px 20px;
+
+    overflow:hidden;
+}
+
+.ecg svg{
+    width:100%;
+    height:100%;
+}
+
+.ecg-line{
+    fill:none;
+    stroke:#58e39a;
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    filter:drop-shadow(0 0 4px rgba(85,227,154,.35));
+}
+
+.lead-label{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:900;
+}
+
+/* =========================================================
+   ABDOMEN MAP
+========================================================= */
+
+.abdomen-map{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    max-width:650px;
+    margin:20px auto;
+}
+
+.zone{
+    min-height:105px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #2d4a59;
+    border-radius:16px;
+
+    background:#0b1c27;
+
+    text-align:center;
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.zone:hover{
+    transform:translateY(-3px);
+    border-color:var(--cyan);
+    box-shadow:0 8px 30px rgba(57,217,255,.08);
+}
+
+.zone b{
+    font-size:15px;
+}
+
+.zone span{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:10px;
+}
+
+/* =========================================================
+   ABCDE
+========================================================= */
+
+.abcde{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-top:24px;
+}
+
+.abc{
+    min-height:210px;
+    padding:20px;
+
+    border:1px solid #2d4a59;
+    border-radius:20px;
+
+    background:linear-gradient(145deg,#112532,#091720);
+
+    text-align:center;
+}
+
+.abc .letter{
+    margin-bottom:10px;
+    color:var(--cyan);
+    font-size:48px;
+    line-height:1;
+    font-weight:950;
+}
+
+.abc p{
+    font-size:14px;
+}
+
+/* =========================================================
+   OPQRST
+========================================================= */
+
+.opqrst{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+
+.op{
+    min-height:160px;
+    padding:18px;
+
+    border:1px solid #2b4654;
+    border-radius:17px;
+
+    background:#0b1b25;
+}
+
+.op b{
+    color:var(--cyan);
+    font-size:27px;
+}
+
+/* =========================================================
+   BIG STATEMENT
+========================================================= */
+
+.statement{
+    max-width:1000px;
+    margin:70px auto 0;
+    text-align:center;
+}
+
+.statement .main{
+    font-size:clamp(35px,5vw,70px);
+    line-height:1.03;
+    font-weight:950;
+    letter-spacing:-2px;
+}
+
+.statement .sub{
+    margin-top:22px;
+    color:var(--muted);
+    font-size:22px;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.controls{
+    position:fixed;
+    left:50%;
+    bottom:12px;
+    z-index:100;
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    transform:translateX(-50%);
+
+    padding:7px;
+
+    border:1px solid rgba(65,91,104,.65);
+    border-radius:16px;
+
+    background:rgba(5,13,19,.9);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.controls button{
+    width:38px;
+    height:34px;
+
+    border:1px solid #294454;
+    border-radius:9px;
+
+    background:#0b1a24;
+    color:#dcecf2;
+
+    cursor:pointer;
+    font-weight:900;
+}
+
+.controls button:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+}
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:120;
+
+    width:100%;
+    height:3px;
+
+    background:#08131b;
+}
+
+.progress span{
+    display:block;
+    width:0;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--blue)
+    );
+
+    transition:.25s;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+    position:fixed;
+    right:18px;
+    top:45px;
+    z-index:90;
+
+    display:none;
+
+    width:320px;
+    max-height:80vh;
+    overflow:auto;
+
+    padding:12px;
+
+    border:1px solid #294554;
+    border-radius:17px;
+
+    background:rgba(7,17,24,.97);
+
+    box-shadow:var(--shadow);
+}
+
+.menu.open{
+    display:block;
+}
+
+.menu-item{
+    padding:12px;
+    border-bottom:1px solid #1b303c;
+
+    color:#d6e5eb;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.menu-item:hover{
+    color:var(--cyan);
+    background:#0b1d28;
+}
+
+.menu-item:last-child{
+    border-bottom:0;
+}
+
+/* =========================================================
+   REFERENCES
+========================================================= */
+
+.ref{
+    padding:15px 18px;
+    border-left:3px solid var(--cyan);
+    border-radius:0 12px 12px 0;
+    background:rgba(57,217,255,.045);
+    margin-bottom:12px;
+}
+
+.ref b{
+    color:#e9f7fb;
+}
+
+.ref span{
+    display:block;
+    margin-top:5px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.45;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    body{
+        overflow:auto;
+    }
+
+    .slide{
+        height:auto;
+        min-height:100vh;
+        padding:45px 25px 70px;
+    }
+
+    .topline{
+        left:25px;
+        right:25px;
+    }
+
+    .footer{
+        left:25px;
+        right:25px;
+    }
+
+    .grid2,
+    .grid3,
+    .grid4,
+    .triage,
+    .case,
+    .abcde,
+    .opqrst{
+        grid-template-columns:1fr;
+    }
+
+    .vitals{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .slide{
+        display:none;
+    }
+
+    .slide.active{
+        display:block;
+    }
+}
+
+/* =========================================================
+   PRINT / PDF — A4 LANDSCAPE 
+========================================================= */
+
+@media print {
+
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 297mm;
+        height: 210mm;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: #050a0f !important;
+    }
+
+    body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .deck {
+        width: 297mm !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .slide {
+        position: relative !important;
+
+        display: block !important;
+
+        width: 297mm !important;
+        height: 210mm !important;
+
+        min-width: 297mm !important;
+        min-height: 210mm !important;
+        max-width: 297mm !important;
+        max-height: 210mm !important;
+
+        margin: 0 !important;
+        padding: 14mm 16mm 13mm !important;
+
+        overflow: hidden !important;
+
+        page-break-before: always;
+        page-break-after: always;
+        page-break-inside: avoid;
+
+        break-before: page;
+        break-after: page;
+        break-inside: avoid;
+
+        box-sizing: border-box !important;
+    }
+
+    .slide:first-child {
+        page-break-before: auto;
+        break-before: auto;
+    }
+
+    .controls,
+    .progress,
+    .menu {
+        display: none !important;
+    }
+
+    .reveal {
+        max-height: none !important;
+        height: auto !important;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform: none !important;
+
+        overflow: visible !important;
+    }
+
+    .deck,
+    .slide,
+    .content,
+    .slide-content {
+        transform: none !important;
+    }
+
+    .slide::before {
+        display: none !important;
+    }
+
+    img,
+    figure,
+    table,
+    .card,
+    .panel,
+    .case,
+    .question,
+    .answer,
+    .reference,
+    .source-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    li {
+        overflow: visible !important;
+    }
+}
+
+.slide {
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+
+    left: 16mm;
+    right: 16mm;
+    bottom: 5mm;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .5px;
+
+    color: #8295a3;
+
+    z-index: 999;
+    pointer-events: none;
+}
+
+.update-info {
+    margin-left: 10px;
+    opacity: .8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="deck">
+
+<!-- =========================================================
+SLIDE 01 — COVER
+========================================================= -->
+
+<section class="slide active">
+
+<div class="topline">
+    <span class="brand">EMERGENCY TRIAGE SERIES</span>
+    <span>01 / ABDOMINAL PAIN </span>
+
+</div>
+
+
+<div class="center">
+
+<div class="hero">
+
+    <div class="tag">WORKSHOP • TRIAGE OFFICER COURSE IGD RSSA 2026</div>
+
+    <h1>
+        TRIAGE<br>
+        <span class="cyan-text">ABDOMINAL PAIN</span>
+    </h1>
+
+    <div class="quote">
+        “Nyeri perut tidak selalu berarti masalah perut.”
+    </div>
+
+    <p class="subtitle">
+        Mengenali apa yang dikeluhkan pasien dan mengkaji klinis dari keluhan pasien.
+    </p>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 02
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ABDOMINAL PAIN</span>
+    <span>02</span>
+</div>
+
+<div class="kicker">Mindset</div>
+
+<h2>
+    Jangan mulai dengan<br>
+    <span class="cyan-text">“Diagnosis apa?”</span>
+</h2>
+
+<div class="statement">
+
+    <div class="main">
+        Mulai dengan:
+        <br>
+        <span class="red-text">
+            “Apakah pasien ini sedang terancam nyawanya?”
+        </span>
+    </div>
+
+    <div class="sub">
+        Triage adalah proses menentukan risiko dan prioritas,
+        bukan sekadar memberi label diagnosis.
+    </div>
+
+</div>
+
+<div class="footer">
+    <span>CLINICAL REASONING</span>
+    <span>02</span>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 03
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">FIRST LOOK</span>
+    <span>03</span>
+</div>
+
+<div class="kicker">Triage awal</div>
+
+<h2>
+    Dalam beberapa detik pertama,
+    <span class="cyan-text">lihat pasiennya.</span>
+</h2>
+
+<div class="grid grid4">
+
+    <div class="card">
+        <div class="big-number">01</div>
+        <h3>Appearance</h3>
+        <ul>
+            <li>Tampak sakit berat?</li>
+            <li>Gelisah / letargi?</li>
+            <li>Keringat dingin?</li>
+            <li>Posisi antalgik?</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <div class="big-number red-text">02</div>
+        <h3>Circulation</h3>
+        <ul>
+            <li>Takikardia</li>
+            <li>Hipotensi</li>
+            <li>CRT memanjang</li>
+            <li>Kulit dingin / pucat</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <div class="big-number">03</div>
+        <h3>Breathing</h3>
+        <ul>
+            <li>Takipnea</li>
+            <li>Distres napas</li>
+            <li>Hipoksia</li>
+            <li>Sesak</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <div class="big-number">04</div>
+        <h3>Neurologis</h3>
+        <ul>
+            <li>Bingung</li>
+            <li>Sinkop</li>
+            <li>Penurunan kesadaran</li>
+            <li>Perubahan perilaku</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="callout">
+    <b>PRINSIP:</b>
+    jangan biarkan diagnosis awal seperti “maag” membuat kita
+    melewatkan tanda <b>shock, sepsis, perdarahan, atau kondisi time-critical.</b>
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 04 — ABCDE
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ABCDE</span>
+    <span>04</span>
+</div>
+
+<div class="kicker">Initial assessment</div>
+
+<h2>
+    <span class="cyan-text">ABCDE</span> sebelum terlalu jauh
+    mengejar diagnosis.
+</h2>
+
+<div class="abcde">
+
+    <div class="abc">
+        <div class="letter">A</div>
+        <h3>Airway</h3>
+        <p>Apakah airway patent?</p>
+    </div>
+
+    <div class="abc">
+        <div class="letter">B</div>
+        <h3>Breathing</h3>
+        <p>RR • SpO₂ • work of breathing</p>
+    </div>
+
+    <div class="abc">
+        <div class="letter">C</div>
+        <h3>Circulation</h3>
+        <p>HR • BP • CRT • perfusi • perdarahan</p>
+    </div>
+
+    <div class="abc">
+        <div class="letter">D</div>
+        <h3>Disability</h3>
+        <p>Kesadaran • GCS • GDS bila indikasi</p>
+    </div>
+
+    <div class="abc">
+        <div class="letter">E</div>
+        <h3>Exposure</h3>
+        <p>Abdomen • kulit • bleeding • distensi</p>
+    </div>
+
+</div>
+
+<div class="callout">
+    <b>INGAT:</b>
+    stabilisasi pasien yang tidak stabil tidak boleh tertunda hanya
+    untuk menyelesaikan pemeriksaan diagnostik.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 05 — RED FLAGS
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">RED FLAGS</span>
+    <span>05</span>
+</div>
+
+<div class="kicker">🚨 Don't miss</div>
+
+<h2>
+    Red flags abdominal pain
+</h2>
+
+<div class="grid grid4">
+
+    <div class="flag">
+        <div class="icon">🩸</div>
+        <h3>Shock</h3>
+        <p>Hipotensi, takikardia, hipoperfusi, sinkop.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">🔥</div>
+        <h3>Peritonitis</h3>
+        <p>Guarding, rigidity, nyeri dengan pergerakan.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">⚡</div>
+        <h3>Sudden severe pain</h3>
+        <p>Nyeri sangat berat dengan onset mendadak.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">🩸</div>
+        <h3>GI bleeding</h3>
+        <p>Hematemesis, melena, hematochezia.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">🤰</div>
+        <h3>Pregnancy concern</h3>
+        <p>Nyeri + vaginal bleeding + kemungkinan hamil.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">⚠️</div>
+        <h3>Pain out of proportion</h3>
+        <p>Nyeri berat dengan temuan fisik minimal.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">🔄</div>
+        <h3>Obstruction</h3>
+        <p>Muntah + distensi + tidak BAB/flatus.</p>
+    </div>
+
+    <div class="flag">
+        <div class="icon">🫀</div>
+        <h3>Extra-abdominal</h3>
+        <p>ACS, PE, pneumonia, aortic syndrome.</p>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 06 — TRIAGE LEVEL
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">PRIORITY</span>
+    <span>06</span>
+</div>
+
+<div class="kicker">Clinical prioritization</div>
+
+<h2>
+    Siapa yang harus
+    <span class="red-text">didahulukan?</span>
+</h2>
+
+<div class="triage">
+
+    <div class="level red">
+        <span class="badge red">IMMEDIATE</span>
+        <h3 class="red-text">Prioritas segera</h3>
+
+        <ul>
+            <li>Shock / instabilitas</li>
+            <li>Altered mental status</li>
+            <li>Peritonitis</li>
+            <li>Major bleeding</li>
+            <li>Sudden severe pain</li>
+            <li>Suspected ruptured AAA</li>
+            <li>Ectopic + instability</li>
+            <li>Severe sepsis</li>
+        </ul>
+    </div>
+
+    <div class="level yellow">
+        <span class="badge yellow">HIGH</span>
+        <h3 class="yellow-text">Prioritas tinggi</h3>
+
+        <ul>
+            <li>Nyeri berat persisten</li>
+            <li>Repeated vomiting</li>
+            <li>GI bleeding</li>
+            <li>Fever + localized pain</li>
+            <li>Progressive distension</li>
+            <li>Suspected obstruction</li>
+            <li>Pregnancy + abdominal pain</li>
+            <li>Lansia dengan nyeri baru</li>
+        </ul>
+    </div>
+
+    <div class="level green">
+        <span class="badge green">LOWER</span>
+        <h3 class="green-text">Prioritas lebih rendah</h3>
+
+        <ul>
+            <li>Hemodinamik stabil</li>
+            <li>Tidak ada red flags</li>
+            <li>Tidak ada peritonitis</li>
+            <li>Tidak ada bleeding</li>
+            <li>Tidak ada altered mental status</li>
+            <li>Tetap perlu assessment</li>
+            <li>Tetap perlu reassessment</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="callout yellow">
+    <b>CATATAN:</b>
+    “prioritas lebih rendah” bukan berarti “tidak perlu diperiksa”.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 07 — PAIN SCORE TRAP
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 01</span>
+    <span>07</span>
+</div>
+
+<div class="kicker">Interactive case</div>
+
+<h2>
+    Pain score bukan satu-satunya
+    <span class="cyan-text">penentu prioritas.</span>
+</h2>
+
+<div class="case">
+
+<div class="patient">
+
+    <span class="badge cyan">PATIENT A</span>
+
+    <div class="patient-name">
+        Nyeri 8/10
+    </div>
+
+    <p>
+        Nyeri epigastrium sejak 2 jam.
+        Tidak muntah. Tampak cukup nyaman.
+    </p>
+
+    <div class="vitals">
+
+        <div class="vital">
+            <b>128/78</b>
+            <span>BP</span>
+        </div>
+
+        <div class="vital">
+            <b>92</b>
+            <span>HR</span>
+        </div>
+
+        <div class="vital">
+            <b>18</b>
+            <span>RR</span>
+        </div>
+
+        <div class="vital">
+            <b>98%</b>
+            <span>SpO₂</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="question">
+
+<div>
+
+    <strong>
+        Apakah Patient A<br>
+        otomatis paling gawat?
+    </strong>
+
+    <button
+        class="btn"
+        onclick="reveal(this)">
+        TAMPILKAN JAWABAN
+    </button>
+
+    <div class="reveal">
+
+        <div class="answer green-text">
+            BELUM TENTU.
+        </div>
+
+        <div class="reason">
+            Severity of pain perlu dinilai bersama
+            kondisi fisiologis dan red flags.
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 08 — SHOCK CASE
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 01B</span>
+    <span>08</span>
+</div>
+
+<div class="kicker">Interactive case</div>
+
+<h2>
+    Sekarang bandingkan dengan
+    <span class="red-text">Patient B.</span>
+</h2>
+
+<div class="case">
+
+<div class="patient">
+
+    <span class="badge red">PATIENT B</span>
+
+    <div class="patient-name">
+        Nyeri 5/10
+    </div>
+
+    <p>
+        Nyeri abdomen disertai pusing.
+        Tampak pucat dan berkeringat dingin.
+    </p>
+
+    <div class="vitals">
+
+        <div class="vital">
+            <b>82/54</b>
+            <span>BP</span>
+        </div>
+
+        <div class="vital">
+            <b>128</b>
+            <span>HR</span>
+        </div>
+
+        <div class="vital">
+            <b>26</b>
+            <span>RR</span>
+        </div>
+
+        <div class="vital">
+            <b>?</b>
+            <span>Perfusi</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="question">
+
+<div>
+
+    <strong>
+        Mana yang harus<br>
+        diprioritaskan?
+    </strong>
+
+    <button
+        class="btn red"
+        onclick="reveal(this)">
+        TAMPILKAN JAWABAN
+    </button>
+
+    <div class="reveal">
+
+        <div class="answer red-text">
+            PATIENT B
+        </div>
+
+        <div class="reason">
+            Hipotensi + takikardia + tanda hipoperfusi
+            menunjukkan kemungkinan shock.
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 09 — SUDDEN SEVERE PAIN
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 02</span>
+    <span>09</span>
+</div>
+
+<div class="kicker">Time-critical abdominal pain</div>
+
+<h2>
+    <span class="red-text">Sudden severe pain</span>
+    sampai terbukti sebaliknya.
+</h2>
+
+<div class="grid grid2">
+
+<div class="card red">
+
+    <span class="badge red">
+        PATIENT
+    </span>
+
+    <h3 style="font-size:32px;margin-top:15px">
+        “Sakit sekali, mendadak.”
+    </h3>
+
+    <p>
+        Nyeri abdomen 10/10.
+        Onset mendadak.
+    </p>
+
+    <div class="vitals">
+
+        <div class="vital">
+            <b>135/80</b>
+            <span>BP</span>
+        </div>
+
+        <div class="vital">
+            <b>96</b>
+            <span>HR</span>
+        </div>
+
+        <div class="vital">
+            <b>18</b>
+            <span>RR</span>
+        </div>
+
+        <div class="vital">
+            <b>10/10</b>
+            <span>PAIN</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <span class="badge cyan">
+        DON'T MISS
+    </span>
+
+    <ul>
+        <li>Vascular emergency</li>
+        <li>Perforation</li>
+        <li>Mesenteric ischemia</li>
+        <li>Obstruction</li>
+        <li>Other acute surgical causes</li>
+    </ul>
+
+    <div class="callout red">
+        <b>BP NORMAL ≠ CONDITION NORMAL.</b>
+        <br>
+        Tanyakan onset, karakter, lokasi, radiation,
+        red flags dan lakukan reassessment.
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 10 — PAIN MAP
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">PAIN MAP</span>
+    <span>10</span>
+</div>
+
+<div class="kicker">Anatomical orientation</div>
+
+<h2>
+    Lokasi nyeri memberi
+    <span class="cyan-text">petunjuk.</span>
+</h2>
+
+<div class="abdomen-map">
+
+    <div class="zone">
+        <b>RUQ</b>
+        <span>Hepatobiliary</span>
+    </div>
+
+    <div class="zone">
+        <b>EPIGASTRIC</b>
+        <span>GI • Pancreas • Cardiac</span>
+    </div>
+
+    <div class="zone">
+        <b>LUQ</b>
+        <span>Spleen • Stomach</span>
+    </div>
+
+    <div class="zone">
+        <b>RLQ</b>
+        <span>Appendix • Pelvic</span>
+    </div>
+
+    <div class="zone">
+        <b>UMBILICAL</b>
+        <span>GI / early visceral</span>
+    </div>
+
+    <div class="zone">
+        <b>LLQ</b>
+        <span>Colon • Pelvic</span>
+    </div>
+
+    <div class="zone">
+        <b>SUPRAPUBIC</b>
+        <span>Bladder • Pelvic</span>
+    </div>
+
+    <div class="zone">
+        <b>FLANK</b>
+        <span>Renal / ureter</span>
+    </div>
+
+    <div class="zone">
+        <b>GENERALIZED</b>
+        <span>Peritonitis • obstruction • ischemia</span>
+    </div>
+
+</div>
+
+<div class="callout">
+    <b>CAUTION:</b>
+    lokasi nyeri membantu membangun differential diagnosis,
+    tetapi tidak menggantikan penilaian fisiologis dan red flags.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 11 — OPQRST
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">HISTORY</span>
+    <span>11</span>
+</div>
+
+<div class="kicker">Focused history</div>
+
+<h2>
+    Gunakan <span class="cyan-text">OPQRST</span>
+</h2>
+
+<div class="opqrst">
+
+    <div class="op">
+        <b>O</b>
+        <h3>Onset</h3>
+        <p>Mendadak atau bertahap?</p>
+    </div>
+
+    <div class="op">
+        <b>P</b>
+        <h3>Provocation</h3>
+        <p>Apa yang memperberat / meredakan?</p>
+    </div>
+
+    <div class="op">
+        <b>Q</b>
+        <h3>Quality</h3>
+        <p>Tajam, terbakar, kolik, robek?</p>
+    </div>
+
+    <div class="op">
+        <b>R</b>
+        <h3>Region</h3>
+        <p>Di mana? Menjalar ke mana?</p>
+    </div>
+
+    <div class="op">
+        <b>S</b>
+        <h3>Severity</h3>
+        <p>Skala 0–10.</p>
+    </div>
+
+    <div class="op">
+        <b>T</b>
+        <h3>Time</h3>
+        <p>Konstan atau hilang timbul?</p>
+    </div>
+
+</div>
+
+<div class="callout">
+    <b>PERTANYAAN EMAS:</b>
+    “Apa yang sedang dilakukan pasien ketika nyeri tiba-tiba mulai?”
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 12 — ASSOCIATED SYMPTOMS
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ASSOCIATED SYMPTOMS</span>
+    <span>12</span>
+</div>
+
+<div class="kicker">Jangan hanya bertanya “sakit di mana?”</div>
+
+<h2>
+    Cari gejala yang
+    <span class="cyan-text">mengubah prioritas.</span>
+</h2>
+
+<div class="grid grid4">
+
+<div class="card">
+    <h3>GI</h3>
+    <ul>
+        <li>Mual</li>
+        <li>Muntah</li>
+        <li>Diare</li>
+        <li>Konstipasi</li>
+        <li>Tidak flatus</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3>Bleeding</h3>
+    <ul>
+        <li>Hematemesis</li>
+        <li>Melena</li>
+        <li>Hematochezia</li>
+        <li>Vaginal bleeding</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3>Urinary</h3>
+    <ul>
+        <li>Disuria</li>
+        <li>Hematuria</li>
+        <li>Flank pain</li>
+        <li>Oliguria</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3>Systemic</h3>
+    <ul>
+        <li>Fever</li>
+        <li>Chills</li>
+        <li>Weakness</li>
+        <li>Syncope</li>
+        <li>Dyspnea</li>
+    </ul>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 13 — OBSTRUCTION
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 03</span>
+    <span>13</span>
+</div>
+
+<div class="kicker">Obstruction</div>
+
+<h2>
+    Nyeri + muntah + distensi +
+    <span class="red-text">tidak flatus.</span>
+</h2>
+
+<div class="grid grid2">
+
+<div class="card red">
+
+    <span class="badge red">
+        THINK OBSTRUCTION
+    </span>
+
+    <div style="font-size:65px;margin:22px 0">
+        🤢 → 🫄 → 🚫💨
+    </div>
+
+    <h3>
+        Pertanyaan penting
+    </h3>
+
+    <ul>
+        <li>Kapan terakhir BAB?</li>
+        <li>Kapan terakhir flatus?</li>
+        <li>Muntah berulang?</li>
+        <li>Muntah bilier?</li>
+        <li>Riwayat operasi abdomen?</li>
+        <li>Hernia?</li>
+    </ul>
+
+</div>
+
+<div class="card">
+
+    <h3>
+        Apa yang harus dicari?
+    </h3>
+
+    <ul>
+        <li>Distensi progresif</li>
+        <li>Nyeri kolik</li>
+        <li>Dehidrasi</li>
+        <li>Gangguan elektrolit</li>
+        <li>Iskemia / strangulasi</li>
+        <li>Peritonitis</li>
+    </ul>
+
+    <div class="callout yellow">
+        Obstruction dengan tanda iskemia,
+        peritonitis atau instabilitas
+        menjadi semakin urgent.
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 14 — PERITONITIS
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 04</span>
+    <span>14</span>
+</div>
+
+<div class="kicker">Acute surgical abdomen</div>
+
+<h2>
+    <span class="red-text">Peritonitis</span>
+    adalah red flag.
+</h2>
+
+<div class="grid grid3">
+
+<div class="card red">
+    <div style="font-size:42px">🛑</div>
+    <h3>Guarding</h3>
+    <p>Respons protektif otot abdomen terhadap nyeri.</p>
+</div>
+
+<div class="card red">
+    <div style="font-size:42px">⚠️</div>
+    <h3>Rigidity</h3>
+    <p>Kekakuan abdomen yang mengkhawatirkan.</p>
+</div>
+
+<div class="card red">
+    <div style="font-size:42px">🚨</div>
+    <h3>Movement pain</h3>
+    <p>Nyeri bertambah dengan gerakan atau guncangan.</p>
+</div>
+
+</div>
+
+<div class="callout red" style="margin-top:30px">
+    <b>JANGAN TERLAMBAT.</b>
+    Jika pasien tidak stabil atau terdapat tanda peritonitis jelas,
+    prioritaskan stabilisasi dan eskalasi klinis.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 15 — PAIN OUT OF PROPORTION
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 05</span>
+    <span>15</span>
+</div>
+
+<div class="kicker">High-risk pattern</div>
+
+<h2>
+    “Sakitnya 10/10…”
+</h2>
+
+<div class="grid grid2">
+
+<div class="card red">
+
+    <span class="badge red">
+        PATIENT
+    </span>
+
+    <div style="margin:20px 0;font-size:62px;font-weight:950">
+        10/10
+    </div>
+
+    <p>
+        Nyeri abdomen sangat berat.
+        Pasien tampak sangat kesakitan.
+    </p>
+
+    <p class="muted">
+        Tetapi abdomen awalnya relatif lunak
+        dan tanda fisik belum dramatis.
+    </p>
+
+</div>
+
+<div class="card">
+
+    <span class="badge cyan">
+        DON'T MISS
+    </span>
+
+    <h3 style="font-size:32px;margin-top:18px">
+        Acute Mesenteric Ischemia
+    </h3>
+
+    <div class="callout red">
+        <b>PAIN OUT OF PROPORTION</b>
+        <br><br>
+        Nyeri sangat berat yang tampak tidak sebanding
+        dengan temuan pemeriksaan fisik awal.
+    </div>
+
+    <p>
+        Jangan menggunakan pemeriksaan abdomen yang awalnya
+        relatif ringan sebagai alasan untuk mengabaikan
+        kondisi time-critical.
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 16 — ECG INTRO
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">DON'T MISS ACS</span>
+    <span>16</span>
+</div>
+
+<div class="kicker">Abdominal pain can be cardiac</div>
+
+<h2>
+    <span class="cyan-text">Epigastric discomfort</span>
+    ≠ selalu gastritis.
+</h2>
+
+<div class="grid grid2">
+
+<div class="card">
+
+    <span class="badge cyan">
+        THINK OUTSIDE THE ABDOMEN
+    </span>
+
+    <h3 style="font-size:29px;margin-top:18px">
+        Pasien:
+    </h3>
+
+    <ul>
+        <li>Epigastric discomfort</li>
+        <li>Mual</li>
+        <li>Keringat dingin</li>
+        <li>Sesak</li>
+        <li>Lemah</li>
+    </ul>
+
+    <div class="callout">
+        Bila sesuai konteks klinis,
+        pertimbangkan evaluasi kardiovaskular.
+    </div>
+
+</div>
+
+<div class="card">
+
+    <h3>
+        ECG dapat mengubah arah assessment.
+    </h3>
+
+    <div class="ecg">
+
+        <div class="lead-label">
+            12-LEAD ECG • ILUSTRASI EDUKASI
+        </div>
+
+        <div class="ecg-grid">
+
+            <svg viewBox="0 0 800 260"
+                 preserveAspectRatio="none">
+
+                <path
+                    class="ecg-line"
+                    d="
+                    M0 130
+                    L50 130
+                    L58 125
+                    L65 130
+                    L75 130
+                    L82 125
+                    L88 130
+                    L120 130
+
+                    L135 130
+                    L142 112
+                    L149 150
+                    L158 130
+                    L180 130
+
+                    L200 130
+                    L207 124
+                    L214 130
+                    L235 130
+
+                    L250 130
+                    L258 95
+                    L266 175
+                    L274 130
+                    L305 130
+
+                    L325 130
+                    L333 123
+                    L340 130
+                    L365 130
+
+                    L380 130
+                    L388 88
+                    L397 180
+                    L405 130
+                    L435 130
+
+                    L455 130
+                    L462 124
+                    L470 130
+                    L500 130
+
+                    L515 130
+                    L523 92
+                    L532 176
+                    L540 130
+                    L575 130
+
+                    L600 130
+                    L608 124
+                    L616 130
+                    L645 130
+
+                    L660 130
+                    L668 96
+                    L676 174
+                    L684 130
+                    L720 130
+
+                    L740 130
+                    L748 124
+                    L755 130
+                    L800 130
+                    " />
+
+            </svg>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 17 — ECG CASE
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 06</span>
+    <span>17</span>
+</div>
+
+<div class="kicker">Interactive ECG case</div>
+
+<h2>
+    “Cuma sakit perut?”
+</h2>
+
+<div class="case">
+
+<div class="patient">
+
+    <span class="badge cyan">
+        PATIENT
+    </span>
+
+    <div class="patient-name">
+        Laki-laki 58 tahun
+    </div>
+
+    <p>
+        “Perut terasa panas” sejak 45 menit.
+    </p>
+
+    <ul>
+        <li>Mual</li>
+        <li>Keringat dingin</li>
+        <li>Lemah</li>
+        <li>Sesak</li>
+    </ul>
+
+    <div class="vitals">
+
+        <div class="vital">
+            <b>138/84</b>
+            <span>BP</span>
+        </div>
+
+        <div class="vital">
+            <b>96</b>
+            <span>HR</span>
+        </div>
+
+        <div class="vital">
+            <b>22</b>
+            <span>RR</span>
+        </div>
+
+        <div class="vital">
+            <b>98%</b>
+            <span>SpO₂</span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="question">
+
+<div>
+
+    <strong>
+        Apakah cukup ditriage<br>
+        sebagai masalah GI?
+    </strong>
+
+    <button
+        class="btn"
+        onclick="reveal(this)">
+        LIHAT LANJUTAN
+    </button>
+
+    <div class="reveal">
+
+        <div class="answer cyan-text">
+            JANGAN TERKUNCI.
+        </div>
+
+        <div class="reason">
+            Keluhan epigastrium/upper abdominal discomfort
+            dapat muncul pada presentasi ACS.
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 18 — ECG REVEAL
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ECG REVEAL</span>
+    <span>18</span>
+</div>
+
+<div class="kicker">Interactive reveal</div>
+
+<h2>
+    Kemudian ECG masuk ke layar.
+</h2>
+
+<div class="ecg" style="max-width:1050px;margin:20px auto">
+
+<div class="lead-label">
+    12-LEAD ECG • ILUSTRASI POLA INFERIOR
+</div>
+
+<div class="ecg-grid" style="height:300px">
+
+<svg viewBox="0 0 1000 300"
+     preserveAspectRatio="none">
+
+    <!-- Baseline -->
+    <path
+        d="M0 150 H1000"
+        stroke="rgba(255,255,255,.05)"
+        fill="none"/>
+
+    <!-- Inferior ST-elevation style educational illustration -->
+    <path
+        class="ecg-line"
+        d="
+        M0 150
+        L35 150
+        L42 145
+        L48 150
+        L65 150
+
+        L78 150
+        L86 128
+        L94 185
+        L103 150
+        L125 150
+
+        L145 150
+        L155 142
+        L165 150
+        L180 150
+
+        L200 150
+        L208 108
+        L217 190
+        L226 150
+        L255 150
+
+        L275 150
+        L285 142
+        L295 150
+        L315 150
+
+        L335 150
+        L343 112
+        L352 188
+        L361 150
+        L390 150
+
+        L410 150
+        L420 142
+        L430 150
+        L450 150
+
+        L470 150
+        L478 110
+        L487 190
+        L496 150
+        L525 150
+
+        L545 150
+        L555 142
+        L565 150
+        L585 150
+
+        L605 150
+        L613 112
+        L622 188
+        L631 150
+        L660 150
+
+        L680 150
+        L690 142
+        L700 150
+        L720 150
+
+        L740 150
+        L748 110
+        L757 190
+        L766 150
+        L800 150
+
+        L820 150
+        L830 142
+        L840 150
+        L865 150
+
+        L885 150
+        L893 110
+        L902 190
+        L911 150
+        L940 150
+        L960 150
+        L968 143
+        L975 150
+        L1000 150
+        "/>
+
+</svg>
+
+</div>
+
+</div>
+
+<div class="grid grid3" style="margin-top:20px">
+
+<div class="card compact">
+    <span class="badge cyan">THINK</span>
+    <h3>ACS</h3>
+    <p>Keluhan tidak selalu berupa chest pain klasik.</p>
+</div>
+
+<div class="card compact">
+    <span class="badge yellow">NEXT</span>
+    <h3>ECG</h3>
+    <p>Interpretasikan dalam konteks klinis dan sistem setempat.</p>
+</div>
+
+<div class="card compact">
+    <span class="badge red">TIME</span>
+    <h3>Don't delay</h3>
+    <p>Jangan biarkan label “maag” menutup differential.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 19 — PREGNANCY
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CASE 07</span>
+    <span>19</span>
+</div>
+
+<div class="kicker">Reproductive-age patient</div>
+
+<h2>
+    Perempuan usia reproduktif +
+    <span class="red-text">abdominal pain</span>
+</h2>
+
+<div class="grid grid2">
+
+<div class="card">
+
+    <span class="badge red">
+        CASE
+    </span>
+
+    <h3 style="font-size:29px;margin-top:16px">
+        Perempuan 28 tahun
+    </h3>
+
+    <ul>
+        <li>Nyeri perut bawah kanan</li>
+        <li>Vaginal bleeding</li>
+        <li>Pusing</li>
+        <li>Shoulder-tip pain</li>
+    </ul>
+
+    <div class="callout yellow">
+        Pertanyaan sederhana yang sangat penting:
+        <br><br>
+        <b>“Kapan hari pertama haid terakhir?”</b>
+    </div>
+
+</div>
+
+<div class="question">
+
+<div>
+
+    <strong>
+        Apa yang tidak boleh
+        kita lewatkan?
+    </strong>
+
+    <button
+        class="btn red"
+        onclick="reveal(this)">
+        TAMPILKAN JAWABAN
+    </button>
+
+    <div class="reveal">
+
+        <div class="answer red-text">
+            ECTOPIC PREGNANCY
+        </div>
+
+        <div class="reason">
+            Terutama bila terdapat perdarahan,
+            sinkop/presinkop atau tanda instabilitas.
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 20 — ECTOPIC
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ECTOPIC PREGNANCY</span>
+    <span>20</span>
+</div>
+
+<div class="kicker">Don't miss</div>
+
+<h2>
+    Nyeri abdomen + bleeding:
+    <span class="red-text">jangan lupa pregnancy.</span>
+</h2>
+
+<div class="grid grid3">
+
+<div class="card red">
+    <h3>Ask</h3>
+    <ul>
+        <li>LMP / HPHT</li>
+        <li>Kemungkinan hamil</li>
+        <li>Pregnancy test</li>
+        <li>Vaginal bleeding</li>
+    </ul>
+</div>
+
+<div class="card yellow">
+    <h3>Look</h3>
+    <ul>
+        <li>BP</li>
+        <li>HR</li>
+        <li>Perfusi</li>
+        <li>Syncope</li>
+        <li>Abdominal tenderness</li>
+    </ul>
+</div>
+
+<div class="card green">
+    <h3>Escalate</h3>
+    <ul>
+        <li>Instability</li>
+        <li>Suspected hemorrhage</li>
+        <li>Severe pain</li>
+        <li>Progressive symptoms</li>
+    </ul>
+</div>
+
+</div>
+
+<div class="callout red">
+    <b>INGAT:</b>
+    kehamilan ektopik dapat menjadi keadaan yang mengancam nyawa
+    bila terjadi perdarahan internal.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 21 — JAUNDICE
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">HEPATOBILIARY</span>
+    <span>21</span>
+</div>
+
+<div class="kicker">RUQ pain</div>
+
+<h2>
+    Nyeri abdomen + jaundice +
+    <span class="yellow-text">fever</span>
+</h2>
+
+<div class="flow">
+
+    <div class="flow-node">
+        🤕 RUQ PAIN
+    </div>
+
+    <div class="arrow">+</div>
+
+    <div class="flow-node">
+        🟡 JAUNDICE
+    </div>
+
+    <div class="arrow">+</div>
+
+    <div class="flow-node">
+        🔥 FEVER
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="flow-node"
+         style="border-color:rgba(255,93,115,.55)">
+        🚨 THINK<br>CHOLANGITIS
+    </div>
+
+</div>
+
+<div class="grid grid2" style="margin-top:35px">
+
+<div class="card">
+    <h3>Yang perlu dicari</h3>
+    <ul>
+        <li>Hemodynamic status</li>
+        <li>Altered mental status</li>
+        <li>Sepsis features</li>
+        <li>Progression</li>
+    </ul>
+</div>
+
+<div class="card red">
+    <h3>Escalate bila</h3>
+    <ul>
+        <li>Hypotension</li>
+        <li>Altered consciousness</li>
+        <li>Shock</li>
+        <li>Severe systemic illness</li>
+    </ul>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 22 — GI BLEED
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">GI BLEEDING</span>
+    <span>22</span>
+</div>
+
+<div class="kicker">Blood loss</div>
+
+<h2>
+    Yang penting bukan hanya
+    <span class="red-text">“berapa banyak darah?”</span>
+</h2>
+
+<div class="flow">
+
+    <div class="flow-node">
+        🩸 HEMATEMESIS
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="flow-node">
+        🩸 MELENA
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="flow-node">
+        🩸 HEMATOCHEZIA
+    </div>
+
+</div>
+
+<div class="grid grid2" style="margin-top:35px">
+
+<div class="card">
+    <h3>Assess</h3>
+    <ul>
+        <li>BP / HR</li>
+        <li>Perfusi</li>
+        <li>Kesadaran</li>
+        <li>Syncope</li>
+        <li>Anticoagulant / antiplatelet</li>
+    </ul>
+</div>
+
+<div class="card red">
+    <h3>Red flag</h3>
+    <p style="font-size:24px;font-weight:900">
+        Bleeding + hemodynamic instability
+    </p>
+
+    <div class="callout red">
+        Pikirkan kemungkinan significant blood loss
+        dan prioritaskan stabilisasi.
+    </div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 23 — CHEST / DYSPNEA
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">EXTRA-ABDOMINAL</span>
+    <span>23</span>
+</div>
+
+<div class="kicker">Look beyond the abdomen</div>
+
+<h2>
+    Abdominal pain +
+    <span class="cyan-text">dyspnea</span>
+</h2>
+
+<div class="grid grid4">
+
+<div class="card">
+    <div style="font-size:40px">🫀</div>
+    <h3>ACS</h3>
+    <p>Terutama epigastric/upper abdominal discomfort.</p>
+</div>
+
+<div class="card">
+    <div style="font-size:40px">🫁</div>
+    <h3>PE</h3>
+    <p>Dyspnea, chest symptoms, hypoxia atau risk factors.</p>
+</div>
+
+<div class="card">
+    <div style="font-size:40px">🫁</div>
+    <h3>Pneumonia</h3>
+    <p>Lower lobe disease dapat memberikan abdominal symptoms.</p>
+</div>
+
+<div class="card red">
+    <div style="font-size:40px">⚠️</div>
+    <h3>Aortic</h3>
+    <p>Chest/back/abdominal pain dengan pola vaskular.</p>
+</div>
+
+</div>
+
+<div class="callout">
+    <b>PRINSIP:</b>
+    lokasi keluhan tidak selalu sama dengan lokasi sumber penyakit.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 24 — LANSIA
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">SPECIAL POPULATION</span>
+    <span>24</span>
+</div>
+
+<div class="kicker">Older adults</div>
+
+<h2>
+    Pada lansia,
+    <span class="yellow-text">gejalanya bisa lebih samar.</span>
+</h2>
+
+<div class="statement">
+
+    <div class="main">
+        Severity of disease
+        <br>
+        <span class="yellow-text">≠</span>
+        <br>
+        severity of pain
+    </div>
+
+    <div class="sub">
+        Nyeri yang tampak ringan tidak otomatis berarti penyakit ringan.
+    </div>
+
+</div>
+
+<div class="grid grid3" style="margin-top:35px">
+
+<div class="card">
+    <h3>Perhatikan</h3>
+    <ul>
+        <li>New abdominal pain</li>
+        <li>Weakness</li>
+        <li>Confusion</li>
+        <li>Reduced intake</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h3>Jangan hanya cari</h3>
+    <ul>
+        <li>Demam tinggi</li>
+        <li>Nyeri ekstrem</li>
+        <li>Guarding dramatis</li>
+    </ul>
+</div>
+
+<div class="card red">
+    <h3>Think risk</h3>
+    <p>
+        Threshold untuk evaluasi dan reassessment
+        dapat perlu lebih rendah pada pasien berisiko.
+    </p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 25 — VITAL SIGN
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">VITAL SIGNS</span>
+    <span>25</span>
+</div>
+
+<div class="kicker">Don't anchor on one number</div>
+
+<h2>
+    BP normal belum tentu
+    <span class="cyan-text">aman.</span>
+</h2>
+
+<div class="grid grid4">
+
+<div class="card">
+    <div class="big-number">110/70</div>
+    <h3>BP</h3>
+    <p>
+        Nilai tunggal tidak cukup.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number red-text">125</div>
+    <h3>HR</h3>
+    <p>
+        Takikardia dapat menjadi tanda kompensasi.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number yellow-text">28</div>
+    <h3>RR</h3>
+    <p>
+        Takipnea dapat menjadi tanda stress fisiologis.
+    </p>
+</div>
+
+<div class="card red">
+    <div class="big-number red-text">↑</div>
+    <h3>CRT / perfusi</h3>
+    <p>
+        Nilai perfusi bersama gambaran klinis.
+    </p>
+</div>
+
+</div>
+
+<div class="callout red">
+    <b>COMBINATION MATTERS:</b>
+    HR + BP + RR + mental status + skin + CRT + clinical appearance.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 26 — EXAMINATION
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">ABDOMINAL EXAM</span>
+    <span>26</span>
+</div>
+
+<div class="kicker">Focused physical examination</div>
+
+<h2>
+    Lihat. Dengarkan. Nilai.
+</h2>
+
+<div class="grid grid4">
+
+<div class="card">
+    <div class="big-number">01</div>
+    <h3>Inspection</h3>
+    <ul>
+        <li>Distension</li>
+        <li>Scar</li>
+        <li>Hernia</li>
+        <li>Skin changes</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="big-number">02</div>
+    <h3>Auscultation</h3>
+    <p>
+        Dilakukan sesuai konteks pemeriksaan klinis.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number">03</div>
+    <h3>Palpation</h3>
+    <ul>
+        <li>Tenderness</li>
+        <li>Guarding</li>
+        <li>Rigidity</li>
+        <li>Mass</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="big-number">04</div>
+    <h3>Percussion</h3>
+    <ul>
+        <li>Distension</li>
+        <li>Tympany</li>
+        <li>Abnormal areas</li>
+    </ul>
+</div>
+
+</div>
+
+<div class="callout red">
+    Jika pasien tidak stabil atau jelas memiliki red flags,
+    pemeriksaan lengkap tidak boleh menghambat stabilisasi dan eskalasi.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 27 — DON'T MISS
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">DON'T MISS</span>
+    <span>27</span>
+</div>
+
+<div class="kicker">High-risk differential</div>
+
+<h2>
+    Sebelum mengatakan
+    <span class="yellow-text">“cuma gastritis”</span>
+</h2>
+
+<div class="grid grid4">
+
+<div class="card red">
+    <h3>AAA / Aortic</h3>
+    <p>Terutama sudden pain + risk profile + instability.</p>
+</div>
+
+<div class="card red">
+    <h3>Mesenteric ischemia</h3>
+    <p>Pain out of proportion.</p>
+</div>
+
+<div class="card red">
+    <h3>Perforation</h3>
+    <p>Sudden severe pain / peritonitis.</p>
+</div>
+
+<div class="card red">
+    <h3>GI bleeding</h3>
+    <p>Bleeding + hypoperfusion.</p>
+</div>
+
+<div class="card yellow">
+    <h3>Obstruction</h3>
+    <p>Vomiting + distension + no flatus.</p>
+</div>
+
+<div class="card yellow">
+    <h3>Ectopic</h3>
+    <p>Pregnancy possibility + pain/bleeding.</p>
+</div>
+
+<div class="card yellow">
+    <h3>Sepsis</h3>
+    <p>Infection + physiological deterioration.</p>
+</div>
+
+<div class="card cyan">
+    <h3>ACS</h3>
+    <p>Epigastric / upper abdominal symptoms.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 28 — ALGORITHM
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">TRIAGE ALGORITHM</span>
+    <span>28</span>
+</div>
+
+<div class="kicker">Core algorithm</div>
+
+<h2>
+    ABDOMINAL PAIN
+</h2>
+
+<div class="flow">
+
+    <div class="flow-node">
+        ABDOMINAL<br>PAIN
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-node">
+        FIRST LOOK
+    </div>
+
+    <div class="arrow">↓</div>
+
+    <div class="flow-node">
+        ABCDE
+    </div>
+
+</div>
+
+<div class="grid grid2" style="margin-top:25px">
+
+<div class="card red">
+
+    <span class="badge red">
+        UNSTABLE
+    </span>
+
+    <div style="font-size:32px;font-weight:950;margin:15px 0">
+        RESUSCITATE
+    </div>
+
+    <ul>
+        <li>Shock</li>
+        <li>Altered mental status</li>
+        <li>Severe respiratory compromise</li>
+        <li>Major bleeding</li>
+    </ul>
+
+</div>
+
+<div class="card yellow">
+
+    <span class="badge yellow">
+        STABLE
+    </span>
+
+    <div style="font-size:32px;font-weight:950;margin:15px 0">
+        SEARCH RED FLAGS
+    </div>
+
+    <ul>
+        <li>Peritonitis</li>
+        <li>Sudden severe pain</li>
+        <li>Pregnancy concern</li>
+        <li>Obstruction</li>
+        <li>GI bleeding</li>
+        <li>ACS / vascular / sepsis</li>
+    </ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 29 — ALGORITHM CONT
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">TRIAGE ALGORITHM</span>
+    <span>29</span>
+</div>
+
+<div class="kicker">Decision pathway</div>
+
+<div class="flow">
+
+    <div class="flow-node">
+        RED FLAGS?
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="flow-node"
+         style="border-color:rgba(255,93,115,.55)">
+        YES
+        <br>
+        <span class="red-text">HIGH / IMMEDIATE</span>
+    </div>
+
+    <div class="arrow">│</div>
+
+    <div class="flow-node">
+        NO
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="flow-node"
+         style="border-color:rgba(85,227,154,.45)">
+        ASSESS
+        <br>
+        + REASSESS
+    </div>
+
+</div>
+
+<div class="statement">
+
+    <div class="main">
+        <span class="cyan-text">
+            Triage is prioritizing risk.
+        </span>
+    </div>
+
+    <div class="sub">
+        Diagnosis berkembang melalui assessment,
+        pemeriksaan, monitoring dan investigasi yang sesuai.
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 30 — CASE COMBINED
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">FINAL CHALLENGE</span>
+    <span>30</span>
+</div>
+
+<div class="kicker">Interactive challenge</div>
+
+<h2>
+    Mana yang harus
+    <span class="red-text">segera diprioritaskan?</span>
+</h2>
+
+<div class="grid grid3">
+
+<div class="card">
+
+    <span class="badge cyan">
+        PATIENT A
+    </span>
+
+    <h3>Epigastric pain 8/10</h3>
+
+    <p>
+        BP 128/78 • HR 92 • RR 18 • SpO₂ 98%
+    </p>
+
+    <p class="muted">
+        Tidak ada red flag yang jelas pada first look.
+    </p>
+
+</div>
+
+<div class="card red">
+
+    <span class="badge red">
+        PATIENT B
+    </span>
+
+    <h3>Abdominal pain 5/10</h3>
+
+    <p>
+        BP 82/54 • HR 128 • RR 26
+    </p>
+
+    <p>
+        Pucat, keringat dingin, pusing.
+    </p>
+
+</div>
+
+<div class="card yellow">
+
+    <span class="badge yellow">
+        PATIENT C
+    </span>
+
+    <h3>Lower abdominal pain</h3>
+
+    <p>
+        Telat haid 6 minggu + vaginal bleeding.
+    </p>
+
+    <p>
+        BP 108/70 • HR 105
+    </p>
+
+</div>
+
+</div>
+
+<div style="text-align:center;margin-top:30px">
+
+<button
+    class="btn"
+    onclick="reveal(this)">
+    TAMPILKAN PEMBAHASAN
+</button>
+
+<div class="reveal">
+
+    <div class="grid grid3" style="margin-top:20px">
+
+        <div class="card green">
+            <h3>Patient A</h3>
+            <p>
+                Stable pada data yang tersedia.
+                Tetap assessment dan reassessment.
+            </p>
+        </div>
+
+        <div class="card red">
+            <h3>Patient B</h3>
+            <p>
+                <b>Prioritas segera</b> karena tanda shock /
+                hipoperfusi.
+            </p>
+        </div>
+
+        <div class="card yellow">
+            <h3>Patient C</h3>
+            <p>
+                High concern karena pregnancy possibility
+                + pain + bleeding.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 31 — FIVE TAKE HOME
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">TAKE HOME MESSAGE</span>
+    <span>31</span>
+</div>
+
+<div class="kicker">Remember this</div>
+
+<h2>
+    5 hal yang harus
+    <span class="cyan-text">diingat.</span>
+</h2>
+
+<div class="grid grid5"
+     style="grid-template-columns:repeat(5,1fr)">
+
+<div class="card">
+    <div class="big-number">01</div>
+    <h3>Physiology</h3>
+    <p>
+        Stabilitas fisiologis lebih penting
+        daripada angka pain score.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number">02</div>
+    <h3>Sudden</h3>
+    <p>
+        Sudden severe pain adalah red flag.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number">03</div>
+    <h3>Shock</h3>
+    <p>
+        Abdominal pain + shock
+        harus dianggap serius.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number">04</div>
+    <h3>Pregnancy</h3>
+    <p>
+        Reproductive-age + pain:
+        pikirkan pregnancy.
+    </p>
+</div>
+
+<div class="card">
+    <div class="big-number">05</div>
+    <h3>Don't anchor</h3>
+    <p>
+        Jangan terlalu cepat mengunci
+        diagnosis.
+    </p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 32 — CLOSING
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">CLOSING</span>
+    <span>32</span>
+</div>
+
+<div class="center">
+
+<div class="hero">
+
+    <div class="tag">TRIAGE MINDSET</div>
+
+    <div class="quote">
+        “Pasien mengatakan:
+        <span class="cyan-text">‘Cuma sakit perut.’</span>”
+    </div>
+
+    <div style="
+        margin:35px auto;
+        max-width:900px;
+        font-size:48px;
+        font-weight:950;
+        line-height:1.05;
+    ">
+        Tugas kita bukan mencari
+        <span class="red-text">jawaban tercepat.</span>
+    </div>
+
+    <p class="subtitle">
+        Tugas kita adalah memastikan
+        kondisi yang paling berbahaya
+        tidak terlambat dikenali.
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 33 — REFERENCES
+========================================================= -->
+
+<section class="slide">
+
+<div class="topline">
+    <span class="brand">REFERENCES</span>
+    <span>33</span>
+</div>
+
+<div class="kicker">Clinical references</div>
+
+<h2>
+    Sumber utama
+</h2>
+
+<div class="ref">
+    <b>WHO & ICRC — Basic Emergency Care</b>
+    <span>
+        Pendekatan sistematis terhadap pasien akut dan cedera,
+        termasuk ABCDE, SAMPLE, shock dan kondisi time-sensitive.
+    </span>
+</div>
+
+<div class="ref">
+    <b>American College of Emergency Physicians — Clinical Policies</b>
+    <span>
+        Clinical policies dan evidence-based guidance untuk berbagai
+        kondisi emergency medicine, termasuk abdominal pain-related
+        presentations, appendicitis, early pregnancy dan kondisi emergensi lainnya.
+    </span>
+</div>
+
+<div class="ref">
+    <b>2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes</b>
+    <span>
+        Rujukan untuk pendekatan ACS dan presentasi yang dapat berupa
+        chest discomfort maupun gejala terkait seperti dyspnea,
+        nausea/vomiting atau upper abdominal discomfort.
+    </span>
+</div>
+
+<div class="ref">
+    <b>Relevant specialty guidelines</b>
+    <span>
+        Guideline specialty digunakan sesuai kondisi klinis:
+        acute abdomen, vascular emergency, gastrointestinal bleeding,
+        pregnancy/ectopic pregnancy, hepatobiliary infection,
+        bowel obstruction dan kondisi terkait lainnya.
+    </span>
+</div>
+
+<div class="callout">
+    <b>CATATAN EDUKASI:</b>
+    Materi ini merupakan bahan pendidikan triage dan clinical reasoning.
+    Implementasi klinis mengikuti kompetensi, SOP fasilitas pelayanan kesehatan,
+    kewenangan klinis dan guideline yang berlaku.
+</div>
+
+</section>
+
+
+<!-- =========================================================
+SLIDE 34 — END
+========================================================= -->
+
+<section class="slide">
+
+<div class="center">
+
+<div class="hero">
+
+    <div class="tag">
+        EMERGENCY TRIAGE SERIES
+    </div>
+
+    <h1>
+        THANK<br>
+        <span class="cyan-text">YOU.</span>
+    </h1>
+
+    <p class="subtitle">
+        TRIAGE ABDOMINAL PAIN
+    </p>
+
+    <div style="
+        margin-top:35px;
+        color:#6f8996;
+        font-size:13px;
+        letter-spacing:1.5px;
+    ">
+        EDUCATOR • @mryungmalang
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =========================================================
+NAVIGATION
+========================================================= -->
+
+<div class="progress">
+    <span id="progressBar"></span>
+</div>
+
+<div class="controls">
+
+    <button onclick="prevSlide()" title="Previous">
+        ‹
+    </button>
+
+    <button onclick="toggleMenu()" title="Menu">
+        ☰
+    </button>
+
+    <button onclick="nextSlide()" title="Next">
+        ›
+    </button>
+
+    <button onclick="toggleFullscreen()" title="Fullscreen">
+        ⛶
+    </button>
+
+</div>
+
+<div class="menu" id="menu"></div>
+
+
+<script>
+
+/* =========================================================
+   PRESENTATION ENGINE
+========================================================= */
+
+let current = 0;
+
+const slides = Array.from(
+    document.querySelectorAll(".slide")
+);
+
+const menu = document.getElementById("menu");
+const progressBar =
+    document.getElementById("progressBar");
+
+
+/* =========================================================
+   BUILD MENU
+========================================================= */
+
+const menuTitles = [
+    "Cover",
+    "Mindset",
+    "First Look",
+    "ABCDE",
+    "Red Flags",
+    "Priority",
+    "Case 01 — Pain Score",
+    "Case 01B — Shock",
+    "Case 02 — Sudden Severe Pain",
+    "Pain Map",
+    "OPQRST",
+    "Associated Symptoms",
+    "Obstruction",
+    "Peritonitis",
+    "Pain Out of Proportion",
+    "ACS — Introduction",
+    "ACS — Interactive Case",
+    "ECG Reveal",
+    "Ectopic Pregnancy — Case",
+    "Ectopic Pregnancy",
+    "Hepatobiliary",
+    "GI Bleeding",
+    "Extra-Abdominal",
+    "Older Adults",
+    "Vital Signs",
+    "Abdominal Examination",
+    "Don't Miss",
+    "Triage Algorithm",
+    "Decision Pathway",
+    "Final Challenge",
+    "Five Take Home",
+    "Closing",
+    "References",
+    "End"
+];
+
+menuTitles.forEach((title,index)=>{
+
+    const item =
+        document.createElement("div");
+
+    item.className = "menu-item";
+
+    item.textContent =
+        String(index + 1).padStart(2,"0")
+        + " — "
+        + title;
+
+    item.onclick = ()=>{
+        current = index;
+        render();
+        menu.classList.remove("open");
+    };
+
+    menu.appendChild(item);
+
+});
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+    slides.forEach(
+        (slide,index)=>{
+            slide.classList.toggle(
+                "active",
+                index === current
+            );
+        }
+    );
+
+    progressBar.style.width =
+        ((current + 1) / slides.length * 100)
+        + "%";
+
+    document.title =
+        "TRIAGE ABDOMINAL PAIN — "
+        + String(current + 1).padStart(2,"0");
+
+}
+
+
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
+
+function nextSlide(){
+
+    if(current < slides.length - 1){
+
+        current++;
+
+        render();
+
+    }
+
+}
+
+function prevSlide(){
+
+    if(current > 0){
+
+        current--;
+
+        render();
+
+    }
+
+}
+
+
+/* =========================================================
+   REVEAL ANSWER
+========================================================= */
+
+function reveal(button){
+
+    const slide =
+        button.closest(".slide");
+
+    slide.classList.toggle("revealed");
+
+    if(
+        slide.classList.contains("revealed")
+    ){
+
+        button.textContent =
+            "SEMBUNYIKAN JAWABAN";
+
+    }else{
+
+        button.textContent =
+            "TAMPILKAN JAWABAN";
+
+    }
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function toggleMenu(){
+
+    menu.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+function toggleFullscreen(){
+
+    if(!document.fullscreenElement){
+
+        document.documentElement
+            .requestFullscreen()
+            .catch(()=>{});
+
+    }else{
+
+        document.exitFullscreen()
+            .catch(()=>{});
+
+    }
+
+}
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "ArrowRight" ||
+            event.key === " " ||
+            event.key === "PageDown"
+        ){
+
+            event.preventDefault();
+            nextSlide();
+
+        }
+
+        if(
+            event.key === "ArrowLeft" ||
+            event.key === "PageUp"
+        ){
+
+            event.preventDefault();
+            prevSlide();
+
+        }
+
+        if(event.key === "Home"){
+
+            current = 0;
+            render();
+
+        }
+
+        if(event.key === "End"){
+
+            current = slides.length - 1;
+            render();
+
+        }
+
+        if(event.key === "Escape"){
+
+            menu.classList.remove("open");
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MOUSE WHEEL
+========================================================= */
+
+let wheelLock = false;
+
+document.addEventListener(
+    "wheel",
+    event => {
+
+        if(wheelLock) return;
+
+        wheelLock = true;
+
+        if(event.deltaY > 0){
+
+            nextSlide();
+
+        }else if(event.deltaY < 0){
+
+            prevSlide();
+
+        }
+
+        setTimeout(
+            ()=>wheelLock=false,
+            500
+        );
+
+    },
+    {passive:true}
+);
+
+
+/* =========================================================
+   TOUCH / SWIPE
+========================================================= */
+
+let touchStartX = 0;
+
+document.addEventListener(
+    "touchstart",
+    event => {
+
+        touchStartX =
+            event.changedTouches[0].screenX;
+
+    },
+    {passive:true}
+);
+
+document.addEventListener(
+    "touchend",
+    event => {
+
+        const touchEndX =
+            event.changedTouches[0].screenX;
+
+        const distance =
+            touchEndX - touchStartX;
+
+        if(Math.abs(distance) < 60)
+            return;
+
+        if(distance < 0){
+
+            nextSlide();
+
+        }else{
+
+            prevSlide();
+
+        }
+
+    },
+    {passive:true}
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+render();
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const now = new Date();
+
+    const tanggal = now.toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+
+    const waktu = now.toLocaleTimeString("id-ID", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    });
+
+    document.querySelectorAll(".slide").forEach(function (slide) {
+
+        const footer = document.createElement("div");
+
+        footer.className = "footer";
+
+        footer.innerHTML = `
+            <span>TRIAGE 2026 • SiLARAS 119 • IGD RSSA</span>
+
+            <span>
+                ABDOMINAL PAIN
+                <span class="update-info">
+                    • ${tanggal} • ${waktu} WIB
+                </span>
+            </span>
+        `;
+
+        slide.appendChild(footer);
+    });
+
+});
+
+</script>
+</body>
+</html>

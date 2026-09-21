@@ -1,0 +1,3692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>TRIAGE GIGI • MATA • THT — Sharing Knowledge IGD</title>
+
+<style>
+/* ============================================================
+   TRIAGE GIGI • MATA • THT
+   GODMODE PREMIUM — SHARING KNOWLEDGE IGD
+   SELF CONTAINED / NO LIBRARY / NO CDN
+   ============================================================ */
+
+:root{
+    --bg:#07111f;
+    --bg2:#0b1728;
+    --panel:#0e1d31;
+    --panel2:#12243b;
+    --line:rgba(255,255,255,.09);
+    --text:#f4f8fc;
+    --muted:#9db0c7;
+    --cyan:#48d8ff;
+    --blue:#5c8dff;
+    --green:#43e0a1;
+    --yellow:#ffd166;
+    --orange:#ff9f43;
+    --red:#ff5d73;
+    --purple:#b58cff;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+    --radius:22px;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(72,216,255,.09),transparent 28%),
+        radial-gradient(circle at 90% 80%,rgba(92,141,255,.08),transparent 30%),
+        var(--bg);
+    color:var(--text);
+}
+
+/* ============================================================
+   APP
+   ============================================================ */
+
+.app{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.app::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:40px 40px;
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+.topbar{
+    position:absolute;
+    z-index:50;
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 28px;
+    background:rgba(5,13,24,.78);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:linear-gradient(135deg,#143b63,#0e243c);
+    border:1px solid rgba(72,216,255,.25);
+    box-shadow:0 0 25px rgba(72,216,255,.12);
+    font-size:20px;
+}
+
+.brand-text{
+    line-height:1.1;
+}
+
+.brand-title{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.16em;
+    color:#dbeeff;
+}
+
+.brand-sub{
+    margin-top:4px;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:.08em;
+}
+
+.educator{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:12px;
+    text-align:center;
+}
+
+.educator small{
+    display:block;
+    font-size:9px;
+    color:#71869f;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.educator strong{
+    font-size:12px;
+    color:var(--cyan);
+    letter-spacing:.08em;
+}
+
+.top-actions{
+    display:flex;
+    gap:7px;
+}
+
+.icon-btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    color:#dce9f7;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.2s;
+    font-size:16px;
+}
+
+.icon-btn:hover{
+    transform:translateY(-2px);
+    background:rgba(72,216,255,.1);
+    border-color:rgba(72,216,255,.35);
+}
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+
+.progress{
+    position:absolute;
+    z-index:60;
+    top:69px;
+    left:0;
+    right:0;
+    height:3px;
+    background:rgba(255,255,255,.04);
+}
+
+.progress-bar{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));
+    box-shadow:0 0 18px rgba(72,216,255,.45);
+    transition:.35s ease;
+}
+
+/* ============================================================
+   DECK
+   ============================================================ */
+
+.deck{
+    position:absolute;
+    inset:73px 0 78px;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    inset:0;
+    padding:34px 52px 34px;
+    display:none;
+    overflow:auto;
+    scrollbar-width:none;
+}
+
+.slide::-webkit-scrollbar{
+    display:none;
+}
+
+.slide.active{
+    display:block;
+    animation:slideIn .35s ease both;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(20px) scale(.99);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* ============================================================
+   SLIDE HEADER
+   ============================================================ */
+
+.slide-head{
+    max-width:1300px;
+    margin:0 auto 24px;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+}
+
+.eyebrow::before{
+    content:"";
+    width:24px;
+    height:2px;
+    background:var(--cyan);
+    box-shadow:0 0 12px var(--cyan);
+}
+
+.slide-title{
+    margin:0;
+    font-size:clamp(27px,3vw,46px);
+    line-height:1.04;
+    letter-spacing:-.035em;
+    font-weight:900;
+}
+
+.slide-title span{
+    color:var(--cyan);
+}
+
+.lead{
+    max-width:1000px;
+    margin:12px 0 0;
+    font-size:15px;
+    line-height:1.65;
+    color:#b9c9da;
+}
+
+/* ============================================================
+   GRID / CARDS
+   ============================================================ */
+
+.grid{
+    max-width:1300px;
+    margin:0 auto;
+    display:grid;
+    gap:16px;
+}
+
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+.card{
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.card.compact{
+    padding:15px 17px;
+}
+
+.card h3{
+    margin:0 0 9px;
+    font-size:17px;
+}
+
+.card p{
+    margin:0;
+    color:#b6c7d8;
+    font-size:13px;
+    line-height:1.65;
+}
+
+.card ul{
+    margin:10px 0 0;
+    padding-left:20px;
+}
+
+.card li{
+    margin:7px 0;
+    color:#c6d4e2;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.card li strong{
+    color:white;
+}
+
+.icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.blue{border-color:rgba(92,141,255,.28)}
+.cyan{border-color:rgba(72,216,255,.3)}
+.green{border-color:rgba(67,224,161,.3)}
+.yellow{border-color:rgba(255,209,102,.3)}
+.orange{border-color:rgba(255,159,67,.3)}
+.red{
+    border-color:rgba(255,93,115,.35);
+    background:
+        linear-gradient(145deg,rgba(255,93,115,.09),rgba(255,255,255,.018));
+}
+.purple{border-color:rgba(181,140,255,.3)}
+
+.red h3{color:#ff8292}
+.cyan h3{color:var(--cyan)}
+.green h3{color:var(--green)}
+.yellow h3{color:var(--yellow)}
+.orange h3{color:var(--orange)}
+.purple h3{color:var(--purple)}
+
+/* ============================================================
+   TERM
+   ============================================================ */
+
+.term{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 8px;
+    border-radius:8px;
+    background:rgba(72,216,255,.08);
+    border:1px solid rgba(72,216,255,.15);
+    color:#dff8ff;
+    font-weight:800;
+    font-size:12px;
+}
+
+.term em{
+    font-style:normal;
+    color:#91a7bd;
+    font-weight:500;
+}
+
+/* ============================================================
+   BIG STAT
+   ============================================================ */
+
+.big-question{
+    max-width:1000px;
+    margin:35px auto;
+    text-align:center;
+    padding:40px 45px;
+    border-radius:30px;
+    background:
+        radial-gradient(circle at center,rgba(72,216,255,.12),transparent 60%),
+        rgba(255,255,255,.025);
+    border:1px solid rgba(72,216,255,.2);
+    box-shadow:0 0 60px rgba(72,216,255,.07);
+}
+
+.big-question .small{
+    font-size:13px;
+    color:#91a7bd;
+    margin-bottom:15px;
+}
+
+.big-question .main{
+    font-size:clamp(27px,4vw,50px);
+    font-weight:950;
+    line-height:1.08;
+    letter-spacing:-.04em;
+}
+
+.big-question .main span{
+    color:var(--cyan);
+}
+
+/* ============================================================
+   FLOW
+   ============================================================ */
+
+.flow{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.flow-step{
+    flex:1 1 150px;
+    position:relative;
+    padding:17px;
+    min-height:105px;
+    border-radius:17px;
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--line);
+}
+
+.flow-step:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-17px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--cyan);
+    font-size:22px;
+    z-index:3;
+}
+
+.flow-num{
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.12em;
+    margin-bottom:7px;
+}
+
+.flow-title{
+    font-size:15px;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.flow-desc{
+    color:#91a7bd;
+    font-size:11px;
+    line-height:1.45;
+}
+
+/* ============================================================
+   ALERT
+   ============================================================ */
+
+.alert{
+    max-width:1300px;
+    margin:0 auto 18px;
+    border-radius:18px;
+    padding:15px 18px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    background:rgba(255,93,115,.08);
+    border:1px solid rgba(255,93,115,.28);
+}
+
+.alert .aicon{
+    font-size:22px;
+}
+
+.alert strong{
+    color:#ff8695;
+}
+
+.alert p{
+    margin:3px 0 0;
+    color:#c2cfdb;
+    font-size:13px;
+    line-height:1.55;
+}
+
+/* ============================================================
+   CASE / INTERACTIVE
+   ============================================================ */
+
+.case{
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.case-label{
+    display:inline-flex;
+    padding:7px 11px;
+    border-radius:10px;
+    background:rgba(181,140,255,.1);
+    border:1px solid rgba(181,140,255,.25);
+    color:#c9aeff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.12em;
+    margin-bottom:13px;
+}
+
+.case-patient{
+    padding:24px;
+    border-radius:23px;
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.02));
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+}
+
+.case-patient h3{
+    margin:0 0 13px;
+    font-size:23px;
+}
+
+.case-patient p{
+    color:#bdccda;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.case-question{
+    margin-top:17px;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(72,216,255,.06);
+    border:1px solid rgba(72,216,255,.18);
+}
+
+.case-question strong{
+    font-size:18px;
+}
+
+.answer-box{
+    margin-top:16px;
+    overflow:hidden;
+    max-height:0;
+    opacity:0;
+    transform:translateY(-8px);
+    transition:
+        max-height .6s ease,
+        opacity .45s ease,
+        transform .45s ease;
+}
+
+.answer-box.show{
+    max-height:500px;
+    opacity:1;
+    transform:none;
+}
+
+.answer-inner{
+    padding:20px;
+    border-radius:18px;
+    background:
+        linear-gradient(145deg,rgba(67,224,161,.11),rgba(67,224,161,.025));
+    border:1px solid rgba(67,224,161,.3);
+}
+
+.answer-inner h4{
+    color:var(--green);
+    margin:0 0 8px;
+}
+
+.answer-inner p,
+.answer-inner li{
+    color:#c8d9d2;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.answer-inner ul{
+    margin:7px 0 0;
+}
+
+.reveal-btn{
+    margin-top:16px;
+    border:1px solid rgba(72,216,255,.3);
+    background:rgba(72,216,255,.08);
+    color:#dff9ff;
+    padding:11px 16px;
+    border-radius:12px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.reveal-btn:hover{
+    background:rgba(72,216,255,.15);
+    transform:translateY(-1px);
+}
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+
+.glossary{
+    position:fixed;
+    z-index:200;
+    inset:0;
+    display:none;
+    background:rgba(0,0,0,.68);
+    backdrop-filter:blur(10px);
+    padding:70px 30px;
+}
+
+.glossary.open{
+    display:block;
+    animation:fade .2s ease;
+}
+
+.glossary-panel{
+    width:min(1050px,100%);
+    height:min(80vh,760px);
+    margin:auto;
+    background:#0b1728;
+    border:1px solid var(--line);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.6);
+    display:flex;
+    flex-direction:column;
+}
+
+.glossary-head{
+    padding:20px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+}
+
+.glossary-head h2{
+    margin:0;
+    font-size:22px;
+}
+
+.glossary-list{
+    padding:20px;
+    overflow:auto;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+
+.gterm{
+    padding:13px 15px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:rgba(255,255,255,.03);
+}
+
+.gterm strong{
+    color:var(--cyan);
+    display:block;
+    margin-bottom:4px;
+}
+
+.gterm span{
+    color:#aebfd0;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
+
+.overview{
+    position:fixed;
+    z-index:190;
+    inset:0;
+    display:none;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(10px);
+    padding:70px 25px;
+}
+
+.overview.open{
+    display:block;
+}
+
+.overview-panel{
+    width:min(1250px,100%);
+    height:min(82vh,800px);
+    margin:auto;
+    overflow:auto;
+    background:#0a1626;
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:22px;
+}
+
+.overview-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.overview-head h2{
+    margin:0;
+}
+
+.thumb-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:10px;
+}
+
+.thumb{
+    cursor:pointer;
+    min-height:95px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:12px;
+    background:rgba(255,255,255,.025);
+    transition:.2s;
+}
+
+.thumb:hover,
+.thumb.active{
+    border-color:rgba(72,216,255,.4);
+    background:rgba(72,216,255,.06);
+}
+
+.thumb-no{
+    color:var(--cyan);
+    font-size:10px;
+    font-weight:900;
+}
+
+.thumb-title{
+    margin-top:7px;
+    font-size:12px;
+    font-weight:800;
+    line-height:1.35;
+}
+
+/* ============================================================
+   FOOTER CONTROLS
+   ============================================================ */
+
+.controls{
+    position:absolute;
+    z-index:80;
+    left:0;
+    right:0;
+    bottom:0;
+    height:78px;
+    padding:0 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(5,13,24,.84);
+    backdrop-filter:blur(18px);
+    border-top:1px solid var(--line);
+}
+
+.nav-group{
+    display:flex;
+    gap:8px;
+}
+
+.nav-btn{
+    min-width:48px;
+    height:43px;
+    padding:0 15px;
+    border-radius:13px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.045);
+    color:white;
+    cursor:pointer;
+    font-weight:800;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    background:rgba(72,216,255,.1);
+    border-color:rgba(72,216,255,.3);
+}
+
+.counter{
+    text-align:center;
+}
+
+.counter strong{
+    display:block;
+    font-size:13px;
+}
+
+.counter span{
+    color:#748aa1;
+    font-size:9px;
+    letter-spacing:.12em;
+}
+
+.section-name{
+    min-width:220px;
+    color:#8095aa;
+    font-size:10px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+
+.cover{
+    height:100%;
+    display:grid;
+    place-items:center;
+}
+
+.cover-inner{
+    width:min(1200px,100%);
+    text-align:center;
+    padding:40px;
+}
+
+.cover-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 14px;
+    border-radius:99px;
+    border:1px solid rgba(72,216,255,.25);
+    background:rgba(72,216,255,.07);
+    color:#a9ecff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:.18em;
+}
+
+.cover h1{
+    margin:25px auto 15px;
+    max-width:1000px;
+    font-size:clamp(45px,7vw,86px);
+    line-height:.94;
+    letter-spacing:-.06em;
+    font-weight:950;
+}
+
+.cover h1 span{
+    color:var(--cyan);
+}
+
+.cover-sub{
+    max-width:800px;
+    margin:auto;
+    color:#a9bcd0;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.cover-bottom{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+}
+
+.pill{
+    padding:9px 13px;
+    border-radius:99px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    color:#9fb3c8;
+    font-size:10px;
+}
+
+/* ============================================================
+   REFERENCES
+   ============================================================ */
+
+.source-list{
+    display:grid;
+    gap:9px;
+}
+
+.source{
+    display:flex;
+    gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:rgba(255,255,255,.025);
+}
+
+.source b{
+    color:var(--cyan);
+    min-width:32px;
+}
+
+.source div{
+    font-size:12px;
+    line-height:1.5;
+    color:#b5c6d6;
+}
+
+.source a{
+    color:#77e3ff;
+    text-decoration:none;
+    word-break:break-all;
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print{
+    @page{
+        size:A4 landscape;
+        margin:0;
+    }
+
+    html,body{
+        overflow:visible;
+        background:white;
+    }
+
+    .app{
+        width:100%;
+        height:auto;
+        overflow:visible;
+        background:white;
+    }
+
+    .app::before,
+    .topbar,
+    .progress,
+    .controls,
+    .overview,
+    .glossary{
+        display:none!important;
+    }
+
+    .deck{
+        position:static;
+        overflow:visible;
+    }
+
+    .slide,
+    .slide.active{
+        position:relative;
+        display:block!important;
+        width:100%;
+        height:100vh;
+        min-height:210mm;
+        padding:20mm 18mm;
+        overflow:hidden;
+        color:#101820;
+        background:white;
+        page-break-after:always;
+        animation:none!important;
+    }
+
+    .slide-title{
+        color:#101820;
+    }
+
+    .lead,
+    .card p,
+    .card li,
+    .flow-desc{
+        color:#334455;
+    }
+
+    .card,
+    .case-patient,
+    .flow-step,
+    .big-question{
+        color:#101820;
+        background:#f7fafc;
+        border:1px solid #ccd6df;
+        box-shadow:none;
+    }
+
+    .answer-box{
+        max-height:none!important;
+        opacity:1!important;
+        transform:none!important;
+    }
+
+    .reveal-btn{
+        display:none;
+    }
+
+    a{
+        color:#1267a5;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media(max-width:900px){
+    .topbar{
+        padding:0 13px;
+    }
+
+    .brand-text,
+    .educator{
+        display:none;
+    }
+
+    .slide{
+        padding:25px 18px;
+    }
+
+    .g2,
+    .g3,
+    .g4{
+        grid-template-columns:1fr;
+    }
+
+    .flow{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+
+    .flow-step:not(:last-child)::after{
+        content:"↓";
+        right:auto;
+        left:50%;
+        top:auto;
+        bottom:-20px;
+        transform:translateX(-50%);
+    }
+
+    .thumb-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .glossary-list{
+        grid-template-columns:1fr;
+    }
+
+    .section-name{
+        display:none;
+    }
+
+    .controls{
+        padding:0 13px;
+    }
+
+    .nav-btn{
+        padding:0 10px;
+    }
+}
+
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">🚑</div>
+        <div class="brand-text">
+            <div class="brand-title">SHARING KNOWLEDGE IGD</div>
+            <div class="brand-sub">TRIAGE • GIGI • MATA • THT</div>
+        </div>
+    </div>
+
+    <div class="educator">
+        <small>EDUCATOR</small>
+        <strong>@mryungmalang</strong>
+    </div>
+
+    <div class="top-actions">
+        <button class="icon-btn" onclick="openOverview()" title="Daftar slide">☷</button>
+        <button class="icon-btn" onclick="openGlossary()" title="Glosarium">📖</button>
+        <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+        <button class="icon-btn" onclick="window.print()" title="Print">🖨</button>
+    </div>
+</header>
+
+<div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<main class="deck" id="deck"></main>
+
+<footer class="controls">
+
+    <div class="section-name" id="sectionName">
+        OPENING
+    </div>
+
+    <div class="nav-group">
+        <button class="nav-btn" onclick="prevSlide()">←</button>
+        <button class="nav-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <div class="counter">
+        <strong id="counter">01 / 40</strong>
+        <span>GUNAKAN ← → • SPACE • HOME • END</span>
+    </div>
+
+    <div class="nav-group">
+        <button class="nav-btn" onclick="openOverview()">OVERVIEW</button>
+    </div>
+
+</footer>
+
+</div>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+
+<div class="glossary" id="glossary">
+    <div class="glossary-panel">
+
+        <div class="glossary-head">
+            <h2>📖 Glosarium Cepat</h2>
+            <button class="icon-btn" onclick="closeGlossary()">✕</button>
+        </div>
+
+        <div class="glossary-list">
+
+            <div class="gterm">
+                <strong>Airway</strong>
+                <span>Jalan napas. Menilai apakah udara dapat masuk dan keluar dengan aman.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Dyspnea</strong>
+                <span>Sesak napas atau sensasi sulit bernapas.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Stridor</strong>
+                <span>Suara napas tinggi/nyaring, terutama saat inspirasi, yang dapat menunjukkan penyempitan jalan napas.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Drooling</strong>
+                <span>Air liur terus keluar karena pasien kesulitan menelan atau tidak mampu menangani sekret.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Trismus</strong>
+                <span>Sulit membuka mulut akibat spasme atau gangguan pada otot pengunyahan.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Hot-potato voice</strong>
+                <span>Suara terdengar bindeng/teredam seperti berbicara dengan benda panas di dalam mulut.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Open globe</strong>
+                <span>Kecurigaan bola mata mengalami luka terbuka/ruptur atau penetrasi.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>RAPD</strong>
+                <span>Relative Afferent Pupillary Defect. Kelainan respons pupil yang dapat menunjukkan gangguan berat jalur saraf optik/retina.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Proptosis</strong>
+                <span>Mata tampak menonjol ke depan.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Visual acuity</strong>
+                <span>Ketajaman penglihatan.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Epistaxis</strong>
+                <span>Perdarahan dari hidung / mimisan.</span>
+            </div>
+
+            <div class="gterm">
+                <strong>Supraglottitis</strong>
+                <span>Peradangan jaringan di atas laring, termasuk epiglotis, yang dapat mengancam jalan napas.</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+
+<div class="overview" id="overview">
+    <div class="overview-panel">
+
+        <div class="overview-head">
+            <h2>☷ Semua Slide</h2>
+            <button class="icon-btn" onclick="closeOverview()">✕</button>
+        </div>
+
+        <div class="thumb-grid" id="thumbGrid"></div>
+
+    </div>
+</div>
+
+
+<script>
+
+/* ============================================================
+   SLIDE DATA
+   ============================================================ */
+
+const slides = [
+
+/* 01 */
+{
+section:"OPENING",
+title:"TRIAGE GIGI, MATA & THT DI IGD",
+html:`
+<div class="cover">
+    <div class="cover-inner">
+
+        <div class="cover-kicker">
+            🚨 SHARING KNOWLEDGE • IGD
+        </div>
+
+        <h1>
+            TRIAGE<br>
+            <span>GIGI • MATA • THT</span>
+        </h1>
+
+        <p class="cover-sub">
+            Mengenali kegawatan yang tidak boleh menunggu,
+            menentukan prioritas pemeriksaan,
+            melakukan stabilisasi awal,
+            dan melakukan eskalasi secara tepat.
+        </p>
+
+        <div class="cover-bottom">
+            <div class="pill">ABCDE</div>
+            <div class="pill">RED FLAGS</div>
+            <div class="pill">AIRWAY</div>
+            <div class="pill">TIME-CRITICAL</div>
+            <div class="pill">RE-TRIAGE</div>
+            <div class="pill">@mryungmalang</div>
+        </div>
+
+    </div>
+</div>
+`
+},
+
+/* 02 */
+{
+section:"OPENING",
+title:"Tujuan Pembelajaran",
+html:`
+<div class="grid g3">
+
+    <div class="card cyan">
+        <div class="icon">👁️</div>
+        <h3>01 • Kenali</h3>
+        <p>
+            Mengenali tanda bahaya pada keluhan gigi,
+            mata, dan THT yang dapat mengancam
+            jalan napas, penglihatan, atau kondisi umum.
+        </p>
+    </div>
+
+    <div class="card blue">
+        <div class="icon">🚦</div>
+        <h3>02 • Prioritaskan</h3>
+        <p>
+            Menentukan pasien mana yang harus segera
+            diperiksa dan ditolong berdasarkan tingkat
+            kegawatan, bukan sekadar berdasarkan nama diagnosis.
+        </p>
+    </div>
+
+    <div class="card green">
+        <div class="icon">🫀</div>
+        <h3>03 • Bertindak</h3>
+        <p>
+            Melakukan penilaian awal, pertolongan sesuai
+            kompetensi, eskalasi, dan penilaian ulang
+            secara sistematis.
+        </p>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:20px">
+    <div class="aicon">💡</div>
+    <div>
+        <strong>Prinsip utama:</strong>
+        <p>
+            Triase bukan proses untuk menyelesaikan diagnosis.
+            Triase adalah proses untuk menentukan <b>urgensi pertolongan</b>.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 03 */
+{
+section:"KONSEP TRIAGE",
+title:"Apa sebenarnya yang dicari saat triase?",
+html:`
+<div class="big-question">
+
+    <div class="small">
+        JANGAN LANGSUNG TERJEBAK PADA NAMA PENYAKIT
+    </div>
+
+    <div class="main">
+        “<span>Mana yang harus segera diprioritaskan</span><br>
+        untuk pemeriksaan dan pertolongan?”
+    </div>
+
+</div>
+
+<div class="grid g2">
+
+    <div class="card red">
+        <h3>🚨 Fokus pertama</h3>
+        <p>
+            Apakah ada kondisi yang mengancam jalan napas,
+            pernapasan, sirkulasi, kesadaran, atau fungsi vital lainnya?
+        </p>
+    </div>
+
+    <div class="card cyan">
+        <h3>🔎 Diagnosis menyusul</h3>
+        <p>
+            Setelah pasien aman dan prioritas ditentukan,
+            pemeriksaan lebih lengkap digunakan untuk memperjelas diagnosis
+            dan menentukan tata laksana definitif.
+        </p>
+    </div>
+
+</div>
+`
+},
+
+/* 04 */
+{
+section:"KONSEP TRIAGE",
+title:"Triage ≠ Diagnosis",
+html:`
+<div class="grid g2">
+
+    <div class="card purple">
+        <div class="icon">🚦</div>
+        <h3>TRIAGE</h3>
+        <ul>
+            <li>Menentukan <strong>urgensi</strong>.</li>
+            <li>Mengenali <strong>red flags</strong>.</li>
+            <li>Menentukan siapa yang harus segera ditolong.</li>
+            <li>Melakukan <strong>re-triage</strong> bila kondisi berubah.</li>
+        </ul>
+    </div>
+
+    <div class="card blue">
+        <div class="icon">🩺</div>
+        <h3>DIAGNOSIS</h3>
+        <ul>
+            <li>Menentukan penyebab penyakit/cedera.</li>
+            <li>Memerlukan anamnesis dan pemeriksaan lebih lengkap.</li>
+            <li>Dapat membutuhkan pemeriksaan penunjang.</li>
+            <li>Dilakukan setelah prioritas kegawatan teridentifikasi.</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="big-question" style="margin-top:22px">
+    <div class="main" style="font-size:28px">
+        <span>Urgency first.</span><br>
+        Diagnosis follows.
+    </div>
+</div>
+`
+},
+
+/* 05 */
+{
+section:"KONSEP TRIAGE",
+title:"ABCDE • Bahasa Universal Kegawatan",
+html:`
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">A • AIRWAY</div>
+        <div class="flow-title">Jalan Napas</div>
+        <div class="flow-desc">
+            Apakah jalan napas terbuka?
+            Ada stridor, sekret, pembengkakan, atau sumbatan?
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">B • BREATHING</div>
+        <div class="flow-title">Pernapasan</div>
+        <div class="flow-desc">
+            Apakah pasien bernapas efektif?
+            Nilai distress, frekuensi napas, SpO₂ dan tanda hipoksia.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">C • CIRCULATION</div>
+        <div class="flow-title">Sirkulasi</div>
+        <div class="flow-desc">
+            Nilai perdarahan, perfusi, nadi, tekanan darah,
+            dan tanda syok.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">D • DISABILITY</div>
+        <div class="flow-title">Neurologis</div>
+        <div class="flow-desc">
+            Nilai kesadaran, pupil, kejang, dan perubahan status mental.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">E • EXPOSURE</div>
+        <div class="flow-title">Paparan</div>
+        <div class="flow-desc">
+            Cari cedera lain, perdarahan, paparan bahan kimia,
+            dan kondisi yang belum terlihat.
+        </div>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:22px">
+    <div class="aicon">⚡</div>
+    <div>
+        <strong>Praktis di IGD:</strong>
+        <p>
+            Jika ditemukan masalah yang mengancam nyawa pada satu tahap,
+            jangan menunggu seluruh pemeriksaan selesai sebelum melakukan
+            intervensi awal sesuai kewenangan.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 06 */
+{
+section:"KONSEP TRIAGE",
+title:"Red Flag = Tanda yang Mengubah Prioritas",
+html:`
+<div class="grid g4">
+
+    <div class="card red compact">
+        <div class="icon">🫁</div>
+        <h3>Airway</h3>
+        <p>
+            Stridor, drooling,
+            pembengkakan mulut/leher,
+            sulit menangani sekret.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <div class="icon">💨</div>
+        <h3>Breathing</h3>
+        <p>
+            Distress napas,
+            sianosis,
+            hipoksia,
+            kelelahan napas.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <div class="icon">🩸</div>
+        <h3>Circulation</h3>
+        <p>
+            Perdarahan berat,
+            perfusi buruk,
+            tanda syok.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <div class="icon">🧠</div>
+        <h3>Disability</h3>
+        <p>
+            Tidak responsif,
+            penurunan kesadaran,
+            kejang aktif.
+        </p>
+    </div>
+
+</div>
+
+<div class="card cyan" style="max-width:1300px;margin:18px auto 0">
+    <h3>🎯 Cara berpikir</h3>
+    <p>
+        Jangan bertanya hanya “penyakit apa?”.
+        Tanyakan juga:
+        <strong>“Apa yang dapat memburuk dalam beberapa menit
+        jika pasien menunggu?”</strong>
+    </p>
+</div>
+`
+},
+
+/* 07 */
+{
+section:"KONSEP TRIAGE",
+title:"Kategori Prioritas • Jangan Terjebak Warna",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <div class="icon">🔴</div>
+        <h3>Prioritas sangat tinggi</h3>
+        <p>
+            Kondisi mengancam nyawa atau terdapat tanda
+            yang membutuhkan intervensi segera.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🟡</div>
+        <h3>Prioritas menengah</h3>
+        <p>
+            Kondisi serius yang membutuhkan pemeriksaan
+            dan penanganan lebih cepat daripada pasien stabil.
+        </p>
+    </div>
+
+    <div class="card green">
+        <div class="icon">🟢</div>
+        <h3>Dapat menunggu</h3>
+        <p>
+            Kondisi relatif stabil tanpa red flag
+            yang membutuhkan tindakan segera.
+        </p>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:20px">
+    <div class="aicon">⚠️</div>
+    <div>
+        <strong>Penting:</strong>
+        <p>
+            Warna dan level triase tidak universal.
+            Gunakan sistem dan SOP yang berlaku di fasilitas Anda.
+            WHO IITT sendiri menggunakan red, yellow, green untuk triase rutin.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 08 */
+{
+section:"TRIAGE GIGI",
+title:"Triage Gigi • Jangan Hanya Melihat Nyeri",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <div class="icon">🫁</div>
+        <h3>Airway</h3>
+        <p>
+            Bengkak mulut, dasar mulut, submandibula atau leher
+            yang mengganggu jalan napas.
+        </p>
+    </div>
+
+    <div class="card red">
+        <div class="icon">🩸</div>
+        <h3>Perdarahan</h3>
+        <p>
+            Perdarahan pascatindakan atau trauma yang
+            tidak terkontrol dengan langkah awal.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🦷</div>
+        <h3>Trauma / infeksi</h3>
+        <p>
+            Trauma gigi, abses, nyeri berat,
+            atau pembengkakan yang membutuhkan evaluasi.
+        </p>
+    </div>
+
+</div>
+
+<div class="card cyan" style="max-width:1300px;margin:18px auto">
+    <h3>💡 Kunci triase gigi</h3>
+    <p>
+        <strong>Nyeri gigi saja</strong> tidak otomatis berarti
+        kegawatan tinggi. Prioritas berubah bila terdapat
+        gangguan jalan napas, perdarahan tidak terkendali,
+        infeksi difus, atau trauma yang mengancam fungsi vital.
+    </p>
+</div>
+`
+},
+
+/* 09 */
+{
+section:"TRIAGE GIGI",
+title:"🚨 Red Flags Gigi yang Tidak Boleh Menunggu",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <h3>🫁 Jalan napas</h3>
+        <ul>
+            <li><strong>Dyspnea / sesak napas</strong></li>
+            <li><strong>Stridor / suara napas tinggi</strong></li>
+            <li><strong>Drooling / air liur terus keluar</strong></li>
+            <li>Sulit menelan atau tidak mampu menangani sekret</li>
+            <li>Lidah terdorong ke atas/belakang</li>
+            <li>Bengkak dasar mulut atau leher</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>🩸 / 🦠 Kondisi sistemik</h3>
+        <ul>
+            <li>Perdarahan aktif yang sulit dikendalikan</li>
+            <li>Demam dan tampak sangat sakit</li>
+            <li>Takikardia / tanda perfusi buruk</li>
+            <li>Penurunan kesadaran</li>
+            <li>Infeksi jaringan lunak yang luas</li>
+            <li>Trauma wajah dengan ancaman jalan napas</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 10 */
+{
+section:"TRIAGE GIGI",
+title:"Bengkak Mulut + Sulit Bernapas = Airway Problem",
+html:`
+<div class="big-question">
+
+    <div class="small">JANGAN TERLALU CEPAT BERPIKIR “HANYA ABSES GIGI”</div>
+
+    <div class="main">
+        <span>Bengkak + sulit menelan + drooling</span><br>
+        dapat berarti jalan napas sedang terancam.
+    </div>
+
+</div>
+
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Kenali</div>
+        <div class="flow-desc">
+            Suara berubah, drooling, trismus,
+            bengkak dasar mulut/leher.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">ABCDE</div>
+        <div class="flow-desc">
+            Nilai airway dan breathing
+            tanpa menunda pertolongan yang dibutuhkan.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">Eskalasi</div>
+        <div class="flow-desc">
+            Libatkan tim airway/DPJP/bedah/THT sesuai
+            sistem lokal bila ada ancaman jalan napas.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">Reassess</div>
+        <div class="flow-desc">
+            Pantau perubahan napas,
+            kesadaran, suara, dan kemampuan menangani sekret.
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 11 */
+{
+section:"TRIAGE GIGI",
+title:"Ludwig's Angina • Mengapa Kita Harus Waspada?",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <div class="icon">🚨</div>
+        <h3>Ludwig's angina / infeksi ruang dasar mulut</h3>
+        <p>
+            Infeksi jaringan lunak di dasar mulut dan area submandibula
+            dapat menyebabkan pembengkakan progresif dan mengancam jalan napas.
+        </p>
+
+        <ul>
+            <li>Bengkak dasar mulut/leher</li>
+            <li>Lidah terdorong ke atas</li>
+            <li>Sulit menelan</li>
+            <li>Drooling</li>
+            <li>Suara berubah</li>
+            <li>Sesak / stridor pada kondisi berat</li>
+        </ul>
+    </div>
+
+    <div class="card cyan">
+        <div class="icon">🎯</div>
+        <h3>Yang harus dipikirkan saat triase</h3>
+        <p>
+            Bukan sekadar “ada abses atau tidak?”,
+            tetapi:
+        </p>
+
+        <ul>
+            <li>Apakah airway masih aman?</li>
+            <li>Apakah pembengkakan bertambah?</li>
+            <li>Apakah pasien masih mampu menelan sekret?</li>
+            <li>Apakah ada distress napas?</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 12 */
+{
+section:"TRIAGE GIGI",
+title:"Algoritme Triage Gigi • 60 Detik Pertama",
+html:`
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01 • FIRST LOOK</div>
+        <div class="flow-title">Tampak sangat sakit?</div>
+        <div class="flow-desc">
+            Nilai tampilan umum, suara, posisi tubuh,
+            kemampuan bicara dan menangani sekret.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02 • AIRWAY</div>
+        <div class="flow-title">Ada red flag?</div>
+        <div class="flow-desc">
+            Stridor, drooling, sulit menelan,
+            bengkak mulut/leher, ancaman airway.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03 • BREATHING</div>
+        <div class="flow-title">Napas efektif?</div>
+        <div class="flow-desc">
+            Distress, SpO₂, RR,
+            tanda kelelahan atau hipoksia.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04 • CIRCULATION</div>
+        <div class="flow-title">Perdarahan?</div>
+        <div class="flow-desc">
+            Nilai perdarahan aktif,
+            perfusi dan tanda syok.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">05 • PRIORITY</div>
+        <div class="flow-title">Tentukan prioritas</div>
+        <div class="flow-desc">
+            Ikuti sistem triase dan SOP lokal.
+            Lakukan re-triage bila kondisi berubah.
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 13 CASE */
+{
+section:"CASE • GIGI",
+title:"CASE 01 • Pasien A atau Pasien B?",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 TANYAKAN KE AUDIENS • JANGAN BUKA JAWABAN DULU</div>
+
+    <div class="grid g2">
+
+        <div class="case-patient">
+            <h3>👤 Pasien A</h3>
+            <p>
+                Nyeri gigi sejak 2 hari. Skala nyeri 8/10.
+                Pasien sadar penuh, berbicara normal,
+                tidak sesak, tidak drooling, tidak ada pembengkakan leher.
+                Tanda vital stabil.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👤 Pasien B</h3>
+            <p>
+                Bengkak gigi sejak kemarin.
+                Saat datang pasien sulit menelan,
+                air liur terus keluar, suara berubah,
+                dan mulai terdengar suara napas tinggi.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>❓ Mana yang harus segera diprioritaskan untuk pemeriksaan dan pertolongan?</strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Jawaban: Pasien B</h4>
+            <p>
+                Pasien B memiliki beberapa tanda yang mengarah pada
+                <strong>ancaman jalan napas</strong>:
+                sulit menelan, drooling, perubahan suara, dan stridor.
+            </p>
+            <p>
+                Pada triase, ancaman airway membuat prioritas meningkat
+                walaupun diagnosis definitif belum diketahui.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 14 CASE */
+{
+section:"CASE • GIGI",
+title:"CASE 02 • Nyeri Hebat vs Perdarahan",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 DISKUSI CEPAT • PILIH PRIORITAS</div>
+
+    <div class="grid g2">
+
+        <div class="case-patient">
+            <h3>👤 Pasien A</h3>
+            <p>
+                Nyeri gigi sangat berat 9/10.
+                Pasien menangis tetapi sadar,
+                airway dan breathing baik,
+                tidak ada perdarahan.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👤 Pasien B</h3>
+            <p>
+                Pasca trauma wajah.
+                Perdarahan dari rongga mulut terus mengalir
+                dan sulit dikendalikan dengan langkah awal.
+                Pasien mulai lemah dan pucat.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>❓ Mana yang harus segera diprioritaskan?</strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Jawaban: Pasien B</h4>
+            <p>
+                Perdarahan yang tidak terkontrol disertai tanda perfusi
+                buruk merupakan kondisi yang dapat mengancam nyawa.
+            </p>
+            <p>
+                Nyeri berat tetap membutuhkan penanganan,
+                tetapi red flag sirkulasi pada pasien B meningkatkan urgensinya.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 15 */
+{
+section:"TRIAGE GIGI",
+title:"Trauma Gigi • Apa yang Harus Dicari?",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <div class="icon">🫁</div>
+        <h3>Airway</h3>
+        <p>
+            Trauma wajah dapat menyebabkan darah,
+            jaringan, benda asing, atau edema yang mengganggu airway.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🦷</div>
+        <h3>Gigi</h3>
+        <p>
+            Avulsi, luksasi, fraktur mahkota,
+            fraktur akar, atau gigi terdorong.
+        </p>
+    </div>
+
+    <div class="card orange">
+        <div class="icon">🧠</div>
+        <h3>Trauma terkait</h3>
+        <p>
+            Jangan lupa mencari cedera wajah,
+            kepala, leher, dan perdarahan lain.
+        </p>
+    </div>
+
+</div>
+
+<div class="card cyan" style="margin:18px auto;max-width:1300px">
+    <h3>🎯 Prinsip</h3>
+    <p>
+        Pada trauma, <strong>life threat tetap didahulukan</strong>.
+        Pemeriksaan gigi dilakukan setelah ancaman ABCDE
+        teridentifikasi dan ditangani.
+    </p>
+</div>
+`
+},
+
+/* 16 */
+{
+section:"TRIAGE GIGI",
+title:"Avulsed Tooth • Gigi Lepas Seluruhnya",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <div class="icon">⏱️</div>
+        <h3>Waktu sangat penting</h3>
+        <p>
+            Pada gigi permanen yang mengalami avulsi,
+            keberhasilan penanganan sangat dipengaruhi
+            oleh waktu dan kondisi gigi.
+        </p>
+
+        <ul>
+            <li>Catat waktu kejadian.</li>
+            <li>Cari gigi yang hilang.</li>
+            <li>Hindari memegang permukaan akar.</li>
+            <li>Koordinasikan penanganan dental sesuai protokol lokal.</li>
+        </ul>
+    </div>
+
+    <div class="card cyan">
+        <div class="icon">🚨</div>
+        <h3>Jangan lupa pasiennya</h3>
+        <p>
+            Jangan sampai fokus pada gigi membuat kita
+            melewatkan trauma yang lebih serius.
+        </p>
+
+        <ul>
+            <li>Airway</li>
+            <li>Breathing</li>
+            <li>Circulation</li>
+            <li>Trauma kepala/wajah</li>
+            <li>Perdarahan</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 17 */
+{
+section:"TRIAGE MATA",
+title:"Triage Mata • Prioritasnya Bisa Penglihatan",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <div class="icon">👁️</div>
+        <h3>Vision-threatening</h3>
+        <p>
+            Kondisi yang berpotensi menyebabkan kehilangan
+            penglihatan bila penanganannya terlambat.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">⚡</div>
+        <h3>Time-critical</h3>
+        <p>
+            Semakin lama tertunda,
+            semakin besar risiko kerusakan permanen pada kondisi tertentu.
+        </p>
+    </div>
+
+    <div class="card cyan">
+        <div class="icon">🛡️</div>
+        <h3>Avoid harm</h3>
+        <p>
+            Beberapa pemeriksaan atau tindakan dapat berbahaya
+            bila terdapat dugaan luka terbuka pada bola mata.
+        </p>
+    </div>
+
+</div>
+
+<div class="big-question" style="margin-top:22px">
+    <div class="main" style="font-size:27px">
+        <span>“Apakah penglihatan pasien terancam?”</span>
+    </div>
+</div>
+`
+},
+
+/* 18 */
+{
+section:"TRIAGE MATA",
+title:"🚨 Red Flags Mata",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <h3>👁️ Penglihatan</h3>
+        <ul>
+            <li>Kehilangan penglihatan mendadak</li>
+            <li>Penurunan tajam penglihatan berat</li>
+            <li>Gangguan lapang pandang mendadak</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>🩸 Trauma</h3>
+        <ul>
+            <li>Dugaan <strong>open globe / luka terbuka bola mata</strong></li>
+            <li>Benda menancap</li>
+            <li>Trauma penetrasi</li>
+            <li>Proptosis + nyeri/perubahan penglihatan</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>🧪 / 🔴 Mata merah</h3>
+        <ul>
+            <li>Pajanan bahan kimia</li>
+            <li>Mata merah + nyeri hebat</li>
+            <li>Nyeri + gangguan penglihatan</li>
+            <li>Fotofobia berat</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 19 */
+{
+section:"TRIAGE MATA",
+title:"Pajanan Kimia Mata • Jangan Menunggu Pemeriksaan Lengkap",
+html:`
+<div class="big-question">
+
+    <div class="small">PRINSIP TIME-CRITICAL</div>
+
+    <div class="main">
+        <span>IRIGASI SEGERA.</span><br>
+        Jangan menunggu pemeriksaan mata lengkap.
+    </div>
+
+</div>
+
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Amankan petugas</div>
+        <div class="flow-desc">
+            Pastikan tidak terjadi pajanan lanjutan.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">Mulai irigasi</div>
+        <div class="flow-desc">
+            Gunakan cairan irigasi yang sesuai;
+            jangan menunda hanya karena mencari cairan ideal.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">Lanjutkan</div>
+        <div class="flow-desc">
+            Irigasi dilanjutkan sambil proses transfer
+            dan evaluasi berlangsung.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">Identifikasi bahan</div>
+        <div class="flow-desc">
+            Catat jenis bahan dan waktu pajanan
+            bila informasi tersedia.
+        </div>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:20px">
+    <div class="aicon">⚠️</div>
+    <div>
+        <strong>Catatan keselamatan:</strong>
+        <p>
+            Bila ada kecurigaan <strong>open globe</strong>,
+            jangan melakukan irigasi paksa atau tindakan
+            yang memberikan tekanan pada bola mata.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 20 */
+{
+section:"TRIAGE MATA",
+title:"Chemical Eye Injury • DO & DON'T",
+html:`
+<div class="grid g2">
+
+    <div class="card green">
+        <h3>✅ DO</h3>
+        <ul>
+            <li>Amankan area dan petugas.</li>
+            <li>Mulai irigasi secepat mungkin.</li>
+            <li>Pastikan cairan mengenai permukaan mata.</li>
+            <li>Catat bahan kimia bila diketahui.</li>
+            <li>Teruskan proses transfer/evaluasi.</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>❌ DON'T</h3>
+        <ul>
+            <li>Jangan menunggu dokter mata untuk memulai irigasi.</li>
+            <li>Jangan mencoba “menetralkan” asam dengan basa atau sebaliknya.</li>
+            <li>Jangan menekan bola mata bila open globe dicurigai.</li>
+            <li>Jangan menunda karena dokumentasi belum lengkap.</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="card cyan" style="margin:18px auto;max-width:1300px">
+    <h3>🎯 Prinsip sederhana</h3>
+    <p>
+        <strong>Kurangi waktu kontak bahan kimia dengan mata.</strong>
+        Semakin cepat pajanan dihentikan, semakin baik peluang mengurangi kerusakan.
+    </p>
+</div>
+`
+},
+
+/* 21 */
+{
+section:"TRIAGE MATA",
+title:"Suspected Open Globe • Lindungi, Jangan Manipulasi",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <div class="icon">🛡️</div>
+        <h3>Bila dicurigai open globe</h3>
+
+        <ul>
+            <li>Hentikan pemeriksaan yang memberikan tekanan.</li>
+            <li>Jangan menekan atau memanipulasi bola mata.</li>
+            <li>Gunakan pelindung mata kaku / rigid shield sesuai protokol.</li>
+            <li>Segera koordinasikan dokter mata/transfer.</li>
+        </ul>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🔎</div>
+        <h3>Tanda yang meningkatkan kecurigaan</h3>
+
+        <ul>
+            <li>Trauma penetrasi.</li>
+            <li>Benda asing menancap.</li>
+            <li>Penurunan penglihatan.</li>
+            <li>Pupil abnormal.</li>
+            <li>Kelainan bentuk bola mata.</li>
+            <li>Jaringan intraokular tampak keluar.</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:18px">
+    <div class="aicon">🛑</div>
+    <div>
+        <strong>Tujuan triase:</strong>
+        <p>
+            Mencegah kerusakan tambahan sambil mempercepat
+            penanganan definitif.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 22 */
+{
+section:"TRIAGE MATA",
+title:"Kehilangan Penglihatan Mendadak",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <h3>🚨 Anggap serius</h3>
+        <p>
+            Kehilangan penglihatan yang terjadi mendadak,
+            terutama berat dan satu mata,
+            membutuhkan evaluasi segera.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <h3>🧠 Pikirkan penyebab</h3>
+        <p>
+            Bisa berasal dari retina, saraf optik,
+            pembuluh darah, atau kondisi okular akut lainnya.
+        </p>
+    </div>
+
+    <div class="card cyan">
+        <h3>⏱️ Jangan terlambat</h3>
+        <p>
+            Kondisi tertentu seperti retinal artery occlusion
+            merupakan kegawatan mata yang membutuhkan evaluasi segera.
+        </p>
+    </div>
+
+</div>
+
+<div class="big-question" style="margin-top:20px">
+    <div class="main" style="font-size:26px">
+        <span>Sudden vision loss = time-sensitive until proven otherwise.</span>
+    </div>
+</div>
+`
+},
+
+/* 23 */
+{
+section:"TRIAGE MATA",
+title:"Acute Angle-Closure • Mata Merah + Nyeri Berat",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <h3>🚨 Gambaran yang perlu dicurigai</h3>
+        <ul>
+            <li>Nyeri mata berat dan mendadak</li>
+            <li>Penglihatan buram</li>
+            <li>Melihat halo di sekitar cahaya</li>
+            <li>Sakit kepala</li>
+            <li>Mual/muntah</li>
+            <li>Pupil dapat tampak mid-dilated dan kurang responsif</li>
+        </ul>
+    </div>
+
+    <div class="card cyan">
+        <h3>🎯 Makna triase</h3>
+        <p>
+            Ini bukan sekadar “mata merah”.
+            Kombinasi nyeri berat + gangguan penglihatan
+            memerlukan evaluasi segera dan konsultasi oftalmologi.
+        </p>
+
+        <div style="margin-top:15px">
+            <span class="term">
+                Acute angle-closure
+                <em>/ glaukoma sudut tertutup akut</em>
+            </span>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 24 */
+{
+section:"TRIAGE MATA",
+title:"Algoritme Triage Mata",
+html:`
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Apakah penglihatan turun?</div>
+        <div class="flow-desc">
+            Tentukan onset mendadak/tidak,
+            satu mata/kedua mata,
+            dan tingkat keparahan.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">Ada trauma?</div>
+        <div class="flow-desc">
+            Cari benda menancap,
+            penetrasi, atau dugaan open globe.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">Ada bahan kimia?</div>
+        <div class="flow-desc">
+            Bila ya, prioritaskan irigasi segera
+            kecuali open globe dicurigai.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">Nyeri berat?</div>
+        <div class="flow-desc">
+            Nyeri berat + gangguan visual
+            meningkatkan urgensi.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">Eskalasi</div>
+        <div class="flow-desc">
+            Konsultasi/transfer sesuai kegawatan
+            dan SOP fasilitas.
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 25 CASE */
+{
+section:"CASE • MATA",
+title:"CASE 03 • Mata Merah Biasa atau Kegawatan?",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 AUDIENS MENJAWAB DULU</div>
+
+    <div class="grid g2">
+
+        <div class="case-patient">
+            <h3>👁️ Pasien A</h3>
+            <p>
+                Mata merah sejak 2 hari, rasa mengganjal ringan,
+                penglihatan tetap jelas, tidak ada trauma,
+                tidak ada nyeri berat.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👁️ Pasien B</h3>
+            <p>
+                Mata merah mendadak disertai nyeri hebat,
+                penglihatan buram, sakit kepala,
+                dan mual muntah.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>❓ Mana yang membutuhkan prioritas lebih tinggi?</strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Jawaban: Pasien B</h4>
+            <p>
+                Kombinasi <strong>nyeri mata berat + gangguan penglihatan +
+                sakit kepala/mual muntah</strong> merupakan red flag
+                yang dapat sesuai dengan kegawatan seperti acute angle-closure.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 26 CASE */
+{
+section:"CASE • MATA",
+title:"CASE 04 • Bahan Kimia",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 PERTANYAAN UNTUK PESERTA</div>
+
+    <div class="case-patient">
+        <h3>👤 Pasien</h3>
+        <p>
+            Seorang pekerja terkena cairan kimia ke mata.
+            Mata terasa sangat perih dan pasien sulit membuka kelopak.
+            Tidak diketahui apakah cairan tersebut asam atau basa.
+        </p>
+
+        <div class="case-question">
+            <strong>
+                ❓ Apakah kita menunggu identifikasi bahan kimia
+                sebelum melakukan tindakan?
+            </strong>
+        </div>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Tidak. Irigasi dimulai segera.</h4>
+            <p>
+                Identifikasi bahan membantu penanganan,
+                tetapi tidak boleh menyebabkan keterlambatan
+                menghentikan pajanan.
+            </p>
+            <p>
+                <strong>Catatan:</strong> bila terdapat kecurigaan open globe,
+                hindari irigasi paksa/alat yang memberikan tekanan
+                dan lakukan eskalasi segera.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 27 */
+{
+section:"TRIAGE THT",
+title:"Triage THT • Airway Bisa Berubah Cepat",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <div class="icon">🫁</div>
+        <h3>Airway red flags</h3>
+        <p>
+            Stridor, drooling, sulit menelan,
+            suara berubah, distress napas,
+            atau pembengkakan leher.
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🗣️</div>
+        <h3>Voice / swallowing</h3>
+        <p>
+            <strong>Hot-potato voice / suara teredam</strong>,
+            trismus, odynophagia,
+            dan kesulitan menangani sekret.
+        </p>
+    </div>
+
+    <div class="card cyan">
+        <div class="icon">🩸</div>
+        <h3>Bleeding</h3>
+        <p>
+            Epistaxis / mimisan berat,
+            menetap, atau mengganggu airway.
+        </p>
+    </div>
+
+</div>
+`
+},
+
+/* 28 */
+{
+section:"TRIAGE THT",
+title:"🚨 THT Red Flags yang Harus Langsung Terlihat",
+html:`
+<div class="grid g4">
+
+    <div class="card red compact">
+        <h3>Stridor</h3>
+        <p>
+            Suara napas tinggi akibat
+            penyempitan jalan napas.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <h3>Drooling</h3>
+        <p>
+            Air liur keluar karena
+            sulit/tidak mampu menelan.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <h3>Hot-potato voice</h3>
+        <p>
+            Suara teredam seperti
+            berbicara dengan benda panas di mulut.
+        </p>
+    </div>
+
+    <div class="card red compact">
+        <h3>Trismus</h3>
+        <p>
+            Sulit membuka mulut,
+            dapat ditemukan pada abses tertentu.
+        </p>
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:20px">
+    <div class="aicon">🛑</div>
+    <div>
+        <strong>Jika red flags muncul:</strong>
+        <p>
+            Jangan memperlakukan pasien sebagai sekadar
+            “sakit tenggorokan biasa”. Kaji airway dan eskalasi sesuai kondisi.
+        </p>
+    </div>
+</div>
+`
+},
+
+/* 29 */
+{
+section:"TRIAGE THT",
+title:"Epiglottitis / Supraglottitis • Airway First",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <div class="icon">🚨</div>
+        <h3>Tanda yang mengkhawatirkan</h3>
+
+        <ul>
+            <li>Nyeri tenggorok berat</li>
+            <li>Sulit menelan</li>
+            <li>Drooling</li>
+            <li>Stridor</li>
+            <li>Distress napas</li>
+            <li>Tripod position / duduk condong ke depan</li>
+        </ul>
+    </div>
+
+    <div class="card yellow">
+        <div class="icon">🛑</div>
+        <h3>Jangan membuat pasien semakin tidak stabil</h3>
+
+        <p>
+            Pada kecurigaan epiglottitis,
+            pemeriksaan tenggorok yang agresif dapat berbahaya,
+            terutama pada pasien dengan tanda airway compromise.
+        </p>
+
+        <p style="margin-top:12px">
+            <strong>Airway assessment dan management menjadi prioritas.</strong>
+        </p>
+    </div>
+
+</div>
+`
+},
+
+/* 30 */
+{
+section:"TRIAGE THT",
+title:"Peritonsillar Abscess • Deep Neck Infection",
+html:`
+<div class="grid g2">
+
+    <div class="card orange">
+        <h3>🗣️ Peritonsillar abscess / abses peritonsil</h3>
+        <ul>
+            <li>Nyeri tenggorok berat, sering satu sisi</li>
+            <li>Trismus / sulit membuka mulut</li>
+            <li>Hot-potato voice / suara teredam</li>
+            <li>Drooling</li>
+            <li>Deviasi uvula dapat terjadi</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>🫁 Deep neck infection / infeksi leher dalam</h3>
+        <ul>
+            <li>Pembengkakan leher</li>
+            <li>Nyeri menelan berat</li>
+            <li>Gangguan airway</li>
+            <li>Demam dan tampak toksik</li>
+            <li>Dapat berkembang menjadi ancaman jalan napas</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="card cyan" style="max-width:1300px;margin:18px auto">
+    <h3>🎯 Pesan triase</h3>
+    <p>
+        Kombinasi <strong>infeksi + pembengkakan + gangguan menelan/napas</strong>
+        harus membuat kita berpikir tentang risiko airway.
+    </p>
+</div>
+`
+},
+
+/* 31 */
+{
+section:"TRIAGE THT",
+title:"Epistaxis • Mimisan Tidak Selalu Ringan",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <h3>🚨 Prioritas tinggi bila</h3>
+        <ul>
+            <li>Perdarahan banyak</li>
+            <li>Perdarahan menetap</li>
+            <li>Tanda hemodinamik tidak stabil</li>
+            <li>Darah mengancam airway</li>
+        </ul>
+    </div>
+
+    <div class="card yellow">
+        <h3>⚠️ Cari faktor risiko</h3>
+        <ul>
+            <li>Antikoagulan / gangguan koagulasi</li>
+            <li>Trauma signifikan</li>
+            <li>Riwayat hipertensi</li>
+            <li>Perdarahan berulang</li>
+        </ul>
+    </div>
+
+    <div class="card cyan">
+        <h3>🫁 Jangan lupa airway</h3>
+        <p>
+            Darah yang terus mengalir ke posterior
+            dapat menimbulkan masalah jalan napas,
+            terutama pada perdarahan berat.
+        </p>
+    </div>
+
+</div>
+`
+},
+
+/* 32 */
+{
+section:"TRIAGE THT",
+title:"Algoritme Triage THT • Airway → Breathing → Bleeding",
+html:`
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">Lihat pasien</div>
+        <div class="flow-desc">
+            Posisi, kemampuan bicara,
+            suara napas, sekret, distress.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">Airway</div>
+        <div class="flow-desc">
+            Stridor? Drooling?
+            Pembengkakan? Sulit menangani sekret?
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">Breathing</div>
+        <div class="flow-desc">
+            Nilai distress napas,
+            SpO₂, RR, dan tanda kelelahan.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">Bleeding</div>
+        <div class="flow-desc">
+            Nilai perdarahan,
+            jumlah, durasi, dan dampaknya.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">Eskalasi</div>
+        <div class="flow-desc">
+            Aktifkan tim terkait
+            sesuai kondisi dan SOP lokal.
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 33 CASE */
+{
+section:"CASE • THT",
+title:"CASE 05 • Sakit Tenggorok",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 TANTANGAN UNTUK AUDIENS</div>
+
+    <div class="grid g2">
+
+        <div class="case-patient">
+            <h3>👤 Pasien A</h3>
+            <p>
+                Nyeri tenggorok sejak 2 hari.
+                Masih dapat minum, bicara normal,
+                tidak sesak, tidak drooling.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👤 Pasien B</h3>
+            <p>
+                Nyeri tenggorok berat.
+                Sulit membuka mulut, sulit menelan,
+                suara terdengar teredam,
+                dan air liur terus keluar.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>❓ Mana yang harus lebih dahulu diperiksa?</strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Jawaban: Pasien B</h4>
+            <p>
+                Kombinasi trismus, gangguan menelan,
+                drooling, dan suara teredam merupakan
+                red flags untuk infeksi orofaring/deep neck
+                yang dapat berhubungan dengan ancaman airway.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 34 CASE */
+{
+section:"CASE • THT",
+title:"CASE 06 • Mimisan",
+html:`
+<div class="case">
+
+    <div class="case-label">🎤 AUDIENS PILIH PRIORITAS</div>
+
+    <div class="grid g2">
+
+        <div class="case-patient">
+            <h3>👤 Pasien A</h3>
+            <p>
+                Mimisan sedikit setelah mengorek hidung.
+                Pasien sadar, tanda vital stabil,
+                perdarahan sudah hampir berhenti.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👤 Pasien B</h3>
+            <p>
+                Mimisan terus mengalir.
+                Darah banyak masuk ke mulut,
+                pasien tampak lemah dan pucat.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>❓ Siapa yang harus diprioritaskan?</strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ Jawaban: Pasien B</h4>
+            <p>
+                Perdarahan aktif yang banyak,
+                dampak terhadap kondisi umum,
+                dan potensi ancaman airway meningkatkan urgensi.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 35 */
+{
+section:"INTEGRASI",
+title:"Satu Pola untuk Gigi • Mata • THT",
+html:`
+<div class="flow">
+
+    <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-title">RECOGNIZE</div>
+        <div class="flow-desc">
+            Kenali tanda bahaya
+            sebelum pasien menunggu.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-title">PRIORITIZE</div>
+        <div class="flow-desc">
+            Tentukan siapa yang
+            harus segera diperiksa.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-title">STABILIZE</div>
+        <div class="flow-desc">
+            Lakukan pertolongan awal
+            sesuai kompetensi dan SOP.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-title">ESCALATE</div>
+        <div class="flow-desc">
+            Libatkan tim/DPJP/spesialis
+            sesuai kebutuhan.
+        </div>
+    </div>
+
+    <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-title">REASSESS</div>
+        <div class="flow-desc">
+            Kondisi pasien dapat berubah.
+            Lakukan re-triage.
+        </div>
+    </div>
+
+</div>
+
+<div class="big-question" style="margin-top:24px">
+    <div class="main" style="font-size:25px">
+        <span>RECOGNIZE → PRIORITIZE → STABILIZE → ESCALATE → REASSESS</span>
+    </div>
+</div>
+`
+},
+
+/* 36 */
+{
+section:"INTEGRASI",
+title:"Perbandingan Cepat • Mana yang Tidak Boleh Menunggu?",
+html:`
+<div class="grid g3">
+
+    <div class="card red">
+        <h3>🦷 GIGI</h3>
+        <ul>
+            <li>Ancaman airway</li>
+            <li>Drooling + sulit menelan</li>
+            <li>Stridor</li>
+            <li>Bengkak mulut/leher progresif</li>
+            <li>Perdarahan tidak terkendali</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>👁️ MATA</h3>
+        <ul>
+            <li>Penurunan penglihatan mendadak</li>
+            <li>Pajanan kimia</li>
+            <li>Dugaan open globe</li>
+            <li>Nyeri berat + gangguan visual</li>
+            <li>Trauma penetrasi</li>
+        </ul>
+    </div>
+
+    <div class="card red">
+        <h3>👂 THT</h3>
+        <ul>
+            <li>Stridor</li>
+            <li>Drooling</li>
+            <li>Distress napas</li>
+            <li>Hot-potato voice + trismus</li>
+            <li>Perdarahan berat/airway threat</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 37 */
+{
+section:"INTEGRASI",
+title:"Kesalahan yang Sering Terjadi Saat Triase",
+html:`
+<div class="grid g2">
+
+    <div class="card red">
+        <h3>❌ Kesalahan</h3>
+        <ul>
+            <li>Fokus pada diagnosis sebelum menilai ABCDE.</li>
+            <li>Menganggap semua nyeri gigi sebagai prioritas tertinggi.</li>
+            <li>Menganggap semua mata merah sebagai kasus ringan.</li>
+            <li>Menganggap sakit tenggorok tidak mungkin mengancam airway.</li>
+            <li>Menunggu pemeriksaan lengkap sebelum tindakan time-critical.</li>
+            <li>Lupa melakukan re-triage ketika kondisi berubah.</li>
+        </ul>
+    </div>
+
+    <div class="card green">
+        <h3>✅ Ganti dengan pola ini</h3>
+        <ul>
+            <li>First look → ABCDE.</li>
+            <li>Cari red flags.</li>
+            <li>Tentukan prioritas.</li>
+            <li>Lakukan intervensi awal yang tepat.</li>
+            <li>Eskalasi bila diperlukan.</li>
+            <li>Reassess.</li>
+        </ul>
+    </div>
+
+</div>
+`
+},
+
+/* 38 */
+{
+section:"FINAL CHALLENGE",
+title:"FINAL CHALLENGE • Siapa Dulu?",
+html:`
+<div class="case">
+
+    <div class="case-label">🏁 FINAL AUDIENCE CHALLENGE</div>
+
+    <div class="grid g3">
+
+        <div class="case-patient">
+            <h3>🦷 A</h3>
+            <p>
+                Nyeri gigi 8/10,
+                vital stabil,
+                tidak ada sesak,
+                tidak ada drooling.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👁️ B</h3>
+            <p>
+                Pajanan bahan kimia ke mata,
+                nyeri hebat,
+                penglihatan terganggu.
+            </p>
+        </div>
+
+        <div class="case-patient">
+            <h3>👂 C</h3>
+            <p>
+                Sakit tenggorok berat,
+                drooling,
+                stridor,
+                pasien duduk condong ke depan.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="case-question">
+        <strong>
+            ❓ Mana yang harus segera diprioritaskan?
+            Apakah ada lebih dari satu yang time-critical?
+        </strong>
+    </div>
+
+    <button class="reveal-btn" onclick="toggleAnswer(this)">
+        👁️ Tampilkan Jawaban & Pembahasan
+    </button>
+
+    <div class="answer-box">
+        <div class="answer-inner">
+            <h4>✅ B dan C sama-sama memiliki red flag time-critical.</h4>
+
+            <ul>
+                <li>
+                    <strong>B:</strong>
+                    pajanan kimia mata → irigasi segera,
+                    dengan pengecualian penting bila open globe dicurigai.
+                </li>
+
+                <li>
+                    <strong>C:</strong>
+                    stridor + drooling + posisi tripod →
+                    ancaman airway dan membutuhkan perhatian segera.
+                </li>
+
+                <li>
+                    <strong>A:</strong>
+                    tetap membutuhkan penanganan,
+                    tetapi berdasarkan informasi kasus tidak menunjukkan
+                    red flag ABCDE yang sama.
+                </li>
+            </ul>
+
+            <p>
+                <strong>Pesan utama:</strong>
+                triase bukan sekadar mencari siapa yang paling kesakitan,
+                tetapi menentukan siapa yang paling membutuhkan pertolongan segera.
+            </p>
+        </div>
+    </div>
+
+</div>
+`
+},
+
+/* 39 */
+{
+section:"TAKE HOME",
+title:"5 Kalimat yang Harus Pulang Bersama Peserta",
+html:`
+<div class="grid g2">
+
+    <div class="card cyan">
+        <h3>01</h3>
+        <p>
+            <strong>Triase menentukan urgensi, bukan diagnosis akhir.</strong>
+        </p>
+    </div>
+
+    <div class="card red">
+        <h3>02</h3>
+        <p>
+            <strong>
+                Ancaman airway selalu mengubah prioritas.
+            </strong>
+        </p>
+    </div>
+
+    <div class="card yellow">
+        <h3>03</h3>
+        <p>
+            <strong>
+                Kehilangan penglihatan mendadak dan pajanan kimia mata
+                adalah kondisi yang harus dianggap time-critical.
+            </strong>
+        </p>
+    </div>
+
+    <div class="card orange">
+        <h3>04</h3>
+        <p>
+            <strong>
+                Stridor, drooling, hot-potato voice, dan distress napas
+                bukan keluhan THT biasa sampai terbukti aman.
+            </strong>
+        </p>
+    </div>
+
+    <div class="card green" style="grid-column:1/-1">
+        <h3>05 • PALING PENTING</h3>
+        <p>
+            <strong>
+                RECOGNIZE → PRIORITIZE → STABILIZE → ESCALATE → REASSESS
+            </strong>
+        </p>
+    </div>
+
+</div>
+`
+},
+
+/* 40 */
+{
+section:"REFERENCES",
+title:"Sumber Utama & Catatan Penggunaan",
+html:`
+<div class="grid g2">
+
+    <div class="card cyan">
+
+        <h3>📚 Referensi utama</h3>
+
+        <div class="source-list">
+
+            <div class="source">
+                <b>01</b>
+                <div>
+                    WHO — Interagency Integrated Triage Tool.
+                    <br>
+                    <a href="https://www.who.int/tools/triage"
+                       target="_blank" rel="noopener">
+                        who.int/tools/triage
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>02</b>
+                <div>
+                    WHO/ICRC — Basic Emergency Care:
+                    Approach to the Acutely Ill and Injured.
+                    <br>
+                    <a href="https://www.who.int/publications/i/item/basic-emergency-care-approach-to-the-acutely-ill-and-injured"
+                       target="_blank" rel="noopener">
+                        WHO Basic Emergency Care
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>03</b>
+                <div>
+                    Kementerian Kesehatan RI —
+                    Permenkes No. 47 Tahun 2018 tentang Pelayanan Kegawatdaruratan.
+                    <br>
+                    <a href="https://jdih.kemkes.go.id/documents/peraturan-menteri-kesehatan-nomor-47-tahun-2018"
+                       target="_blank" rel="noopener">
+                        JDIH Kemenkes
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>04</b>
+                <div>
+                    EyeWiki / American Academy of Ophthalmology —
+                    Pre-Ophthalmologist Management of Eye Trauma.
+                    <br>
+                    <a href="https://eyewiki.org/Pre-Ophthalmologist_Management_of_Eye_Trauma"
+                       target="_blank" rel="noopener">
+                        EyeWiki — Eye Trauma
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card purple">
+
+        <h3>📚 Referensi klinis tambahan</h3>
+
+        <div class="source-list">
+
+            <div class="source">
+                <b>05</b>
+                <div>
+                    EyeWiki —
+                    Chemical Injury of the Conjunctiva and Cornea.
+                    <br>
+                    <a href="https://eyewiki.org/Chemical_%28Alkali_and_Acid%29_Injury_of_the_Conjunctiva_and_Cornea"
+                       target="_blank" rel="noopener">
+                        EyeWiki — Chemical Eye Injury
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>06</b>
+                <div>
+                    EyeWiki —
+                    On Call Ophthalmology.
+                    <br>
+                    <a href="https://eyewiki.aao.org/On_Call_Ophthalmology"
+                       target="_blank" rel="noopener">
+                        EyeWiki — On Call Ophthalmology
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>07</b>
+                <div>
+                    Merck Manual Professional —
+                    Epiglottitis / Supraglottitis.
+                    <br>
+                    <a href="https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/oral-and-pharyngeal-disorders/epiglottitis"
+                       target="_blank" rel="noopener">
+                        Merck — Epiglottitis
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>08</b>
+                <div>
+                    Merck Manual Professional —
+                    Peritonsillar Abscess and Cellulitis.
+                    <br>
+                    <a href="https://www.merckmanuals.com/professional/ear-nose-and-throat-disorders/oral-and-pharyngeal-disorders/peritonsillar-abscess-and-cellulitis"
+                       target="_blank" rel="noopener">
+                        Merck — Peritonsillar Abscess
+                    </a>
+                </div>
+            </div>
+
+            <div class="source">
+                <b>09</b>
+                <div>
+                    ADA —
+                    What Constitutes a Dental Emergency?
+                    <br>
+                    <a href="https://www.ada.org/"
+                       target="_blank" rel="noopener">
+                        American Dental Association
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="alert" style="margin-top:18px">
+    <div class="aicon">⚠️</div>
+    <div>
+        <strong>Catatan penting untuk pembelajaran:</strong>
+        <p>
+            Materi ini adalah bahan edukasi/Sharing Knowledge.
+            Pelaksanaan triase, tindakan klinis, konsultasi,
+            transfer, dan penggunaan kategori prioritas harus mengikuti
+            kompetensi tenaga kesehatan, kebijakan rumah sakit,
+            SPO/SOP setempat, serta keputusan klinis tim yang menangani pasien.
+        </p>
+    </div>
+</div>
+
+<div style="
+    text-align:center;
+    margin-top:22px;
+    color:#70869c;
+    font-size:11px;
+">
+    TRIAGE GIGI • MATA • THT — SHARING KNOWLEDGE IGD
+    <br>
+    <span style="color:#48d8ff">@mryungmalang</span>
+</div>
+`
+}
+
+];
+
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+
+const deck = document.getElementById("deck");
+
+slides.forEach((slide,index)=>{
+
+    const el = document.createElement("section");
+
+    el.className = "slide" + (index===0 ? " active" : "");
+
+    el.dataset.index = index;
+
+    el.innerHTML = `
+        <div class="slide-head">
+            <div class="eyebrow">
+                ${slide.section}
+            </div>
+
+            <h1 class="slide-title">
+                ${slide.title}
+            </h1>
+        </div>
+
+        ${slide.html}
+    `;
+
+    deck.appendChild(el);
+
+});
+
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let current = 0;
+
+
+/* ============================================================
+   UPDATE
+   ============================================================ */
+
+function updateSlide(){
+
+    const all = document.querySelectorAll(".slide");
+
+    all.forEach((slide,index)=>{
+        slide.classList.toggle("active",index===current);
+    });
+
+    const total = slides.length;
+
+    document.getElementById("counter").textContent =
+        String(current+1).padStart(2,"0")
+        + " / "
+        + String(total).padStart(2,"0");
+
+    document.getElementById("sectionName").textContent =
+        slides[current].section;
+
+    document.getElementById("progressBar").style.width =
+        ((current+1)/total*100) + "%";
+
+    document.querySelectorAll(".thumb").forEach((thumb,index)=>{
+        thumb.classList.toggle("active",index===current);
+    });
+
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+function nextSlide(){
+
+    if(current < slides.length-1){
+        current++;
+        updateSlide();
+    }
+
+}
+
+function prevSlide(){
+
+    if(current > 0){
+        current--;
+        updateSlide();
+    }
+
+}
+
+function goToSlide(index){
+
+    if(index < 0) index=0;
+    if(index >= slides.length) index=slides.length-1;
+
+    current=index;
+
+    updateSlide();
+
+    closeOverview();
+
+}
+
+
+/* ============================================================
+   KEYBOARD
+   ============================================================ */
+
+document.addEventListener("keydown",function(e){
+
+    if(
+        e.target.tagName==="INPUT" ||
+        e.target.tagName==="TEXTAREA"
+    ){
+        return;
+    }
+
+    if(e.key==="ArrowRight" || e.key==="PageDown"){
+        nextSlide();
+    }
+
+    if(e.key==="ArrowLeft" || e.key==="PageUp"){
+        prevSlide();
+    }
+
+    if(e.key==="Home"){
+        goToSlide(0);
+    }
+
+    if(e.key==="End"){
+        goToSlide(slides.length-1);
+    }
+
+    if(e.key===" "){
+        e.preventDefault();
+
+        const active = document.querySelector(".slide.active");
+
+        if(active){
+
+            const answer = active.querySelector(".answer-box");
+
+            if(answer && !answer.classList.contains("show")){
+
+                const btn = active.querySelector(".reveal-btn");
+
+                if(btn){
+                    toggleAnswer(btn);
+                    return;
+                }
+
+            }
+
+        }
+
+        nextSlide();
+    }
+
+    if(e.key==="Escape"){
+
+        closeOverview();
+        closeGlossary();
+
+    }
+
+});
+
+
+/* ============================================================
+   INTERACTIVE ANSWER
+   ============================================================ */
+
+function toggleAnswer(button){
+
+    const box = button.parentElement.querySelector(".answer-box");
+
+    if(!box) return;
+
+    const show = !box.classList.contains("show");
+
+    box.classList.toggle("show",show);
+
+    button.textContent =
+        show
+        ? "🙈 Sembunyikan Jawaban"
+        : "👁️ Tampilkan Jawaban";
+
+}
+
+
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
+
+const thumbGrid = document.getElementById("thumbGrid");
+
+slides.forEach((slide,index)=>{
+
+    const thumb = document.createElement("div");
+
+    thumb.className = "thumb" + (index===0 ? " active" : "");
+
+    thumb.innerHTML = `
+        <div class="thumb-no">
+            ${String(index+1).padStart(2,"0")}
+        </div>
+
+        <div class="thumb-title">
+            ${slide.title}
+        </div>
+    `;
+
+    thumb.onclick = ()=>goToSlide(index);
+
+    thumbGrid.appendChild(thumb);
+
+});
+
+function openOverview(){
+    document.getElementById("overview").classList.add("open");
+}
+
+function closeOverview(){
+    document.getElementById("overview").classList.remove("open");
+}
+
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+
+function openGlossary(){
+    document.getElementById("glossary").classList.add("open");
+}
+
+function closeGlossary(){
+    document.getElementById("glossary").classList.remove("open");
+}
+
+
+/* ============================================================
+   FULLSCREEN
+   ============================================================ */
+
+function toggleFullscreen(){
+
+    if(!document.fullscreenElement){
+
+        document.documentElement.requestFullscreen?.();
+
+    }else{
+
+        document.exitFullscreen?.();
+
+    }
+
+}
+
+
+/* ============================================================
+   TOUCH / SWIPE
+   ============================================================ */
+
+let touchStartX=0;
+let touchStartY=0;
+
+document.addEventListener("touchstart",function(e){
+
+    touchStartX=e.changedTouches[0].screenX;
+    touchStartY=e.changedTouches[0].screenY;
+
+},{passive:true});
+
+
+document.addEventListener("touchend",function(e){
+
+    const x=e.changedTouches[0].screenX;
+    const y=e.changedTouches[0].screenY;
+
+    const dx=x-touchStartX;
+    const dy=y-touchStartY;
+
+    if(Math.abs(dx)>70 && Math.abs(dx)>Math.abs(dy)){
+
+        if(dx<0){
+            nextSlide();
+        }else{
+            prevSlide();
+        }
+
+    }
+
+},{passive:true});
+
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+updateSlide();
+
+</script>
+
+</body>
+</html>

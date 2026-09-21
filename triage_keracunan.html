@@ -1,0 +1,5816 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TRIAGE IGD PADA KASUS KERACUNAN DI INDONESIA</title>
+
+<style>
+/* =========================================================
+   TRIAGE IGD KERACUNAN — GODMODE PRESENTATION
+   52 SLIDE — SINGLE HTML — OFFLINE
+========================================================= */
+
+:root{
+    --bg:#050b13;
+    --bg2:#081421;
+    --panel:#0b1a29;
+    --panel2:#0f2438;
+    --line:#203b55;
+
+    --text:#edf7ff;
+    --muted:#9bb0c3;
+
+    --cyan:#42e8d0;
+    --blue:#60a5fa;
+    --green:#39d98a;
+    --yellow:#f6c453;
+    --orange:#fb923c;
+    --red:#fb6477;
+    --purple:#a78bfa;
+
+    --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+body{
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(24,91,126,.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(16,104,90,.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #040a11,
+            #071421 55%,
+            #050c14
+        );
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.topbar{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:64px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 22px;
+
+    background:rgba(3,10,18,.88);
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.08em;
+}
+
+.brand-logo{
+    width:36px;
+    height:36px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:11px;
+
+    color:var(--cyan);
+
+    background:
+        linear-gradient(
+            135deg,
+            #123a50,
+            #091827
+        );
+
+    border:1px solid rgba(66,232,208,.25);
+
+    box-shadow:
+        0 0 20px rgba(66,232,208,.08);
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.btn{
+    border:1px solid rgba(255,255,255,.12);
+
+    background:#0b1c2c;
+
+    color:#dcecf8;
+
+    border-radius:9px;
+
+    padding:8px 11px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.btn:hover{
+    border-color:rgba(66,232,208,.55);
+    background:#10283d;
+}
+
+.counter{
+    min-width:80px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    font-variant-numeric:tabular-nums;
+}
+
+.progress{
+    position:absolute;
+    top:63px;
+    left:0;
+
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--cyan),
+            var(--blue)
+        );
+
+    width:0%;
+
+    z-index:110;
+
+    box-shadow:
+        0 0 14px rgba(66,232,208,.5);
+}
+
+/* =========================================================
+   STAGE
+========================================================= */
+
+.stage{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding-top:64px;
+
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+
+    inset:64px 0 0 0;
+
+    padding:
+        48px
+        clamp(45px,7vw,115px)
+        58px;
+
+    display:none;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(32,107,144,.09),
+            transparent 32%
+        );
+}
+
+.slide.active{
+    display:block;
+    animation:
+        slideIn .25s ease;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(14px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.slide::-webkit-scrollbar{
+    width:7px;
+}
+
+.slide::-webkit-scrollbar-thumb{
+    background:#ffffff18;
+    border-radius:10px;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.kicker{
+    color:var(--cyan);
+
+    font-size:11px;
+    font-weight:900;
+
+    letter-spacing:.18em;
+    text-transform:uppercase;
+
+    margin-bottom:13px;
+}
+
+h1{
+    margin:0 0 22px;
+
+    font-size:
+        clamp(42px,6.2vw,82px);
+
+    line-height:.98;
+
+    letter-spacing:-.05em;
+}
+
+h2{
+    margin:0 0 25px;
+
+    font-size:
+        clamp(31px,4.3vw,57px);
+
+    line-height:1;
+
+    letter-spacing:-.04em;
+}
+
+h3{
+    margin:0 0 10px;
+
+    font-size:20px;
+}
+
+p,
+li{
+    font-size:
+        clamp(15px,1.35vw,20px);
+
+    line-height:1.48;
+}
+
+ul{
+    padding-left:22px;
+}
+
+li{
+    margin:4px 0;
+}
+
+.lead{
+    max-width:950px;
+
+    font-size:
+        clamp(20px,2vw,29px);
+
+    line-height:1.4;
+
+    color:#d1e2ef;
+}
+
+.accent{
+    color:var(--cyan);
+}
+
+.blue{
+    color:var(--blue);
+}
+
+.green{
+    color:var(--green);
+}
+
+.yellow{
+    color:var(--yellow);
+}
+
+.orange{
+    color:var(--orange);
+}
+
+.red{
+    color:var(--red);
+}
+
+.purple{
+    color:var(--purple);
+}
+
+.big{
+    font-size:
+        clamp(30px,3.6vw,54px);
+
+    font-weight:900;
+
+    line-height:1.05;
+
+    letter-spacing:-.035em;
+}
+
+.small{
+    font-size:13px !important;
+    color:var(--muted) !important;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:16px;
+}
+
+.grid3{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:14px;
+}
+
+.grid4{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:12px;
+}
+
+.card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,39,60,.96),
+            rgba(7,20,33,.96)
+        );
+
+    border:1px solid var(--line);
+
+    border-radius:16px;
+
+    padding:19px;
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,.16);
+}
+
+.card:hover{
+    border-color:#315672;
+}
+
+.card p{
+    color:#c7d7e4;
+}
+
+.card ul{
+    margin-bottom:0;
+}
+
+.tag{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    margin:
+        3px
+        3px
+        3px
+        0;
+
+    border-radius:999px;
+
+    background:#ffffff08;
+
+    border:1px solid #ffffff16;
+
+    color:#c8d9e7;
+
+    font-size:12px;
+}
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote{
+    max-width:1000px;
+
+    padding:
+        15px
+        20px;
+
+    border-left:
+        4px solid
+        var(--cyan);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(66,232,208,.09),
+            rgba(66,232,208,.02)
+        );
+
+    border-radius:
+        0
+        13px
+        13px
+        0;
+
+    font-size:
+        clamp(19px,2vw,29px);
+
+    font-weight:800;
+
+    color:#d8fffa;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.center{
+    height:100%;
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+}
+
+.center-content{
+    width:min(1100px,100%);
+}
+
+.badges{
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:7px;
+
+    margin-top:25px;
+}
+
+.badge{
+    padding:
+        8px
+        13px;
+
+    border-radius:999px;
+
+    background:#0d2b36;
+
+    border:1px solid
+        rgba(66,232,208,.23);
+
+    color:#bafff7;
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+/* =========================================================
+   ABCDE
+========================================================= */
+
+.abcde{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:12px;
+}
+
+.abc{
+    min-height:185px;
+
+    padding:20px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #10263b,
+            #091725
+        );
+
+    border:
+        1px solid
+        var(--line);
+}
+
+.abc-letter{
+    font-size:46px;
+
+    line-height:1;
+
+    color:var(--cyan);
+
+    font-weight:900;
+}
+
+.abc strong{
+    display:block;
+
+    margin:
+        11px
+        0
+        8px;
+
+    font-size:16px;
+}
+
+.abc small{
+    color:var(--muted);
+
+    line-height:1.45;
+}
+
+/* =========================================================
+   PRIORITY
+========================================================= */
+
+.priority{
+    display:grid;
+
+    grid-template-columns:
+        115px
+        1fr;
+
+    gap:15px;
+}
+
+.priority-number{
+    min-height:190px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:18px;
+
+    font-size:60px;
+
+    font-weight:900;
+
+    border:1px solid #6f2938;
+
+    color:#ffb1bd;
+
+    background:
+        linear-gradient(
+            145deg,
+            #381923,
+            #1e1017
+        );
+}
+
+.priority-body{
+    padding:22px;
+
+    border-radius:18px;
+
+    border:1px solid var(--line);
+
+    background:
+        linear-gradient(
+            145deg,
+            #10253a,
+            #091725
+        );
+}
+
+/* =========================================================
+   FLOW
+========================================================= */
+
+.flow{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.node{
+    padding:
+        13px
+        16px;
+
+    border-radius:12px;
+
+    background:#0e253a;
+
+    border:1px solid #2a4964;
+
+    font-weight:800;
+
+    text-align:center;
+}
+
+.arrow{
+    color:var(--cyan);
+
+    font-size:24px;
+
+    font-weight:900;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrap{
+    overflow:auto;
+
+    border-radius:14px;
+
+    border:1px solid var(--line);
+}
+
+table{
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#081725;
+}
+
+th,
+td{
+    padding:12px 14px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    text-align:left;
+
+    vertical-align:top;
+
+    font-size:14px;
+}
+
+th{
+    color:#c6fff8;
+
+    background:#0e263a;
+}
+
+/* =========================================================
+   CASE
+========================================================= */
+
+.case-box{
+    border:
+        1px solid
+        #34536e;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #10253a,
+            #081622
+        );
+}
+
+.case-title{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    align-items:center;
+}
+
+.case-title span{
+    padding:7px 10px;
+
+    border-radius:999px;
+
+    background:#142e43;
+
+    border:1px solid #31516b;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+.case-question{
+    font-size:23px;
+
+    font-weight:800;
+
+    margin:
+        20px
+        0
+        14px;
+}
+
+.options{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+}
+
+.option{
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    background:#10273c;
+
+    color:#e6f2fb;
+
+    padding:
+        11px
+        14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:
+        rgba(66,232,208,.6);
+
+    background:#12334a;
+}
+
+.reveal{
+    margin-top:14px;
+
+    border:
+        1px solid
+        rgba(66,232,208,.25);
+
+    background:#082c2a;
+
+    color:#bafff3;
+
+    padding:
+        9px
+        13px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.solution{
+    display:none;
+
+    margin-top:14px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#082b2a;
+
+    border:
+        1px solid
+        #247c72;
+
+    color:#d7fffa;
+}
+
+.solution.show{
+    display:block;
+}
+
+/* =========================================================
+   SOURCE
+========================================================= */
+
+.source{
+    margin-top:20px;
+
+    padding-top:13px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.source a{
+    color:#74d9ff;
+
+    text-decoration:none;
+}
+
+.source a:hover{
+    text-decoration:underline;
+}
+
+/* =========================================================
+   NOTE
+========================================================= */
+
+.note{
+    padding:
+        13px
+        16px;
+
+    margin-top:15px;
+
+    border-left:
+        3px solid
+        var(--blue);
+
+    border-radius:
+        0
+        10px
+        10px
+        0;
+
+    background:
+        rgba(96,165,250,.08);
+
+    color:#cbdceb;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    z-index:500;
+
+    padding:
+        6vh
+        6vw;
+
+    background:
+        rgba(1,6,12,.84);
+
+    backdrop-filter:blur(15px);
+}
+
+.menu.open{
+    display:block;
+}
+
+.menu-panel{
+    height:88vh;
+
+    overflow:auto;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:#071421;
+
+    border:1px solid #28455f;
+
+    box-shadow:var(--shadow);
+}
+
+.menu-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.menu-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:8px;
+}
+
+.menu-item{
+    padding:
+        10px
+        11px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+
+    background:#0c2033;
+
+    border-radius:10px;
+
+    color:#dcebf6;
+
+    cursor:pointer;
+
+    text-align:left;
+}
+
+.menu-item:hover{
+    border-color:
+        rgba(66,232,208,.55);
+}
+
+.menu-number{
+    color:var(--cyan);
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    position:absolute;
+
+    left:7vw;
+    right:7vw;
+    bottom:13px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#637c91;
+
+    font-size:10px;
+
+    pointer-events:none;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .brand span{
+        display:none;
+    }
+
+    .grid,
+    .grid3,
+    .grid4{
+        grid-template-columns:1fr;
+    }
+
+    .abcde{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .slide{
+        padding:
+            35px
+            5vw
+            60px;
+    }
+
+    .menu-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+/* =========================================================
+   FINAL PRINT — A4 LANDSCAPE
+   TRIAGE IGD PADA KASUS KERACUNAN
+   1 SLIDE = 1 HALAMAN
+========================================================= */
+
+@media print {
+
+    /* =====================================================
+       A4 LANDSCAPE
+    ===================================================== */
+
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+
+
+    /* =====================================================
+       DOCUMENT
+    ===================================================== */
+
+    html,
+    body {
+        width: 100% !important;
+        height: auto !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: visible !important;
+
+        background: #000 !important;
+
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+
+    /* =====================================================
+       HIDE UI
+    ===================================================== */
+
+    .topbar,
+    .progress,
+    .menu,
+    .footer,
+    .controls,
+    .btn,
+    button,
+    .no-print {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       STAGE
+    ===================================================== */
+
+    .stage {
+        position: static !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: visible !important;
+    }
+
+
+    /* =====================================================
+       SLIDE
+       A4 LANDSCAPE = 297 × 210 mm
+       ASPECT RATIO ≈ 1.414
+    ===================================================== */
+
+    .slide,
+    .slide.active,
+    .slide:not(.active) {
+
+        position: relative !important;
+
+        inset: auto !important;
+
+        display: block !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        transform: none !important;
+
+        float: none !important;
+
+        clear: both !important;
+
+        width: 297mm !important;
+
+        height: 210mm !important;
+
+        min-width: 297mm !important;
+
+        min-height: 210mm !important;
+
+        max-width: 297mm !important;
+
+        max-height: 210mm !important;
+
+        margin: 0 !important;
+
+        padding: 12mm !important;
+
+        box-sizing: border-box !important;
+
+        overflow: hidden !important;
+
+        /*
+         * JANGAN ubah background
+         * JANGAN ubah warna teks
+         */
+
+        page-break-after: always !important;
+
+        break-after: page !important;
+
+        page-break-inside: avoid !important;
+
+        break-inside: avoid !important;
+
+        -webkit-print-color-adjust: exact !important;
+
+        print-color-adjust: exact !important;
+    }
+
+
+    /* =====================================================
+       LAST SLIDE
+    ===================================================== */
+
+    .slide:last-child {
+
+        page-break-after: auto !important;
+
+        break-after: auto !important;
+    }
+
+
+    /* =====================================================
+       PRESERVE ALL COLORS
+    ===================================================== */
+
+    .slide *,
+    .slide::before,
+    .slide::after {
+
+        -webkit-print-color-adjust: exact !important;
+
+        print-color-adjust: exact !important;
+    }
+
+
+    /* =====================================================
+       TEXT
+       JANGAN PAKSA HITAM
+    ===================================================== */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    strong,
+    em,
+    li,
+    td,
+    th {
+
+        -webkit-print-color-adjust: exact !important;
+
+        print-color-adjust: exact !important;
+    }
+
+
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    table {
+
+        page-break-inside: avoid !important;
+
+        break-inside: avoid !important;
+    }
+
+    tr {
+
+        page-break-inside: avoid !important;
+
+        break-inside: avoid !important;
+    }
+
+
+    /* =====================================================
+       IMAGES
+    ===================================================== */
+
+    img,
+    svg {
+
+        max-width: 100% !important;
+
+        -webkit-print-color-adjust: exact !important;
+
+        print-color-adjust: exact !important;
+    }
+}
+
+/* =========================================================
+   INSTAGRAM EDUCATOR — ALL SLIDES
+========================================================= */
+
+.educator-header {
+    position: absolute;
+
+    top: 12px;
+    right: 24px;
+
+    z-index: 9999;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: .4px;
+
+    color: rgba(255,255,255,.65);
+
+    white-space: nowrap;
+
+    pointer-events: none;
+}
+
+.educator-header strong {
+    color: #fff;
+    font-weight: 800;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="brand-logo">✚</div>
+        <span>TRIAGE IGD 2026 • KERACUNAN • </span>
+    </div>
+
+    <div class="top-actions">
+
+        <button class="btn" onclick="toggleMenu()">
+            ☰ MENU
+        </button>
+
+        <button class="btn" onclick="toggleFullscreen()">
+            ⛶
+        </button>
+
+        <button class="btn" onclick="printAllSlides()" title="Cetak semua slide">
+            ⎙
+        </button>
+
+        <div class="counter" id="counter">
+            01 / 52
+        </div>
+
+    </div>
+
+</header>
+
+<div class="progress" id="progress"></div>
+
+<main class="stage" id="stage"></main>
+
+<div class="menu" id="menu">
+
+    <div class="menu-panel">
+
+        <div class="menu-header">
+
+            <div>
+                <div class="kicker">PRESENTATION CONTROL</div>
+                <h2 style="margin:0">
+                    Daftar Slide
+                </h2>
+            </div>
+
+            <button class="btn" onclick="toggleMenu()">
+                ✕
+            </button>
+
+        </div>
+
+        <div
+            class="menu-grid"
+            id="menuGrid">
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   SLIDE DATA — 52 SLIDE LENGKAP
+========================================================= */
+
+const slides = [
+
+/* =========================================================
+   01
+========================================================= */
+
+{
+title:"Cover",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+MATERI PEMBELAJARAN TRIAGE • IGD • KONTEKS di INDONESIA
+</div>
+
+<h1>
+TRIAGE IGD PADA<br>
+<span class="accent">
+KASUS KERACUNAN
+</span>
+</h1>
+
+<p class="lead">
+Kenali Kondisi Kritis —
+Stabilkan Pasien —
+Identifikasi Toksin
+</p>
+
+<div class="badges">
+
+<span class="badge">Pendekatan Klinis</span>
+<span class="badge">Toxidrome</span>
+<span class="badge">ABCDE</span>
+<span class="badge">Prioritas Kegawatdaruratan</span>
+
+</div>
+
+<div
+class="quote"
+style="margin:32px auto">
+
+“Treat the patient, not just the poison.”
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   02
+========================================================= */
+
+{
+title:"Tujuan Pembelajaran",
+
+html:`
+
+<div class="kicker">
+SLIDE 02
+</div>
+
+<h2>
+Tujuan Pembelajaran
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Setelah pembelajaran, peserta mampu:
+</h3>
+
+<ul>
+
+<li>
+Menjelaskan konsep dasar keracunan.
+</li>
+
+<li>
+Melakukan triase awal pasien keracunan.
+</li>
+
+<li>
+Mengenali tanda ancaman kehidupan.
+</li>
+
+<li>
+Melakukan pendekatan ABCDE.
+</li>
+
+<li>
+Mengidentifikasi <i>toxidrome</i> utama.
+</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Keterampilan klinis
+</h3>
+
+<ul>
+
+<li>
+Menggali riwayat pajanan secara sistematis.
+</li>
+
+<li>
+Menentukan prioritas pemeriksaan dan intervensi awal.
+</li>
+
+<li>
+Mengenali kebutuhan dekontaminasi.
+</li>
+
+<li>
+Mengenali indikasi konsultasi toksikologi/rujukan.
+</li>
+
+<li>
+Mendokumentasikan hasil triase.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   03
+========================================================= */
+
+{
+title:"Mengapa Keracunan Berbeda?",
+
+html:`
+
+<div class="kicker">
+SLIDE 03
+</div>
+
+<h2>
+Mengapa Keracunan Berbeda?
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Pasien dapat datang dengan:
+</h3>
+
+<ul>
+
+<li>Gejala minimal</li>
+<li>Penurunan kesadaran</li>
+<li>Gangguan napas</li>
+<li>Kejang</li>
+<li>Syok</li>
+<li>Aritmia</li>
+<li>Gangguan metabolik</li>
+<li>Henti jantung</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="red">
+Masalah utama
+</h3>
+
+<div class="big">
+Toksin belum tentu diketahui saat pasien tiba.
+</div>
+
+<div
+class="quote"
+style="margin-top:18px">
+
+Triase tidak boleh menunggu identifikasi racun.
+
+</div>
+
+<div
+class="big accent"
+style="margin-top:18px">
+
+LIFE-THREATENING CONDITION
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   04
+========================================================= */
+
+{
+title:"Prinsip Utama",
+
+html:`
+
+<div class="kicker">
+SLIDE 04
+</div>
+
+<h2>
+Prinsip Utama
+</h2>
+
+<div
+class="quote"
+style="margin-bottom:25px">
+
+“TREAT THE PATIENT, NOT THE POISON”
+
+</div>
+
+<div class="flow">
+
+<div class="node">
+1<br>
+Apakah pasien<br>
+mengancam nyawa?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+2<br>
+Apa masalah<br>
+ABCDE?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+3<br>
+Toksin<br>
+yang mungkin?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+4<br>
+Komplikasi<br>
+yang mungkin?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+5<br>
+Antidot /<br>
+dekontaminasi?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+6<br>
+Observasi / rawat /<br>
+rujuk?
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   05
+========================================================= */
+
+{
+title:"Keracunan",
+
+html:`
+
+<div class="kicker">
+SLIDE 05
+</div>
+
+<h2>
+Keracunan
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Definisi praktis
+</h3>
+
+<p>
+Gangguan kesehatan akibat pajanan terhadap suatu zat yang menyebabkan efek toksik.
+</p>
+
+<h3>
+Rute pajanan
+</h3>
+
+<span class="tag">Ingesti</span>
+<span class="tag">Inhalasi</span>
+<span class="tag">Kulit</span>
+<span class="tag">Mata</span>
+<span class="tag">Injeksi</span>
+<span class="tag">Gigitan / Sengatan</span>
+
+</div>
+
+<div class="card">
+
+<h3>
+Faktor yang memengaruhi toksisitas
+</h3>
+
+<ul>
+
+<li>Jenis zat</li>
+<li>Dosis dan konsentrasi</li>
+<li>Rute pajanan</li>
+<li>Durasi pajanan</li>
+<li>Waktu sejak pajanan</li>
+<li>Usia dan berat badan</li>
+<li>Komorbid</li>
+<li>Pajanan multipel</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   06
+========================================================= */
+
+{
+title:"Keracunan yang Perlu Diwaspadai",
+
+html:`
+
+<div class="kicker">
+SLIDE 06
+</div>
+
+<h2>
+Keracunan yang Perlu Diwaspadai di Indonesia
+</h2>
+
+<div class="grid3">
+
+<div class="card">
+
+<h3>
+OBAT
+</h3>
+
+<p>
+Parasetamol • Sedatif • Opioid • Antidepresan • Obat kardiovaskular • Antidiabetik
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+PESTISIDA
+</h3>
+
+<p>
+Organofosfat • Karbamat
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+BAHAN KIMIA
+</h3>
+
+<p>
+Asam • Basa • Pemutih • Pembersih rumah tangga • Pelarut
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+TOKSIN LAIN
+</h3>
+
+<p>
+Makanan • Jamur • Tanaman • Gigitan/sengatan • Gas/asap
+</p>
+
+</div>
+
+</div>
+
+<div class="source">
+
+Konteks Indonesia:
+<a
+href="https://www.badankebijakan.kemkes.go.id/repositori/id/eprint/5608/"
+target="_blank">
+Pedoman Keracunan Alami dan Non Alami — Kemenkes RI
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   07
+========================================================= */
+
+{
+title:"Triage — Apa yang Dicari?",
+
+html:`
+
+<div class="kicker">
+SLIDE 07
+</div>
+
+<h2>
+Triage: Apa yang Dicari?
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="small">
+BUKAN PERTANYAAN PERTAMA
+</div>
+
+<div class="big">
+“Racunnya apa?”
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="small">
+PERTANYAAN UTAMA
+</div>
+
+<div class="big accent">
+“Apakah pasien dalam kondisi mengancam nyawa?”
+</div>
+
+</div>
+
+</div>
+
+<div
+class="flow"
+style="margin-top:25px">
+
+<div class="node">
+AIRWAY
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+BREATHING
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+CIRCULATION
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+DISABILITY
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+EXPOSURE
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   08
+========================================================= */
+
+{
+title:"Red Flags",
+
+html:`
+
+<div class="kicker">
+SLIDE 08
+</div>
+
+<h2>
+Red Flags 🚩 Keracunan ☠️
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+A — AIRWAY
+</h3>
+
+<ul>
+
+<li>Tidak mampu mempertahankan jalan napas</li>
+<li>Sekret/muntahan banyak</li>
+<li>Stridor</li>
+<li>Risiko aspirasi</li>
+<li>Penurunan kesadaran berat</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+B — BREATHING
+</h3>
+
+<ul>
+
+<li>Apnea</li>
+<li>Bradipnea</li>
+<li>Hipoventilasi</li>
+<li>Distres napas berat</li>
+<li>Sianosis</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+C — CIRCULATION
+</h3>
+
+<ul>
+
+<li>Syok</li>
+<li>Hipotensi</li>
+<li>Aritmia</li>
+<li>Perfusi buruk</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+D — DISABILITY
+</h3>
+
+<ul>
+
+<li>GCS rendah</li>
+<li>Kejang</li>
+<li>Koma</li>
+<li>Hipoglikemia</li>
+<li>Delirium berat</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   09
+========================================================= */
+
+{
+title:"Prioritas 1 — Resusitasi",
+
+html:`
+
+<div class="kicker">
+SLIDE 09
+</div>
+
+<h2>
+Prioritas 1 — Resusitasi
+</h2>
+
+<div class="priority">
+
+<div class="priority-number">
+1
+</div>
+
+<div class="priority-body">
+
+<div class="big red">
+RESUSITASI
+</div>
+
+<ul>
+
+<li>Henti jantung / henti napas</li>
+<li>Gagal napas</li>
+<li>Airway tidak paten</li>
+<li>Syok berat</li>
+<li>Aritmia mengancam nyawa</li>
+<li>Kejang berkepanjangan</li>
+<li>Penurunan kesadaran berat dengan risiko kehilangan airway</li>
+
+</ul>
+
+<div class="quote">
+→ TINDAKAN SEGERA
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   10
+========================================================= */
+
+{
+title:"Prioritas 2 — Emergensi",
+
+html:`
+
+<div class="kicker">
+SLIDE 10
+</div>
+
+<h2>
+Prioritas 2 — Emergensi
+</h2>
+
+<div class="priority">
+
+<div
+class="priority-number"
+style="
+background:#382b12;
+color:#ffe18a;
+border-color:#806529;
+">
+2
+</div>
+
+<div class="priority-body">
+
+<div class="big yellow">
+EMERGENSI
+</div>
+
+<ul>
+
+<li>Gangguan napas</li>
+<li>Penurunan kesadaran</li>
+<li>Hipotensi</li>
+<li>Kejang</li>
+<li>Aritmia</li>
+<li>Dugaan toksisitas berat</li>
+<li>Pajanan korosif</li>
+<li>Overdosis berisiko tinggi</li>
+
+</ul>
+
+<div class="quote">
+→ Evaluasi dan intervensi segera
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   11
+========================================================= */
+
+{
+title:"Prioritas 3 — Urgent",
+
+html:`
+
+<div class="kicker">
+SLIDE 11
+</div>
+
+<h2>
+Prioritas 3 — Urgent
+</h2>
+
+<div class="priority">
+
+<div
+class="priority-number"
+style="
+background:#0c3025;
+color:#75f3c3;
+border-color:#277b60;
+">
+3
+</div>
+
+<div class="priority-body">
+
+<div class="big green">
+URGENT
+</div>
+
+<ul>
+
+<li>Mual / muntah</li>
+<li>Nyeri abdomen</li>
+<li>Pusing</li>
+<li>Lemas</li>
+<li>Gejala toksik ringan</li>
+<li>Pajanan dengan tanda vital stabil</li>
+
+</ul>
+
+<div class="note">
+
+<b>PERHATIAN:</b>
+Stabil tidak selalu berarti aman.
+Beberapa toksin mempunyai
+<i>delayed toxicity</i>.
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   12
+========================================================= */
+
+{
+title:"Prioritas 4–5",
+
+html:`
+
+<div class="kicker">
+SLIDE 12
+</div>
+
+<h2>
+Prioritas 4–5
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="big blue">
+4
+</div>
+
+<h3>
+LESS URGENT
+</h3>
+
+<p>
+Pasien stabil dengan gejala ringan.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="big purple">
+5
+</div>
+
+<h3>
+NON-URGENT
+</h3>
+
+<p>
+Pasien stabil tanpa tanda toksisitas bermakna.
+</p>
+
+</div>
+
+</div>
+
+<div
+class="card"
+style="margin-top:16px">
+
+<h3>
+Reassessment
+</h3>
+
+<p>
+Prioritas dapat berubah berdasarkan perkembangan gejala,
+hasil pemeriksaan, jenis toksin dan waktu pajanan.
+</p>
+
+</div>
+
+<div class="source">
+
+Terminologi triase IGD 1–5:
+Resusitasi, Emergency, Urgent, Less Urgent, Non-Urgent.
+
+<a
+href="https://satusehat.kemkes.go.id/platform/docs/id/interoperability/igd/"
+target="_blank">
+SATUSEHAT — Pelayanan IGD
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   13
+========================================================= */
+
+{
+title:"ABCDE",
+
+html:`
+
+<div class="kicker">
+SLIDE 13
+</div>
+
+<h2>
+ABCDE — Primary Survey
+</h2>
+
+<div class="abcde">
+
+<div class="abc">
+<div class="abc-letter">A</div>
+<strong>AIRWAY</strong>
+<small>
+Jalan napas dan proteksi
+</small>
+</div>
+
+<div class="abc">
+<div class="abc-letter">B</div>
+<strong>BREATHING</strong>
+<small>
+Ventilasi dan oksigenasi
+</small>
+</div>
+
+<div class="abc">
+<div class="abc-letter">C</div>
+<strong>CIRCULATION</strong>
+<small>
+Perfusi dan irama
+</small>
+</div>
+
+<div class="abc">
+<div class="abc-letter">D</div>
+<strong>DISABILITY</strong>
+<small>
+GCS, pupil, GDS, kejang
+</small>
+</div>
+
+<div class="abc">
+<div class="abc-letter">E</div>
+<strong>EXPOSURE</strong>
+<small>
+Pajanan dan keselamatan
+</small>
+</div>
+
+</div>
+
+<div
+class="quote"
+style="margin-top:24px">
+
+ABCDE dilakukan sebelum pemeriksaan toksikologi yang lebih mendalam.
+
+</div>
+
+`
+},
+
+/* =========================================================
+   14
+========================================================= */
+
+{
+title:"A — Airway",
+
+html:`
+
+<div class="kicker">
+SLIDE 14
+</div>
+
+<h2>
+A — Airway
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Evaluasi
+</h3>
+
+<ul>
+
+<li>Kesadaran</li>
+<li>Kemampuan berbicara</li>
+<li>Suara napas</li>
+<li>Sekret</li>
+<li>Muntahan</li>
+<li>Obstruksi</li>
+<li>Refleks proteksi</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="red">
+Risiko tinggi
+</h3>
+
+<div class="big">
+Penurunan kesadaran
++
+muntah
++
+depresi napas
+</div>
+
+<p>
+→ Risiko aspirasi meningkat.
+</p>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   15
+========================================================= */
+
+{
+title:"B — Breathing",
+
+html:`
+
+<div class="kicker">
+SLIDE 15
+</div>
+
+<h2>
+B — Breathing
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Nilai
+</h3>
+
+<ul>
+
+<li>RR</li>
+<li>SpO₂</li>
+<li>Pola dan kedalaman napas</li>
+<li>Suara napas</li>
+<li>Otot bantu</li>
+<li>Sianosis</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Waspadai pola toksidrom
+</h3>
+
+<p>
+<b>Opioid</b>
+→ depresi napas
+</p>
+
+<p>
+<b>Organofosfat</b>
+→ bronkorea / bronkospasme
+</p>
+
+<p>
+<b>Gas / asap</b>
+→ hipoksia / cedera inhalasi
+</p>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   16
+========================================================= */
+
+{
+title:"C — Circulation",
+
+html:`
+
+<div class="kicker">
+SLIDE 16
+</div>
+
+<h2>
+C — Circulation
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Nilai
+</h3>
+
+<ul>
+
+<li>HR</li>
+<li>BP</li>
+<li>CRT</li>
+<li>Perfusi perifer</li>
+<li>Warna kulit</li>
+<li>Suhu</li>
+<li>Irama jantung</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Pertimbangkan sesuai kondisi
+</h3>
+
+<ul>
+
+<li>IV access</li>
+<li>Monitor</li>
+<li>EKG</li>
+<li>GDS</li>
+<li>Pemeriksaan laboratorium</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   17
+========================================================= */
+
+{
+title:"D — Disability",
+
+html:`
+
+<div class="kicker">
+SLIDE 17
+</div>
+
+<h2>
+D — Disability
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Pemeriksaan cepat
+</h3>
+
+<ul>
+
+<li>GCS</li>
+<li>Pupil</li>
+<li>GDS</li>
+<li>Kejang</li>
+<li>Status mental</li>
+<li>Defisit neurologis</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+Jangan lupa
+</h3>
+
+<div class="big">
+Hipoglikemia
+dan hipoksia
+</div>
+
+<p>
+adalah diagnosis yang harus dicari segera.
+</p>
+
+<div class="note">
+Jangan langsung menganggap semua penurunan kesadaran sebagai efek racun.
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   18
+========================================================= */
+
+{
+title:"E — Exposure",
+
+html:`
+
+<div class="kicker">
+SLIDE 18
+</div>
+
+<h2>
+E — Exposure
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Periksa
+</h3>
+
+<ul>
+
+<li>Kulit dan mata</li>
+<li>Luka bakar kimia</li>
+<li>Bekas injeksi</li>
+<li>Keringat dan sekret</li>
+<li>Pupil</li>
+<li>Suhu</li>
+<li>Bau</li>
+<li>Kontaminasi pakaian</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="red">
+DAN: LINDUNGI PETUGAS
+</h3>
+
+<p>
+Pasien yang terkontaminasi dapat menjadi sumber pajanan sekunder.
+</p>
+
+<div class="quote">
+Patient safety + responder safety.
+</div>
+
+</div>
+
+</div>
+
+<div class="source">
+
+WHO 2026 menekankan identifikasi pasien terkontaminasi,
+perlindungan tenaga kesehatan, dekontaminasi, triase dan tata laksana awal.
+
+<a
+href="https://www.who.int/publications/i/item/B09740"
+target="_blank">
+WHO — Initial Clinical Management
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   19
+========================================================= */
+
+{
+title:"Riwayat Pajanan",
+
+html:`
+
+<div class="kicker">
+SLIDE 19
+</div>
+
+<h2>
+Riwayat Pajanan
+</h2>
+
+<div class="grid3">
+
+<div class="card">
+<div class="kicker">WHAT</div>
+<div class="big" style="font-size:27px">
+Apa zatnya?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">WHEN</div>
+<div class="big" style="font-size:27px">
+Kapan?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">WHERE</div>
+<div class="big" style="font-size:27px">
+Di mana?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">WHO</div>
+<div class="big" style="font-size:27px">
+Siapa?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">WHY</div>
+<div class="big" style="font-size:27px">
+Mengapa?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">HOW</div>
+<div class="big" style="font-size:27px">
+Bagaimana?
+</div>
+</div>
+
+<div class="card">
+<div class="kicker">HOW MUCH</div>
+<div class="big" style="font-size:27px">
+Berapa jumlah?
+</div>
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   20
+========================================================= */
+
+{
+title:"Jangan Hanya Bertanya",
+
+html:`
+
+<div class="kicker">
+SLIDE 20
+</div>
+
+<h2>
+Jangan Hanya Bertanya:
+“Racunnya Apa?”
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Cari bukti pajanan
+</h3>
+
+<ul>
+
+<li>Kemasan</li>
+<li>Label</li>
+<li>Foto produk</li>
+<li>Blister obat</li>
+<li>Resep</li>
+<li>Sisa bahan</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Cari konteks pasien
+</h3>
+
+<ul>
+
+<li>Informasi keluarga / saksi</li>
+<li>Riwayat obat</li>
+<li>Riwayat penyakit</li>
+<li>Pajanan multipel</li>
+<li>Waktu dan jumlah</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   21
+========================================================= */
+
+{
+title:"Toxidrome",
+
+html:`
+
+<div class="kicker">
+SLIDE 21
+</div>
+
+<h2>
+Toxidrome
+</h2>
+
+<div class="card">
+
+<p>
+<i>Toxidrome</i> adalah pola kumpulan tanda dan gejala
+yang membantu mengarahkan dugaan jenis toksin.
+</p>
+
+<div class="grid3">
+
+<div class="card">
+<h3>
+Kolinergik
+</h3>
+</div>
+
+<div class="card">
+<h3>
+Antikolinergik
+</h3>
+</div>
+
+<div class="card">
+<h3>
+Opioid
+</h3>
+</div>
+
+<div class="card">
+<h3>
+Simpatomimetik
+</h3>
+</div>
+
+<div class="card">
+<h3>
+Sedatif-hipnotik
+</h3>
+</div>
+
+</div>
+
+</div>
+
+<div class="note">
+Toxidrome membantu orientasi klinis,
+tetapi tidak menggantikan ABCDE dan pemeriksaan diagnostik.
+</div>
+
+`
+},
+
+/* =========================================================
+   22
+========================================================= */
+
+{
+title:"Kolinergik",
+
+html:`
+
+<div class="kicker">
+SLIDE 22
+</div>
+
+<h2>
+Kolinergik — Organofosfat / Karbamat
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Manifestasi
+</h3>
+
+<ul>
+
+<li>Salivasi meningkat</li>
+<li>Lakrimasi</li>
+<li>Urinasi</li>
+<li>Diare</li>
+<li>Muntah</li>
+<li>Bronkorea</li>
+<li>Bronkospasme</li>
+<li>Miosis</li>
+<li>Bradikardia</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<div
+class="big accent"
+style="font-size:50px">
+
+SLUDGE
+
+</div>
+
+<p>
+<b>S</b>alivation
+</p>
+
+<p>
+<b>L</b>acrimation
+</p>
+
+<p>
+<b>U</b>rination
+</p>
+
+<p>
+<b>D</b>efecation
+</p>
+
+<p>
+<b>G</b>astrointestinal
+</p>
+
+<p>
+<b>E</b>mesis
+</p>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   23
+========================================================= */
+
+{
+title:"Antikolinergik",
+
+html:`
+
+<div class="kicker">
+SLIDE 23
+</div>
+
+<h2>
+Antikolinergik
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Manifestasi
+</h3>
+
+<ul>
+
+<li>Mydriasis</li>
+<li>Takikardia</li>
+<li>Kulit kering</li>
+<li>Retensi urin</li>
+<li>Motilitas GI menurun</li>
+<li>Hipertermia</li>
+<li>Delirium</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="big yellow">
+DRY
+</div>
+
+<div class="big">
++
+</div>
+
+<div class="big yellow">
+DILATED PUPILS
+</div>
+
+<div class="big">
++
+</div>
+
+<div class="big red">
+DELIRIUM
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   24
+========================================================= */
+
+{
+title:"Opioid",
+
+html:`
+
+<div class="kicker">
+SLIDE 24
+</div>
+
+<h2>
+Opioid Toxidrome
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Kombinasi klasik
+</h3>
+
+<div class="big">
+Penurunan kesadaran
+</div>
+
+<div class="big">
++
+</div>
+
+<div class="big red">
+Depresi napas
+</div>
+
+<div class="big">
++
+</div>
+
+<div class="big">
+Miosis
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+Prioritas
+</h3>
+
+<div class="quote">
+AIRWAY + BREATHING
+</div>
+
+<p>
+Dukungan ventilasi dan oksigenasi menjadi prioritas
+ketika terjadi depresi napas.
+</p>
+
+<p>
+Nalokson dipertimbangkan sesuai indikasi klinis dan protokol.
+</p>
+
+</div>
+
+</div>
+
+<div class="source">
+
+AHA 2025:
+<a
+href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
+target="_blank">
+Adult and Pediatric Special Circumstances of Resuscitation
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   25
+========================================================= */
+
+{
+title:"Simpatomimetik",
+
+html:`
+
+<div class="kicker">
+SLIDE 25
+</div>
+
+<h2>
+Simpatomimetik
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Contoh pajanan
+</h3>
+
+<p>
+Amfetamin • Kokain • Stimulan lainnya
+</p>
+
+<h3>
+Manifestasi
+</h3>
+
+<ul>
+
+<li>Agitasi</li>
+<li>Takikardia</li>
+<li>Hipertensi</li>
+<li>Mydriasis</li>
+<li>Diaforesis</li>
+<li>Kejang</li>
+<li>Hipertermia</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Komplikasi
+</h3>
+
+<ul>
+
+<li>Aritmia</li>
+<li>Iskemia miokard</li>
+<li>Rhabdomiolisis</li>
+<li>Asidosis</li>
+<li>Hipertermia berat</li>
+<li>Henti jantung</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="source">
+
+AHA 2025 membahas toksisitas simpatomimetik dalam konteks kegawatdaruratan keracunan.
+
+<a
+href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
+target="_blank">
+AHA 2025
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   26
+========================================================= */
+
+{
+title:"Sedatif-Hipnotik",
+
+html:`
+
+<div class="kicker">
+SLIDE 26
+</div>
+
+<h2>
+Sedatif-Hipnotik
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Manifestasi
+</h3>
+
+<ul>
+
+<li>Penurunan kesadaran</li>
+<li>Bicara pelo</li>
+<li>Ataksia</li>
+<li>Hipoventilasi</li>
+<li>Risiko aspirasi</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+Jangan berhenti pada label “overdosis”
+</h3>
+
+<p>
+Tetap cari:
+</p>
+
+<ul>
+
+<li>Hipoglikemia</li>
+<li>Trauma</li>
+<li>Hipoksia</li>
+<li>Pajanan multipel</li>
+<li>Penyebab lain penurunan kesadaran</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   27
+========================================================= */
+
+{
+title:"Investigasi",
+
+html:`
+
+<div class="kicker">
+SLIDE 27
+</div>
+
+<h2>
+Pemeriksaan Penunjang
+</h2>
+
+<div class="grid3">
+
+<div class="card">
+
+<h3>
+Bedside
+</h3>
+
+<ul>
+
+<li>GDS</li>
+<li>SpO₂</li>
+<li>Suhu</li>
+<li>EKG</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Laboratorium sesuai indikasi
+</h3>
+
+<ul>
+
+<li>Darah lengkap</li>
+<li>Elektrolit</li>
+<li>Fungsi ginjal</li>
+<li>Fungsi hati</li>
+<li>AGD</li>
+<li>Laktat</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Toksikologi
+</h3>
+
+<p>
+Kadar toksin atau pemeriksaan toksikologi
+dipertimbangkan bila tersedia dan relevan.
+</p>
+
+<div class="note">
+Jangan menunda resusitasi hanya karena menunggu hasil pemeriksaan.
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   28
+========================================================= */
+
+{
+title:"Dekontaminasi",
+
+html:`
+
+<div class="kicker">
+SLIDE 28
+</div>
+
+<h2>
+Dekontaminasi
+</h2>
+
+<div class="flow">
+
+<div class="node">
+1<br>
+Apakah pasien<br>
+masih terkontaminasi?
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+2<br>
+PPE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+3<br>
+Pisahkan dari<br>
+sumber pajanan
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+4<br>
+Lepaskan pakaian<br>
+terkontaminasi bila sesuai
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+5<br>
+Dekontaminasi<br>
+sesuai zat
+</div>
+
+</div>
+
+<div
+class="quote"
+style="margin-top:25px">
+
+Hindari secondary exposure terhadap petugas.
+
+</div>
+
+<div class="source">
+
+WHO 2026 menekankan perlindungan tenaga kesehatan,
+identifikasi kontaminasi, dekontaminasi dan triase.
+
+<a
+href="https://www.who.int/publications/i/item/B09740"
+target="_blank">
+WHO 2026
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   29
+========================================================= */
+
+{
+title:"Ingesti",
+
+html:`
+
+<div class="kicker">
+SLIDE 29
+</div>
+
+<h2>
+Keracunan melalui Ingesti
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3 class="red">
+Jangan otomatis
+</h3>
+
+<ul>
+
+<li>Memicu muntah</li>
+<li>Melakukan gastric lavage pada semua kasus</li>
+<li>Memberikan zat oral tanpa mempertimbangkan kondisi pasien</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+Pertimbangkan
+</h3>
+
+<ul>
+
+<li>Jenis toksin</li>
+<li>Waktu pajanan</li>
+<li>Airway</li>
+<li>Risiko aspirasi</li>
+<li>Indikasi dekontaminasi</li>
+<li>Konsultasi toksikologi</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="note">
+Keputusan dekontaminasi harus berbasis toksin, kondisi pasien, waktu pajanan,
+risiko dan protokol fasilitas.
+</div>
+
+`
+},
+
+/* =========================================================
+   30
+========================================================= */
+
+{
+title:"Antidot",
+
+html:`
+
+<div class="kicker">
+SLIDE 30
+</div>
+
+<h2>
+ANTIDOT BUKAN PENGGANTI ABCDE
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Toksin / Kondisi</th>
+<th>Antidot / Terapi spesifik</th>
+<th>Catatan</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Opioid</td>
+<td><b>Nalokson</b></td>
+<td>Sesuai indikasi klinis/protokol</td>
+</tr>
+
+<tr>
+<td>Organofosfat / karbamat</td>
+<td><b>Atropin</b> ± terapi spesifik</td>
+<td>Ikuti protokol dan kondisi klinis</td>
+</tr>
+
+<tr>
+<td>Sianida</td>
+<td>Antidot sianida</td>
+<td>Sesuai protokol</td>
+</tr>
+
+<tr>
+<td>Methemoglobinemia</td>
+<td>Methylene blue</td>
+<td>Indikasi terpilih</td>
+</tr>
+
+<tr>
+<td>Digoksin</td>
+<td>Digoxin-specific Fab</td>
+<td>Indikasi sesuai kondisi</td>
+</tr>
+
+<tr>
+<td>Beta-blocker</td>
+<td>Terapi spesifik</td>
+<td>Sesuai kondisi</td>
+</tr>
+
+<tr>
+<td>CCB</td>
+<td>Terapi spesifik</td>
+<td>Sesuai kondisi</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="note">
+Pilihan terapi bergantung pada toksin, dosis, kondisi klinis,
+kontraindikasi, ketersediaan, protokol rumah sakit dan konsultasi toksikologi.
+</div>
+
+<div class="source">
+<a
+href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
+target="_blank">
+AHA 2025 — Special Circumstances of Resuscitation
+</a>
+</div>
+
+`
+},
+
+/* =========================================================
+   31
+========================================================= */
+
+{
+title:"Kapan Rujuk?",
+
+html:`
+
+<div class="kicker">
+SLIDE 31
+</div>
+
+<h2>
+Kapan Pasien Perlu Rujukan?
+</h2>
+
+<div class="grid3">
+
+<div class="card">
+<h3>
+🫁 Ventilator
+</h3>
+</div>
+
+<div class="card">
+<h3>
+❤️ Syok refrakter
+</h3>
+</div>
+
+<div class="card">
+<h3>
+⚡ Aritmia berat
+</h3>
+</div>
+
+<div class="card">
+<h3>
+💉 Antidot tidak tersedia
+</h3>
+</div>
+
+<div class="card">
+<h3>
+🧪 Fasilitas toksikologi
+</h3>
+</div>
+
+<div class="card">
+<h3>
+🩸 Hemodialisis / eliminasi
+</h3>
+</div>
+
+<div class="card">
+<h3>
+🏥 ICU
+</h3>
+</div>
+
+<div class="card">
+<h3>
+☣ Dekontaminasi khusus
+</h3>
+</div>
+
+<div class="card">
+<h3>
+🫀 ECMO kasus terpilih
+</h3>
+</div>
+
+</div>
+
+<div class="note">
+AHA 2025 menyebut VA-ECMO dapat dipertimbangkan pada keracunan
+dengan syok kardiogenik atau henti jantung yang persisten/refrakter
+meskipun terapi farmakologis telah diberikan, sesuai seleksi kasus dan fasilitas.
+</div>
+
+`
+},
+
+/* =========================================================
+   32
+========================================================= */
+
+{
+title:"Keselamatan Petugas",
+
+html:`
+
+<div class="kicker">
+SLIDE 32
+</div>
+
+<h2>
+FIRST, DO NO HARM
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Pertanyaan pertama untuk petugas
+</h3>
+
+<div class="big accent">
+“APA YANG BERBAHAYA BAGI SAYA?”
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>
+Waspadai
+</h3>
+
+<ul>
+
+<li>Gas</li>
+<li>Zat volatil</li>
+<li>Pestisida</li>
+<li>Bahan korosif</li>
+<li>Kulit / pakaian terkontaminasi</li>
+<li>Aerosol</li>
+<li>Bahan tidak dikenal</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div
+class="quote"
+style="margin-top:22px">
+
+Jangan sampai petugas menjadi “second victim of exposure”.
+
+</div>
+
+`
+},
+
+/* =========================================================
+   33
+========================================================= */
+
+{
+title:"Algoritma Triage",
+
+html:`
+
+<div class="kicker">
+SLIDE 33
+</div>
+
+<h2>
+Algoritma Triage Keracunan
+</h2>
+
+<div class="flow">
+
+<div class="node">
+PASIEN DATANG
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+ABCDE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+LIFE<br>
+THREATENING?
+</div>
+
+</div>
+
+<div
+class="grid"
+style="margin-top:22px">
+
+<div class="card">
+
+<h3 class="red">
+YA → RESUSITASI
+</h3>
+
+<ul>
+
+<li>ABCDE</li>
+<li>CPR bila indikasi</li>
+<li>Dukungan airway/breathing</li>
+<li>Dukungan sirkulasi</li>
+<li>Antidot bila indikasi</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="yellow">
+TIDAK → RISIKO DETERIORASI?
+</h3>
+
+<ul>
+
+<li>Monitoring</li>
+<li>Pemeriksaan</li>
+<li>Terapi</li>
+<li>Observasi ketat</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div
+class="card"
+style="margin-top:15px">
+
+<h3 class="green">
+Bila risiko rendah
+</h3>
+
+<p>
+Evaluasi toksin → observasi berbasis risiko → tentukan disposition:
+pulang, observasi, rawat atau rujuk.
+</p>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   34
+========================================================= */
+
+{
+title:"Case 1 — Petani",
+
+html:`
+
+<div class="kicker">
+SLIDE 34 • CASE REVIEW
+</div>
+
+<div class="case-box">
+
+<div class="case-title">
+<h2 style="margin:0">
+Petani setelah menyemprot
+</h2>
+
+<span>
+CASE 01
+</span>
+
+</div>
+
+<div class="grid" style="margin-top:20px">
+
+<div>
+
+<div class="tag">Laki-laki 45 tahun</div>
+<div class="tag">HR 52</div>
+<div class="tag">BP 86/52</div>
+<div class="tag">RR 30</div>
+
+</div>
+
+<div>
+
+<div class="tag">SpO₂ 88%</div>
+<div class="tag">GCS E3 V4 M5</div>
+<div class="tag">Miosis</div>
+
+</div>
+
+</div>
+
+<p>
+Salivasi meningkat, bronkorea dan muntah setelah aktivitas menyemprot pestisida.
+</p>
+
+<div class="case-question">
+Apa yang harus menjadi prioritas?
+</div>
+
+<div class="options">
+
+<div class="option">
+A. Tunggu hasil toksikologi
+</div>
+
+<div class="option">
+B. Langsung pulangkan
+</div>
+
+<div class="option">
+C. Stabilkan ABCDE
+</div>
+
+<div class="option">
+D. Fokus mencari nama pestisida dahulu
+</div>
+
+</div>
+
+<button
+class="reveal"
+onclick="reveal(this)">
+Tampilkan arah jawaban
+</button>
+
+<div class="solution">
+<b>ARAH JAWABAN:</b>
+Prioritas 1 / Resusitasi.
+Masalah utama B dan C dengan gambaran toksidrom kolinergik.
+Perhatikan juga keselamatan petugas.
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   35
+========================================================= */
+
+{
+title:"Case 1 — Pembahasan",
+
+html:`
+
+<div class="kicker">
+SLIDE 35 • CASE 01
+</div>
+
+<h2>
+Pembahasan — Petani setelah menyemprot
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3 class="red">
+TRIASE
+</h3>
+
+<div class="big">
+PRIORITAS 1
+</div>
+
+<p>
+Resusitasi.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+TOXIDROME
+</h3>
+
+<div class="big">
+KOLINERGIK
+</div>
+
+<p>
+Kemungkinan organofosfat / karbamat.
+</p>
+
+</div>
+
+</div>
+
+<div class="grid" style="margin-top:15px">
+
+<div class="card">
+
+<h3>
+Prioritas ABCDE
+</h3>
+
+<ul>
+
+<li>Airway</li>
+<li>Breathing</li>
+<li>Oksigenasi / ventilasi sesuai kondisi</li>
+<li>Circulation</li>
+<li>Monitoring</li>
+<li>IV access</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+Keselamatan petugas
+</h3>
+
+<ul>
+
+<li>PPE</li>
+<li>Identifikasi kontaminasi</li>
+<li>Pisahkan sumber pajanan</li>
+<li>Dekontaminasi sesuai prosedur</li>
+<li>Terapi spesifik sesuai protokol</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   36
+========================================================= */
+
+{
+title:"Case 2 — Overdosis",
+
+html:`
+
+<div class="kicker">
+SLIDE 36 • CASE REVIEW
+</div>
+
+<div class="case-box">
+
+<div class="case-title">
+
+<h2 style="margin:0">
+Dugaan Overdosis
+</h2>
+
+<span>
+CASE 02
+</span>
+
+</div>
+
+<div class="grid" style="margin-top:18px">
+
+<div class="card">
+
+<p>
+Laki-laki 28 tahun.
+</p>
+
+<p>
+Tidak responsif.
+</p>
+
+<p>
+HR 58
+</p>
+
+<p>
+BP 105/70
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+RR <b class="red">7/menit</b>
+</p>
+
+<p>
+SpO₂ <b class="red">86%</b>
+</p>
+
+<p>
+GCS E2 V2 M4
+</p>
+
+<p>
+Pupil kecil
+</p>
+
+</div>
+
+</div>
+
+<div class="case-question">
+Apa prioritas paling tepat?
+</div>
+
+<div class="options">
+
+<div class="option">
+A. Menunggu keluarga membawa nama obat
+</div>
+
+<div class="option">
+B. Menunggu hasil toksikologi
+</div>
+
+<div class="option">
+C. Fokus airway dan breathing
+</div>
+
+<div class="option">
+D. Menunggu pasien sadar sendiri
+</div>
+
+</div>
+
+<button
+class="reveal"
+onclick="reveal(this)">
+Tampilkan jawaban
+</button>
+
+<div class="solution">
+<b>JAWABAN: C — BREATHING / AIRWAY SUPPORT.</b>
+Depresi napas dengan penurunan kesadaran adalah ancaman langsung.
+Jangan menunggu identifikasi obat sebelum melakukan stabilisasi.
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   37
+========================================================= */
+
+{
+title:"Case 2 — Pembahasan",
+
+html:`
+
+<div class="kicker">
+SLIDE 37 • CASE 02
+</div>
+
+<h2>
+Pembahasan — Dugaan Overdosis
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3 class="red">
+TEMUAN KRITIS
+</h3>
+
+<div class="big">
+RR 7
+<br>
+SpO₂ 86%
+</div>
+
+<p>
+Depresi napas merupakan prioritas.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+DUGAAN
+</h3>
+
+<div class="big">
+OPIOID
+</div>
+
+<p>
+Penurunan kesadaran + depresi napas + pupil kecil.
+</p>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:15px">
+
+<h3>
+Tindakan awal
+</h3>
+
+<ul>
+
+<li>Pastikan airway</li>
+<li>Dukung ventilasi</li>
+<li>Berikan oksigen sesuai kondisi</li>
+<li>Monitor</li>
+<li>Evaluasi sirkulasi</li>
+<li>Pertimbangkan nalokson sesuai indikasi/protokol</li>
+
+</ul>
+
+</div>
+
+<div class="source">
+
+AHA 2025 menekankan dukungan ventilasi pada overdosis opioid
+dengan depresi napas/apnea ketika nadi pasti ada.
+
+<a
+href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
+target="_blank">
+AHA 2025
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   38
+========================================================= */
+
+{
+title:"Case 3 — Bahan Kimia",
+
+html:`
+
+<div class="kicker">
+SLIDE 38 • CASE REVIEW
+</div>
+
+<div class="case-box">
+
+<div class="case-title">
+
+<h2 style="margin:0">
+Bahan Kimia Tidak Dikenal
+</h2>
+
+<span>
+CASE 03
+</span>
+
+</div>
+
+<div class="grid" style="margin-top:18px">
+
+<div class="card">
+
+<h3>
+Temuan
+</h3>
+
+<ul>
+
+<li>Mata nyeri</li>
+<li>Kulit terbakar</li>
+<li>Batuk</li>
+<li>Pakaian basah</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="red">
+Masalah
+</h3>
+
+<div class="big">
+RISIKO KONTAMINASI SEKUNDER
+</div>
+
+</div>
+
+</div>
+
+<div class="case-question">
+Apa prioritas?
+</div>
+
+<div class="options">
+
+<div class="option">
+A. Langsung masukkan ke ruang resusitasi
+</div>
+
+<div class="option">
+B. Keselamatan petugas + dekontaminasi + ABCDE
+</div>
+
+<div class="option">
+C. Cari nama bahan dahulu
+</div>
+
+</div>
+
+<button
+class="reveal"
+onclick="reveal(this)">
+Tampilkan pembahasan
+</button>
+
+<div class="solution">
+<b>PRINSIP:</b>
+Lindungi petugas, kendalikan kontaminasi, dekontaminasi sesuai bahan,
+kemudian ulangi triase dan ABCDE secara sistematis.
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   39
+========================================================= */
+
+{
+title:"Case 3 — Pembahasan",
+
+html:`
+
+<div class="kicker">
+SLIDE 39 • CASE 03
+</div>
+
+<h2>
+Pembahasan — Bahan Kimia Tidak Dikenal
+</h2>
+
+<div class="flow">
+
+<div class="node">
+STAFF SAFETY
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+PPE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+CONTROL
+CONTAMINATION
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+DECONTAMINATION
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+ABCDE
+</div>
+
+<div class="arrow">→</div>
+
+<div class="node">
+RE-TRIAGE
+</div>
+
+</div>
+
+<div class="grid" style="margin-top:22px">
+
+<div class="card">
+
+<h3>
+Jangan dilakukan
+</h3>
+
+<p>
+Jangan membawa pasien yang masih terkontaminasi
+ke area pelayanan tanpa mempertimbangkan risiko pajanan sekunder.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="accent">
+Setelah dekontaminasi
+</h3>
+
+<p>
+Lakukan reassessment ABCDE,
+tanda vital, status neurologis,
+gejala dan risiko komplikasi.
+</p>
+
+</div>
+
+</div>
+
+<div class="source">
+
+<a
+href="https://www.who.int/publications/i/item/B09740"
+target="_blank">
+WHO 2026 — Chemical Exposure
+</a>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   40
+========================================================= */
+
+{
+title:"Case 4 — Pasien Tampak Stabil",
+
+html:`
+
+<div class="kicker">
+SLIDE 40 • CASE REVIEW
+</div>
+
+<div class="case-box">
+
+<div class="case-title">
+
+<h2 style="margin:0">
+Pasien Tampak Stabil
+</h2>
+
+<span>
+CASE 04
+</span>
+
+</div>
+
+<div class="grid" style="margin-top:18px">
+
+<div class="card">
+
+<p>
+Perempuan 25 tahun
+</p>
+
+<p>
+Mengonsumsi banyak pil
+2 jam yang lalu.
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+BP 120/80
+</p>
+
+<p>
+HR 88
+</p>
+
+<p>
+RR 18
+</p>
+
+<p>
+SpO₂ 98%
+</p>
+
+<p>
+GCS 15
+</p>
+
+</div>
+
+</div>
+
+<div class="case-question">
+Apakah otomatis Non-Urgent?
+</div>
+
+<div class="options">
+
+<div class="option">
+A. Ya, karena semua tanda vital normal
+</div>
+
+<div class="option">
+B. Tidak selalu
+</div>
+
+</div>
+
+<button
+class="reveal"
+onclick="reveal(this)">
+Tampilkan pembahasan
+</button>
+
+<div class="solution">
+<b>JAWABAN: TIDAK SELALU.</b>
+Perlu diketahui obat, jumlah, waktu, formulasi, kombinasi,
+berat badan, komorbid dan risiko toksisitas tertunda.
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   41
+========================================================= */
+
+{
+title:"Case 4 — Pembahasan",
+
+html:`
+
+<div class="kicker">
+SLIDE 41 • CASE 04
+</div>
+
+<h2>
+Stabil ≠ Aman
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Yang harus digali
+</h3>
+
+<ul>
+
+<li>Nama obat</li>
+<li>Jumlah</li>
+<li>Waktu konsumsi</li>
+<li>Formulasi</li>
+<li>Kombinasi obat</li>
+<li>Berat badan</li>
+<li>Komorbid</li>
+<li>Gejala saat ini</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3 class="yellow">
+Mengapa?
+</h3>
+
+<div class="big">
+Delayed toxicity
+</div>
+
+<p>
+Sebagian keracunan dapat berkembang meskipun
+tanda vital awal tampak normal.
+</p>
+
+<div class="quote">
+NORMAL VITAL SIGNS ≠ NO RISK
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   42
+========================================================= */
+
+{
+title:"Dokumentasi",
+
+html:`
+
+<div class="kicker">
+SLIDE 42
+</div>
+
+<h2>
+Dokumentasi Triase Keracunan
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+EXPOSURE
+</h3>
+
+<ul>
+
+<li>Substance</li>
+<li>Dosis / jumlah</li>
+<li>Waktu</li>
+<li>Rute</li>
+<li>Lokasi</li>
+<li>Durasi</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+CLINICAL
+</h3>
+
+<ul>
+
+<li>GCS</li>
+<li>RR</li>
+<li>SpO₂</li>
+<li>HR</li>
+<li>BP</li>
+<li>Suhu</li>
+<li>Pupil</li>
+<li>Kejang</li>
+<li>Nyeri</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+TRIAGE
+</h3>
+
+<ul>
+
+<li>Kategori</li>
+<li>Waktu</li>
+<li>Rasional / red flags</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>
+INTERVENSI
+</h3>
+
+<ul>
+
+<li>Oksigen</li>
+<li>Ventilasi</li>
+<li>IV</li>
+<li>Antidot</li>
+<li>Dekontaminasi</li>
+<li>Monitoring</li>
+
+</ul>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   43
+========================================================= */
+
+{
+title:"Reassessment",
+
+html:`
+
+<div class="kicker">
+SLIDE 43
+</div>
+
+<h2>
+TRIAGE BUKAN SEKALI SAJA
+</h2>
+
+<div class="grid3">
+
+<div class="card">
+
+<h3 class="red">
+🟢 → 🟡
+</h3>
+
+<p>
+Gejala memburuk.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="red">
+🟡 → 🔴
+</h3>
+
+<p>
+Muncul ancaman kehidupan.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="green">
+🔴 → 🟡
+</h3>
+
+<p>
+Respons terhadap stabilisasi.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3 class="green">
+🟡 → OBSERVASI
+</h3>
+
+<p>
+Risiko menurun setelah evaluasi.
+</p>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:18px">
+
+<h3>
+Setiap reassessment
+</h3>
+
+<p>
+Ulangi ABCDE → tanda vital → GCS → pupil → gejala →
+respons terhadap intervensi → risiko toksisitas.
+</p>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   44
+========================================================= */
+
+{
+title:"Kesalahan Umum",
+
+html:`
+
+<div class="kicker">
+SLIDE 44
+</div>
+
+<h2>
+Common Errors
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<ul>
+
+<li>
+Menunggu nama toksin sebelum stabilisasi
+</li>
+
+<li>
+Menganggap GCS rendah hanya karena keracunan
+</li>
+
+<li>
+Lupa memeriksa glukosa
+</li>
+
+<li>
+Tidak melakukan EKG pada toksin berisiko aritmia
+</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<ul>
+
+<li>
+Tidak menggunakan PPE
+</li>
+
+<li>
+Menganggap pasien stabil pasti aman
+</li>
+
+<li>
+Dekontaminasi tanpa menilai risiko petugas
+</li>
+
+<li>
+Terapi hanya berdasarkan asumsi tanpa differential diagnosis
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="quote" style="margin-top:22px">
+Think first. Stabilize first. Reassess.
+</div>
+
+`
+},
+
+/* =========================================================
+   45
+========================================================= */
+
+{
+title:"10 Golden Rules",
+
+html:`
+
+<div class="kicker">
+SLIDE 45
+</div>
+
+<h2>
+10 Golden Rules
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<p>
+<b class="accent">01</b>
+Stabilkan pasien terlebih dahulu.
+</p>
+
+<p>
+<b class="accent">02</b>
+ABCDE adalah prioritas.
+</p>
+
+<p>
+<b class="accent">03</b>
+Jangan menunggu identifikasi toksin pada kondisi kritis.
+</p>
+
+<p>
+<b class="accent">04</b>
+Cari hipoksia dan hipoglikemia.
+</p>
+
+<p>
+<b class="accent">05</b>
+Pertimbangkan toxidrome.
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+<b class="accent">06</b>
+Pertimbangkan pajanan multipel.
+</p>
+
+<p>
+<b class="accent">07</b>
+Lindungi petugas.
+</p>
+
+<p>
+<b class="accent">08</b>
+Jangan otomatis melakukan dekontaminasi.
+</p>
+
+<p>
+<b class="accent">09</b>
+Antidot berdasarkan indikasi dan protokol.
+</p>
+
+<p>
+<b class="accent">10</b>
+Lakukan reassessment.
+</p>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   46
+========================================================= */
+
+{
+title:"Take Home Message",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 46
+</div>
+
+<div class="big accent">
+PATIENT FIRST.
+</div>
+
+<h1>
+POISON<br>
+SECOND.
+</h1>
+
+<div class="quote" style="margin:25px auto">
+
+Airway
+→ Breathing
+→ Circulation
+→ Disability
+→ Exposure
+→ Toxidrome
+→ Toxin
+→ Antidot / terapi spesifik
+→ Disposition
+
+</div>
+
+<p class="lead">
+Kenali kondisi kritis.
+Stabilkan pasien.
+Identifikasi toksin.
+</p>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   47
+========================================================= */
+
+{
+title:"Referensi Kemenkes",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 47 • REFERENSI
+</div>
+
+<h2>
+Kementerian Kesehatan RI
+</h2>
+
+<div class="card">
+
+<h3>
+Pedoman Keracunan Alami dan Non Alami
+</h3>
+
+<p>
+Rujukan nasional untuk konteks keracunan alami dan non-alami
+di Indonesia.
+</p>
+
+<p>
+Termasuk pendekatan pengenalan,
+penanganan dan pencegahan keracunan.
+</p>
+
+<div class="source">
+
+<a
+href="https://www.badankebijakan.kemkes.go.id/repositori/id/eprint/5608/"
+target="_blank">
+
+Buka Repositori Kemenkes RI
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   48
+========================================================= */
+
+{
+title:"Referensi AHA 2025",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 48 • REFERENSI
+</div>
+
+<h2>
+American Heart Association
+</h2>
+
+<div class="card">
+
+<h3>
+2025 AHA Guidelines
+</h3>
+
+<p>
+Adult and Pediatric Special Circumstances of Resuscitation
+</p>
+
+<p>
+Relevan untuk pembahasan:
+</p>
+
+<div class="badges">
+
+<span class="badge">
+Opioid
+</span>
+
+<span class="badge">
+Toksisitas simpatomimetik
+</span>
+
+<span class="badge">
+Antidot
+</span>
+
+<span class="badge">
+ECMO
+</span>
+
+<span class="badge">
+Keracunan
+</span>
+
+</div>
+
+<div class="source">
+
+<a
+href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
+target="_blank">
+
+AHA — Special Circumstances of Resuscitation
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   49
+========================================================= */
+
+{
+title:"Referensi WHO",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 49 • REFERENSI
+</div>
+
+<h2>
+World Health Organization
+</h2>
+
+<div class="card">
+
+<h3>
+Chemical Exposures — Initial Clinical Management
+</h3>
+
+<p>
+Rujukan mengenai identifikasi pasien terkontaminasi,
+perlindungan tenaga kesehatan, dekontaminasi,
+triase dan tata laksana awal pajanan bahan kimia.
+</p>
+
+<div class="source">
+
+<a
+href="https://www.who.int/publications/i/item/B09740"
+target="_blank">
+
+WHO — Chemical Exposures
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   50
+========================================================= */
+
+{
+title:"Referensi BPOM",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 50 • REFERENSI
+</div>
+
+<h2>
+Badan Pengawas Obat dan Makanan RI
+</h2>
+
+<div class="card">
+
+<h3>
+SIKerNas
+</h3>
+
+<p>
+Sistem Informasi Keracunan Nasional sebagai bagian
+dari upaya informasi dan pencegahan keracunan di Indonesia.
+</p>
+
+<div class="source">
+
+<a
+href="https://www.pom.go.id/berita/penyebaran-informasi-kepada-masyarakat-dalam-upaya-pencegahan-keracunan"
+target="_blank">
+
+Badan POM RI — Informasi Keracunan
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   51
+========================================================= */
+
+{
+title:"Referensi SATUSEHAT",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 51 • REFERENSI
+</div>
+
+<h2>
+SATUSEHAT — IGD
+</h2>
+
+<div class="card">
+
+<h3>
+Terminologi Triage IGD
+</h3>
+
+<div class="grid3">
+
+<div class="card">
+<div class="big red">1</div>
+<p>Resusitasi</p>
+</div>
+
+<div class="card">
+<div class="big yellow">2</div>
+<p>Emergency</p>
+</div>
+
+<div class="card">
+<div class="big green">3</div>
+<p>Urgent</p>
+</div>
+
+<div class="card">
+<div class="big blue">4</div>
+<p>Less Urgent</p>
+</div>
+
+<div class="card">
+<div class="big purple">5</div>
+<p>Non-Urgent</p>
+</div>
+
+</div>
+
+<div class="source">
+
+<a
+href="https://satusehat.kemkes.go.id/platform/docs/id/interoperability/igd/"
+target="_blank">
+
+SATUSEHAT — Interoperability IGD
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`
+},
+
+/* =========================================================
+   52
+========================================================= */
+
+{
+title:"Closing",
+
+html:`
+
+<div class="center">
+
+<div class="center-content">
+
+<div class="kicker">
+SLIDE 52 • CLOSING
+</div>
+
+<div class="big accent">
+KENALI KONDISI KRITIS.
+</div>
+
+<h1>
+STABILKAN<br>
+PASIEN.
+</h1>
+
+<div class="big blue">
+IDENTIFIKASI TOKSIN.
+</div>
+
+<div
+class="quote"
+style="margin:30px auto">
+
+Lindungi Pasien.
+<br>
+Lindungi Petugas.
+
+</div>
+
+<h3>
+DISCUSSION & CASE REVIEW
+</h3>
+
+<div class="note"
+style="text-align:left">
+
+<b>Catatan instruktur:</b>
+Materi ini merupakan materi edukasi dan bukan pengganti
+SOP rumah sakit, protokol antidot, keputusan dokter,
+atau konsultasi toksikologi.
+
+<br><br>
+
+Untuk kasus nyata:
+<b>
+ABCDE → stabilisasi → identifikasi pajanan →
+pemeriksaan → terapi suportif/spesifik →
+konsultasi → disposition.
+</b>
+
+<br><br>
+
+Kualitas bukti untuk sebagian rekomendasi toksikologi
+masih terbatas; keputusan klinis harus mengikuti
+kondisi pasien, protokol dan sumber toksikologi yang berlaku.
+
+</div>
+
+</div>
+
+</div>
+
+`
+}
+
+];
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+const stage = document.getElementById("stage");
+const counter = document.getElementById("counter");
+const progress = document.getElementById("progress");
+const menuGrid = document.getElementById("menuGrid");
+
+let current = 0;
+
+function render(){
+
+    stage.innerHTML = "";
+
+    slides.forEach((slide,index)=>{
+
+        const section = document.createElement("section");
+
+        section.className =
+            "slide" +
+            (index === 0 ? " active" : "");
+
+        section.dataset.index = index;
+
+        section.innerHTML =
+            slide.html +
+            `
+            <div class="footer">
+                <span>
+                    TRIAGE IGD 2026 • KASUS KERACUNAN • SiLARAS 119 RSSA • EDUCATION MODE
+                </span>
+
+                <span class="slide-no">
+                    ${String(index+1).padStart(2,"0")} / 52
+                </span>
+            </div>
+            `;
+
+        stage.appendChild(section);
+
+    });
+
+    buildMenu();
+
+    update();
+
+}
+
+function buildMenu(){
+
+    menuGrid.innerHTML = "";
+
+    slides.forEach((slide,index)=>{
+
+        const item =
+            document.createElement("button");
+
+        item.className = "menu-item";
+
+        item.innerHTML = `
+            <div class="menu-number">
+                SLIDE ${String(index+1).padStart(2,"0")}
+            </div>
+
+            <div>
+                ${slide.title}
+            </div>
+        `;
+
+        item.onclick = ()=>{
+
+            go(index);
+
+            toggleMenu();
+
+        };
+
+        menuGrid.appendChild(item);
+
+    });
+
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(index){
+
+    if(index < 0){
+        index = 0;
+    }
+
+    if(index >= slides.length){
+        index = slides.length - 1;
+    }
+
+    const old =
+        document.querySelector(".slide.active");
+
+    if(old){
+        old.classList.remove("active");
+    }
+
+    const target =
+        document.querySelector(
+            `.slide[data-index="${index}"]`
+        );
+
+    if(target){
+        target.classList.add("active");
+        target.scrollTop = 0;
+    }
+
+    current = index;
+
+    update();
+
+}
+
+function next(){
+
+    if(current < slides.length - 1){
+        go(current + 1);
+    }
+
+}
+
+function prev(){
+
+    if(current > 0){
+        go(current - 1);
+    }
+
+}
+
+function update(){
+
+    counter.textContent =
+        `${String(current+1).padStart(2,"0")} / 52`;
+
+    progress.style.width =
+        `${((current+1)/slides.length)*100}%`;
+
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("menu")
+        .classList.toggle("open");
+
+}
+
+/* =========================================================
+   FULLSCREEN
+========================================================= */
+
+function toggleFullscreen(){
+
+    if(!document.fullscreenElement){
+
+        document.documentElement.requestFullscreen?.();
+
+    }else{
+
+        document.exitFullscreen?.();
+
+    }
+
+}
+
+/* =========================================================
+   CASE REVEAL
+========================================================= */
+
+function reveal(button){
+
+    const solution =
+        button.nextElementSibling;
+
+    if(!solution){
+        return;
+    }
+
+    solution.classList.toggle("show");
+
+    button.textContent =
+        solution.classList.contains("show")
+        ? "Sembunyikan pembahasan"
+        : "Tampilkan pembahasan";
+
+}
+
+/* =========================================================
+   KEYBOARD CONTROL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.target.tagName === "INPUT" ||
+            e.target.tagName === "TEXTAREA"
+        ){
+            return;
+        }
+
+        switch(e.key){
+
+            case "ArrowRight":
+            case "ArrowDown":
+            case " ":
+            case "PageDown":
+                e.preventDefault();
+                next();
+                break;
+
+            case "ArrowLeft":
+            case "ArrowUp":
+            case "PageUp":
+                e.preventDefault();
+                prev();
+                break;
+
+            case "Home":
+                e.preventDefault();
+                go(0);
+                break;
+
+            case "End":
+                e.preventDefault();
+                go(slides.length-1);
+                break;
+
+            case "f":
+            case "F":
+                toggleFullscreen();
+                break;
+
+            case "m":
+            case "M":
+                toggleMenu();
+                break;
+
+            case "Escape":
+                document
+                    .getElementById("menu")
+                    .classList.remove("open");
+                break;
+
+        }
+
+    }
+);
+
+/* =========================================================
+   MOUSE / TOUCH
+========================================================= */
+
+let touchStartX = 0;
+
+stage.addEventListener(
+    "touchstart",
+    e=>{
+
+        touchStartX =
+            e.changedTouches[0].screenX;
+
+    },
+    {passive:true}
+);
+
+stage.addEventListener(
+    "touchend",
+    e=>{
+
+        const endX =
+            e.changedTouches[0].screenX;
+
+        const diff =
+            endX - touchStartX;
+
+        if(Math.abs(diff) < 50){
+            return;
+        }
+
+        if(diff < 0){
+            next();
+        }else{
+            prev();
+        }
+
+    },
+    {passive:true}
+);
+
+/* =========================================================
+   CLICK SLIDE TO ADVANCE
+========================================================= */
+
+stage.addEventListener(
+    "click",
+    e=>{
+
+        if(
+            e.target.closest("button") ||
+            e.target.closest("a") ||
+            e.target.closest(".option")
+        ){
+            return;
+        }
+
+        const width =
+            window.innerWidth;
+
+        if(e.clientX > width * .72){
+            next();
+        }else if(e.clientX < width * .28){
+            prev();
+        }
+
+    }
+);
+
+/* =========================================================
+   START
+========================================================= */
+
+render();
+
+/* =========================================================
+   FINAL PRINT — ALL 52 SLIDES
+========================================================= */
+
+function printAllSlides() {
+
+    console.log("PRINT ALL SLIDES");
+
+    /*
+     * Beri browser waktu menerapkan @media print
+     */
+    requestAnimationFrame(function () {
+
+        setTimeout(function () {
+
+            window.print();
+
+        }, 200);
+
+    });
+}
+
+
+/* =========================================================
+   PRINT BUTTON
+   Lebih aman daripada inline onclick
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const btnPrint = document.getElementById("btnPrint");
+
+    if (btnPrint) {
+
+        btnPrint.addEventListener("click", function () {
+
+            printAllSlides();
+
+        });
+
+    }
+
+});
+
+
+/* =========================================================
+   INSTAGRAM EDUCATOR 
+========================================================= */
+
+function addEducatorHeader() {
+
+    document.querySelectorAll(".slide").forEach(function (slide) {
+
+        if (slide.querySelector(".educator-header")) {
+            return;
+        }
+
+        const educator = document.createElement("div");
+
+        educator.className = "educator-header";
+
+        educator.innerHTML =
+            '📷 Instagram <strong>@mryungmalang</strong>';
+
+        slide.appendChild(educator);
+
+    });
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    addEducatorHeader();
+
+});
+
+const educatorObserver = new MutationObserver(function () {
+
+    addEducatorHeader();
+
+});
+
+educatorObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+</script>
+
+</body>
+</html>
