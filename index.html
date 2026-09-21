@@ -12,8 +12,8 @@
 <style>
 
 /* =========================================================
-   SILARAS / AMBULANS 119 RSSA
-   PREMIUM ELEGANT — FINAL INDEX
+   AMBULANS 119 RSSA
+   PREMIUM • ELEGANT • RESPONSIVE
 ========================================================= */
 
 :root{
@@ -25,7 +25,8 @@
     --ink:#10243e;
     --muted:#64748b;
     --soft:#f4f7fb;
-    --white:#fff;
+    --white:#ffffff;
+
     --radius:22px;
     --shadow:0 12px 35px rgba(15,38,70,.09);
     --shadow-hover:0 20px 45px rgba(15,38,70,.15);
@@ -36,9 +37,10 @@ html{
 }
 
 body{
+    margin:0;
     background:var(--soft);
-    font-family:'Segoe UI',Arial,sans-serif;
     color:var(--ink);
+    font-family:'Segoe UI',Arial,sans-serif;
     overflow-x:hidden;
 }
 
@@ -50,17 +52,19 @@ body{
     position:sticky;
     top:0;
     z-index:5000;
-    background:rgba(255,255,255,.94);
+
+    background:rgba(255,255,255,.95);
     backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(16px);
+
     border-bottom:1px solid rgba(13,110,253,.08);
     box-shadow:0 4px 20px rgba(0,0,0,.05);
 }
 
 .navbar-brand{
-    font-weight:800;
-    letter-spacing:.5px;
     color:var(--blue-dark)!important;
+    font-weight:800;
+    letter-spacing:.4px;
 }
 
 .navbar-brand i{
@@ -94,6 +98,7 @@ body{
 .hero{
     position:relative;
     overflow:hidden;
+
     background:
         linear-gradient(
             120deg,
@@ -114,9 +119,19 @@ body{
     content:"";
     position:absolute;
     inset:0;
+
     background:
-        radial-gradient(circle at 15% 20%,rgba(255,255,255,.12),transparent 28%),
-        radial-gradient(circle at 85% 75%,rgba(255,255,255,.10),transparent 30%);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,.12),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255,255,255,.10),
+            transparent 30%
+        );
+
     pointer-events:none;
 }
 
@@ -140,7 +155,9 @@ body{
 .hero-icon i{
     font-size:105px;
     color:#fff;
+
     animation:ambulanceFloat 3s ease-in-out infinite;
+
     filter:
         drop-shadow(0 0 15px rgba(255,255,255,.55))
         drop-shadow(0 12px 25px rgba(0,0,0,.25));
@@ -172,6 +189,7 @@ body{
     font-weight:850;
     letter-spacing:3px;
     margin-bottom:8px;
+
     animation:fadeUp 1s ease;
 }
 
@@ -189,24 +207,31 @@ body{
 
 .call-box{
     position:relative;
+
+    display:inline-block;
+
     background:rgba(255,255,255,.97);
     color:var(--blue-dark);
+
     border:1px solid rgba(255,255,255,.5);
     border-radius:20px;
+
     padding:22px 32px;
-    font-weight:bold;
     margin-top:30px;
-    display:inline-block;
+
+    font-weight:bold;
+
     box-shadow:
         0 15px 45px rgba(0,0,0,.22),
         0 0 0 1px rgba(255,255,255,.2);
+
     animation:siren 2s infinite;
 }
 
 .call-box .call-label{
+    color:#64748b;
     font-size:.78rem;
     letter-spacing:2px;
-    color:#64748b;
     margin-bottom:4px;
 }
 
@@ -229,60 +254,61 @@ section{
 .section-title{
     text-align:center;
     margin-bottom:45px;
-    font-weight:800;
+
     color:var(--blue-dark);
+
+    font-weight:800;
     letter-spacing:.3px;
 }
 
 .section-title::after{
     content:"";
+
     display:block;
+
     width:55px;
     height:4px;
-    border-radius:10px;
-    background:linear-gradient(90deg,var(--blue),var(--green));
+
     margin:14px auto 0;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--blue),
+            var(--green)
+        );
 }
 
 .bg-light-blue{
     background:
-        linear-gradient(180deg,#eef5ff,#f7faff);
+        linear-gradient(
+            180deg,
+            #eef5ff,
+            #f7faff
+        );
 }
 
 /* =========================================================
-   CARDS
+   CARD
 ========================================================= */
 
 .card{
+    height:100%;
+
     border:1px solid rgba(13,110,253,.06);
     border-radius:var(--radius);
+
     box-shadow:var(--shadow);
+
     transition:.35s ease;
-    height:100%;
     overflow:hidden;
 }
 
 .card:hover{
     transform:translateY(-7px);
     box-shadow:var(--shadow-hover);
-}
-
-.icon-box{
-    width:70px;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:18px;
-    font-size:31px;
-    color:var(--blue);
-    background:linear-gradient(135deg,#edf5ff,#e6f0ff);
-    margin-bottom:20px;
-    transition:.3s;
-}
-
-.card:hover .icon-box{
-    transform:scale(1.08);
 }
 
 .card h4,
@@ -296,17 +322,156 @@ section{
     line-height:1.7;
 }
 
+.icon-box{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    color:var(--blue);
+    font-size:31px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edf5ff,
+            #e6f0ff
+        );
+
+    margin-bottom:20px;
+
+    transition:.3s;
+}
+
+.card:hover .icon-box{
+    transform:scale(1.08);
+}
+
 /* =========================================================
-   EMERGENCY BANNER
+   EDUCATION
+========================================================= */
+
+.education-section{
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #062f67,
+            #0d6efd
+        );
+
+    color:white;
+}
+
+.education-section::before{
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    right:-170px;
+    top:-170px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+}
+
+.education-section::after{
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    left:-120px;
+    bottom:-160px;
+
+    border-radius:50%;
+
+    background:rgba(14,133,67,.18);
+}
+
+.education-content{
+    position:relative;
+    z-index:2;
+}
+
+.education-icon{
+    width:75px;
+    height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.12);
+
+    font-size:32px;
+
+    margin-bottom:20px;
+}
+
+.education-section h2{
+    font-weight:850;
+}
+
+.education-section p{
+    max-width:720px;
+    opacity:.9;
+}
+
+.btn-education{
+    background:white;
+    color:#0755a5;
+
+    border:0;
+    border-radius:13px;
+
+    padding:13px 23px;
+
+    font-weight:800;
+
+    transition:.3s;
+}
+
+.btn-education:hover{
+    background:#f1f7ff;
+    color:#063b82;
+    transform:translateY(-3px);
+}
+
+/* =========================================================
+   EMERGENCY
 ========================================================= */
 
 .emergency{
-    background:
-        linear-gradient(135deg,#b91c31,#dc3545,#ef5968);
     color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b91c31,
+            #dc3545,
+            #ef5968
+        );
+
     border:0;
     border-radius:24px;
-    box-shadow:0 15px 40px rgba(220,53,69,.18);
+
+    box-shadow:
+        0 15px 40px rgba(220,53,69,.18);
 }
 
 .emergency-banner{
@@ -321,18 +486,18 @@ section{
 
 .spec-image{
     border-radius:24px;
-    box-shadow:0 18px 45px rgba(15,38,70,.18);
+
+    box-shadow:
+        0 18px 45px rgba(15,38,70,.18);
 }
 
 .list-group-item{
     background:transparent;
     border-color:#e9eef5;
-    color:#42536a;
-    padding:12px 0;
-}
 
-.list-group-item::first-letter{
-    color:var(--green);
+    color:#42536a;
+
+    padding:12px 0;
 }
 
 /* =========================================================
@@ -341,13 +506,20 @@ section{
 
 .equipment-detail{
     display:flex;
+
     gap:22px;
-    background:#fff;
-    border-radius:20px;
-    padding:21px;
+
     height:100%;
+
+    padding:21px;
+
+    background:#fff;
+
     border:1px solid rgba(13,110,253,.06);
+    border-radius:20px;
+
     box-shadow:var(--shadow);
+
     transition:.35s;
 }
 
@@ -359,10 +531,15 @@ section{
 .equipment-detail img{
     width:180px;
     height:145px;
+
     object-fit:cover;
+
     border-radius:15px;
+
     flex-shrink:0;
-    box-shadow:0 7px 20px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.12);
 }
 
 .equipment-detail h4{
@@ -377,14 +554,24 @@ section{
     margin-bottom:0;
 }
 
+/* =========================================================
+   FEATURE
+========================================================= */
+
 .feature-box{
-    background:#fff;
-    padding:27px 20px;
-    text-align:center;
-    border-radius:20px;
-    border:1px solid rgba(13,110,253,.06);
-    box-shadow:var(--shadow);
     height:100%;
+
+    padding:27px 20px;
+
+    text-align:center;
+
+    background:#fff;
+
+    border:1px solid rgba(13,110,253,.06);
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
     transition:.35s;
 }
 
@@ -396,11 +583,17 @@ section{
 .feature-box i{
     width:62px;
     height:62px;
+
     line-height:62px;
+
     border-radius:17px;
+
     font-size:28px;
+
     color:var(--blue);
+
     background:#eef5ff;
+
     margin-bottom:15px;
 }
 
@@ -410,8 +603,8 @@ section{
 
 .feature-box p{
     color:#68778d;
-    margin-bottom:0;
     font-size:.94rem;
+    margin-bottom:0;
 }
 
 /* =========================================================
@@ -420,8 +613,8 @@ section{
 
 .flow-card{
     position:relative;
-    transition:.35s;
     padding-top:25px!important;
+    transition:.35s;
 }
 
 .flow-card:hover{
@@ -436,33 +629,44 @@ section{
     transform:scale(1.15);
 }
 
+.flow-number{
+    color:#94a3b8;
+
+    font-size:.7rem;
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+}
+
 .flow-card h6{
     min-height:38px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-weight:700;
+
     color:#33465f;
+    font-weight:700;
 }
 
 .flow-card::after{
     content:"➜";
+
     position:absolute;
+
     right:-18px;
     top:50%;
-    transform:translateY(-50%);
-    font-size:26px;
-    color:var(--blue);
-    font-weight:bold;
-    z-index:5;
-}
 
-.flow-number{
-    font-size:.7rem;
-    font-weight:800;
-    letter-spacing:1px;
-    color:#94a3b8;
-    margin-bottom:8px;
+    transform:translateY(-50%);
+
+    color:var(--blue);
+
+    font-size:26px;
+    font-weight:bold;
+
+    z-index:5;
 }
 
 /* =========================================================
@@ -471,25 +675,24 @@ section{
 
 .tip-card{
     position:relative;
-    overflow:hidden;
 }
 
 .tip-card::before{
     content:"";
+
     position:absolute;
+
     left:0;
     top:0;
     bottom:0;
+
     width:5px;
+
     background:var(--green);
 }
 
 .tip-card.danger::before{
     background:var(--red);
-}
-
-.tip-card ul{
-    margin-bottom:0;
 }
 
 .tip-card li{
@@ -502,13 +705,17 @@ section{
 ========================================================= */
 
 .tariff-card{
-    border-radius:24px;
     overflow:hidden;
+    border-radius:24px;
 }
 
 .tariff-header{
     background:
-        linear-gradient(135deg,var(--green-dark),var(--green));
+        linear-gradient(
+            135deg,
+            var(--green-dark),
+            var(--green)
+        );
 }
 
 .tariff-body{
@@ -521,8 +728,11 @@ section{
 
 .btn-premium{
     border-radius:12px;
+
     padding:12px 20px;
+
     font-weight:700;
+
     transition:.25s;
 }
 
@@ -531,87 +741,12 @@ section{
 }
 
 /* =========================================================
-   EDUCATION
-========================================================= */
-
-.education-section{
-    background:
-        linear-gradient(135deg,#062f67,#0d6efd);
-    color:white;
-    overflow:hidden;
-}
-
-.education-section::before{
-    content:"";
-    position:absolute;
-    width:450px;
-    height:450px;
-    border-radius:50%;
-    background:rgba(255,255,255,.05);
-    right:-170px;
-    top:-170px;
-}
-
-.education-section::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    background:rgba(14,133,67,.18);
-    left:-120px;
-    bottom:-160px;
-}
-
-.education-content{
-    position:relative;
-    z-index:2;
-}
-
-.education-icon{
-    width:75px;
-    height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:20px;
-    background:rgba(255,255,255,.12);
-    font-size:32px;
-    margin-bottom:20px;
-}
-
-.education-section h2{
-    font-weight:850;
-}
-
-.education-section p{
-    opacity:.9;
-    max-width:720px;
-}
-
-.btn-education{
-    background:white;
-    color:#0755a5;
-    border:0;
-    border-radius:13px;
-    padding:13px 23px;
-    font-weight:800;
-    transition:.3s;
-}
-
-.btn-education:hover{
-    background:#f1f7ff;
-    color:#063b82;
-    transform:translateY(-3px);
-}
-
-/* =========================================================
    CONTACT
 ========================================================= */
 
 .contact-card{
-    border-radius:24px;
     padding:55px 25px!important;
+    border-radius:24px;
 }
 
 .contact-number{
@@ -630,10 +765,17 @@ section{
 
 .footer{
     position:relative;
-    background:
-        linear-gradient(135deg,#052d62,#063b82);
-    color:white;
+
     padding:38px 20px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #052d62,
+            #063b82
+        );
 }
 
 .footer-brand{
@@ -650,38 +792,60 @@ section{
 ========================================================= */
 
 @keyframes ambulanceFloat{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 @keyframes sirenBlue{
     0%,100%{
-        box-shadow:0 0 5px #0d6efd,0 0 10px #0d6efd;
+        box-shadow:
+            0 0 5px #0d6efd,
+            0 0 10px #0d6efd;
+
         opacity:.35;
     }
+
     50%{
-        box-shadow:0 0 20px #0d6efd,0 0 40px #0d6efd;
+        box-shadow:
+            0 0 20px #0d6efd,
+            0 0 40px #0d6efd;
+
         opacity:1;
     }
 }
 
 @keyframes sirenRed{
     0%,100%{
-        box-shadow:0 0 20px #dc3545,0 0 40px #dc3545;
+        box-shadow:
+            0 0 20px #dc3545,
+            0 0 40px #dc3545;
+
         opacity:1;
     }
+
     50%{
-        box-shadow:0 0 5px #dc3545,0 0 10px #dc3545;
+        box-shadow:
+            0 0 5px #dc3545,
+            0 0 10px #dc3545;
+
         opacity:.35;
     }
 }
 
 @keyframes siren{
     0%,100%{
-        box-shadow:0 10px 35px rgba(13,110,253,.18);
+        box-shadow:
+            0 10px 35px rgba(13,110,253,.18);
     }
+
     50%{
-        box-shadow:0 10px 40px rgba(220,53,69,.28);
+        box-shadow:
+            0 10px 40px rgba(220,53,69,.28);
     }
 }
 
@@ -690,6 +854,7 @@ section{
         opacity:0;
         transform:translateY(35px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -767,10 +932,6 @@ section{
 
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
 @media(prefers-reduced-motion:reduce){
 
     *,
@@ -789,9 +950,10 @@ section{
 
 <body>
 
-<!-- =======================================================
+
+<!-- =========================================================
      NAVBAR
-======================================================= -->
+========================================================= -->
 
 <nav class="navbar navbar-expand-lg navbar-custom">
 
@@ -807,7 +969,9 @@ section{
         data-bs-toggle="collapse"
         data-bs-target="#mainNavbar"
         aria-label="Menu">
+
     <i class="fas fa-bars"></i>
+
 </button>
 
 <div class="collapse navbar-collapse" id="mainNavbar">
@@ -815,55 +979,75 @@ section{
 <ul class="navbar-nav ms-auto align-items-lg-center">
 
 <li class="nav-item">
-<a class="nav-link" href="#tentang">Tentang</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#layanan">Layanan</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#ambulans">Ambulans</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#alur">Alur</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#tarif">Tarif</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link"
-   href="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/pendidikan_pelatihan.html"
-   target="_blank"
-   rel="noopener">
-   <i class="fas fa-graduation-cap me-1"></i>
-   Pendidikan & Pelatihan
+<a class="nav-link" href="#tentang">
+Tentang
 </a>
 </li>
 
+<li class="nav-item">
+<a class="nav-link" href="#layanan">
+Layanan
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#ambulans">
+Ambulans
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#alur">
+Alur
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#tarif">
+Tarif
+</a>
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link"
+   href="https://ambulan119.github.io/RSSA/pendidikan_pelatihan.html"
+   target="_blank"
+   rel="noopener">
+
+<i class="fas fa-graduation-cap me-1"></i>
+Pendidikan & Pelatihan
+
+</a>
+
+</li>
+
 <li class="nav-item ms-lg-2">
+
 <a class="btn btn-success btn-sm rounded-pill px-3 fw-bold"
    href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
    target="_blank"
    rel="noopener">
-   <i class="fab fa-whatsapp me-1"></i>
-   WhatsApp
+
+<i class="fab fa-whatsapp me-1"></i>
+WhatsApp
+
 </a>
+
 </li>
 
 </ul>
 
 </div>
+
 </div>
+
 </nav>
 
 
-<!-- =======================================================
+<!-- =========================================================
      HERO
-======================================================= -->
+========================================================= -->
 
 <section class="hero text-center">
 
@@ -902,32 +1086,41 @@ CALL CENTER 24 JAM
 </div>
 
 <h2 class="fw-bold mb-2">
+
 <a href="tel:0341320118"
    class="text-decoration-none text-primary">
+
 <i class="fas fa-phone me-1"></i>
 (0341) 320118
+
 </a>
+
 </h2>
 
 <h3 class="mb-0">
+
 <a href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
    target="_blank"
    rel="noopener"
    class="text-decoration-none text-success">
+
 <i class="fab fa-whatsapp me-1"></i>
 0821-3109-0119
+
 </a>
+
 </h3>
 
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      TENTANG
-======================================================= -->
+========================================================= -->
 
 <section class="py-5" id="tentang">
 
@@ -960,6 +1153,7 @@ secara cepat, aman dan profesional.
 
 </div>
 
+
 <div class="col-lg-6">
 
 <div class="card p-4">
@@ -983,12 +1177,13 @@ penjemputan hingga pengantaran pasien.
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      LAYANAN
-======================================================= -->
+========================================================= -->
 
 <section class="py-5 bg-light-blue" id="layanan">
 
@@ -999,6 +1194,7 @@ Layanan Kami
 </h2>
 
 <div class="row g-4">
+
 
 <div class="col-md-4">
 
@@ -1016,6 +1212,7 @@ mengancam jiwa.
 </p>
 
 </div>
+
 </div>
 
 
@@ -1035,6 +1232,7 @@ secara aman dan terkoordinasi.
 </p>
 
 </div>
+
 </div>
 
 
@@ -1054,17 +1252,19 @@ sesuai kebutuhan pasien.
 </p>
 
 </div>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      PENDIDIKAN & PELATIHAN
-======================================================= -->
+========================================================= -->
 
 <section class="education-section py-5">
 
@@ -1077,7 +1277,9 @@ sesuai kebutuhan pasien.
 <div class="col-lg-8">
 
 <div class="education-icon">
+
 <i class="fas fa-graduation-cap"></i>
+
 </div>
 
 <h2 class="mb-3">
@@ -1092,14 +1294,17 @@ serta materi klinis lainnya.
 
 </div>
 
+
 <div class="col-lg-4 text-lg-end">
 
-<a href="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/pendidikan_pelatihan.html"
+<a href="https://ambulan119.github.io/RSSA/pendidikan_pelatihan.html"
    target="_blank"
    rel="noopener"
    class="btn btn-education btn-lg">
+
 <i class="fas fa-arrow-right me-2"></i>
 Buka Pendidikan & Pelatihan
+
 </a>
 
 </div>
@@ -1109,12 +1314,13 @@ Buka Pendidikan & Pelatihan
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      KAPAN HUBUNGI
-======================================================= -->
+========================================================= -->
 
 <section class="py-5">
 
@@ -1133,12 +1339,13 @@ Buka Pendidikan & Pelatihan
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      SPESIFIKASI AMBULANS
-======================================================= -->
+========================================================= -->
 
 <section class="py-5 bg-light" id="ambulans">
 
@@ -1154,6 +1361,7 @@ Buka Pendidikan & Pelatihan
 
 </div>
 
+
 <div class="col-lg-6">
 
 <h2 class="fw-bold text-primary mb-4">
@@ -1168,23 +1376,47 @@ serta pendampingan medis selama perjalanan.
 
 <ul class="list-group list-group-flush">
 
-<li class="list-group-item">✓ Siaga 24 Jam</li>
-<li class="list-group-item">✓ Dokter dan Perawat Pendamping</li>
-<li class="list-group-item">✓ Monitoring Pasien Berkelanjutan</li>
-<li class="list-group-item">✓ Dukungan Ventilator Transport</li>
-<li class="list-group-item">✓ Sistem Oksigen Sentral</li>
-<li class="list-group-item">✓ Emergency & Trauma Equipment</li>
-<li class="list-group-item">✓ Terintegrasi RSSA</li>
+<li class="list-group-item">
+✓ Siaga 24 Jam
+</li>
+
+<li class="list-group-item">
+✓ Dokter dan Perawat Pendamping
+</li>
+
+<li class="list-group-item">
+✓ Monitoring Pasien Berkelanjutan
+</li>
+
+<li class="list-group-item">
+✓ Dukungan Ventilator Transport
+</li>
+
+<li class="list-group-item">
+✓ Sistem Oksigen Sentral
+</li>
+
+<li class="list-group-item">
+✓ Emergency & Trauma Equipment
+</li>
+
+<li class="list-group-item">
+✓ Terintegrasi RSSA
+</li>
 
 </ul>
 
 </div>
+
 </div>
 
 
-<!-- ALAT MEDIS -->
+<!-- =======================================================
+     ALAT MEDIS
+======================================================= -->
 
 <div class="row g-4">
+
 
 <div class="col-lg-6">
 
@@ -1195,7 +1427,9 @@ serta pendampingan medis selama perjalanan.
 
 <div>
 
-<h4>Monitor Defibrillator</h4>
+<h4>
+Monitor Defibrillator
+</h4>
 
 <p>
 Perangkat pemantauan pasien kritis yang mampu menampilkan
@@ -1204,7 +1438,9 @@ denyut nadi, hingga tindakan defibrilasi saat henti jantung.
 </p>
 
 </div>
+
 </div>
+
 </div>
 
 
@@ -1217,7 +1453,9 @@ denyut nadi, hingga tindakan defibrilasi saat henti jantung.
 
 <div>
 
-<h4>Transport Ventilator</h4>
+<h4>
+Transport Ventilator
+</h4>
 
 <p>
 Mendukung pasien dengan gangguan pernapasan dan pasien
@@ -1225,7 +1463,9 @@ yang memerlukan bantuan ventilasi mekanik selama perjalanan.
 </p>
 
 </div>
+
 </div>
+
 </div>
 
 
@@ -1238,7 +1478,9 @@ yang memerlukan bantuan ventilasi mekanik selama perjalanan.
 
 <div>
 
-<h4>Syringe & Infusion Pump</h4>
+<h4>
+Syringe & Infusion Pump
+</h4>
 
 <p>
 Memastikan pemberian obat, sedasi, vasopressor,
@@ -1246,7 +1488,9 @@ maupun cairan infus secara presisi dan terkontrol.
 </p>
 
 </div>
+
 </div>
+
 </div>
 
 
@@ -1259,7 +1503,9 @@ maupun cairan infus secara presisi dan terkontrol.
 
 <div>
 
-<h4>Emergency Trauma Kit</h4>
+<h4>
+Emergency Trauma Kit
+</h4>
 
 <p>
 Berisi perlengkapan penanganan trauma dan kegawatdaruratan,
@@ -1268,15 +1514,20 @@ bidai, suction dan emergency drugs.
 </p>
 
 </div>
+
 </div>
+
 </div>
 
 </div>
 
 
-<!-- FITUR -->
+<!-- =======================================================
+     FITUR TAMBAHAN
+======================================================= -->
 
 <div class="row mt-5 g-4">
+
 
 <div class="col-md-3">
 
@@ -1284,13 +1535,16 @@ bidai, suction dan emergency drugs.
 
 <i class="fas fa-wind"></i>
 
-<h5>Portable Suction</h5>
+<h5>
+Portable Suction
+</h5>
 
 <p>
 Membantu membersihkan jalan napas pasien.
 </p>
 
 </div>
+
 </div>
 
 
@@ -1300,13 +1554,16 @@ Membantu membersihkan jalan napas pasien.
 
 <i class="fas fa-mask-face"></i>
 
-<h5>Oksigen Medis</h5>
+<h5>
+Oksigen Medis
+</h5>
 
 <p>
 Sistem oksigen untuk pasien kritis dan emergensi.
 </p>
 
 </div>
+
 </div>
 
 
@@ -1316,13 +1573,16 @@ Sistem oksigen untuk pasien kritis dan emergensi.
 
 <i class="fas fa-bed"></i>
 
-<h5>Stretcher</h5>
+<h5>
+Stretcher
+</h5>
 
 <p>
 Brankar transport pasien yang aman dan nyaman.
 </p>
 
 </div>
+
 </div>
 
 
@@ -1332,24 +1592,28 @@ Brankar transport pasien yang aman dan nyaman.
 
 <i class="fas fa-user-doctor"></i>
 
-<h5>Tim Profesional</h5>
+<h5>
+Tim Profesional
+</h5>
 
 <p>
 Dokter, perawat dan driver ambulans terlatih.
 </p>
 
 </div>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      ALUR PELAYANAN
-======================================================= -->
+========================================================= -->
 
 <section class="py-5" id="alur">
 
@@ -1361,32 +1625,44 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="row g-4 justify-content-center">
 
+
 <div class="col-lg-2 col-md-4 col-6">
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 01</div>
+<div class="flow-number">
+STEP 01
+</div>
 
 <i class="fas fa-phone-volume fa-3x text-success mb-3"></i>
 
 <h6>
+
 <a href="tel:0341320118"
    class="text-decoration-none text-dark">
+
 (0341) 320118
+
 </a>
+
 </h6>
 
 <h6>
+
 <a href="https://wa.me/6282131090119?text=Halo%20Ambulans%20119%20RSSA,%20saya%20ingin%20memesan%20ambulans."
    target="_blank"
    rel="noopener"
    class="text-decoration-none text-success fw-bold">
+
 <i class="fab fa-whatsapp"></i>
 0821-3109-0119
+
 </a>
+
 </h6>
 
 </div>
+
 </div>
 
 
@@ -1394,13 +1670,18 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 02</div>
+<div class="flow-number">
+STEP 02
+</div>
 
 <i class="fas fa-headset fa-3x text-primary mb-3"></i>
 
-<h6>Operator Menerima</h6>
+<h6>
+Operator Menerima
+</h6>
 
 </div>
+
 </div>
 
 
@@ -1408,13 +1689,18 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 03</div>
+<div class="flow-number">
+STEP 03
+</div>
 
 <i class="fas fa-clipboard-check fa-3x text-warning mb-3"></i>
 
-<h6>Verifikasi Data</h6>
+<h6>
+Verifikasi Data
+</h6>
 
 </div>
+
 </div>
 
 
@@ -1422,13 +1708,18 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 04</div>
+<div class="flow-number">
+STEP 04
+</div>
 
 <i class="fas fa-truck-medical fa-3x text-danger mb-3"></i>
 
-<h6>Dispatch Ambulans</h6>
+<h6>
+Dispatch Ambulans
+</h6>
 
 </div>
+
 </div>
 
 
@@ -1436,13 +1727,18 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 05</div>
+<div class="flow-number">
+STEP 05
+</div>
 
 <i class="fas fa-heart-pulse fa-3x text-info mb-3"></i>
 
-<h6>Penanganan Pasien</h6>
+<h6>
+Penanganan Pasien
+</h6>
 
 </div>
+
 </div>
 
 
@@ -1450,24 +1746,30 @@ Alur Pelayanan Ambulans 119 RSSA
 
 <div class="card p-3 text-center h-100 flow-card">
 
-<div class="flow-number">STEP 06</div>
+<div class="flow-number">
+STEP 06
+</div>
 
 <i class="fas fa-hospital-user fa-3x text-success mb-3"></i>
 
-<h6>Rumah Sakit Tujuan</h6>
+<h6>
+Rumah Sakit Tujuan
+</h6>
 
 </div>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      TIPS
-======================================================= -->
+========================================================= -->
 
 <section class="py-5 bg-light-blue">
 
@@ -1478,6 +1780,7 @@ Tips Saat Menunggu Ambulans
 </h2>
 
 <div class="row g-4">
+
 
 <div class="col-md-6">
 
@@ -1501,6 +1804,7 @@ Yang Harus Dilakukan
 </ul>
 
 </div>
+
 </div>
 
 
@@ -1525,17 +1829,19 @@ Yang Tidak Perlu Dilakukan
 </ul>
 
 </div>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      TARIF
-======================================================= -->
+========================================================= -->
 
 <section class="py-5 bg-light-blue" id="tarif">
 
@@ -1546,19 +1852,26 @@ Yang Tidak Perlu Dilakukan
 <div class="tariff-header text-white text-center py-4">
 
 <h2 class="mb-0">
+
 <i class="fas fa-file-invoice-dollar me-2"></i>
+
 Tarif Pelayanan Ambulans 119 RSSA
+
 </h2>
 
 </div>
 
+
 <div class="tariff-body text-center">
 
 <p class="lead">
+
 Tarif pelayanan Ambulans 119 RSSA mengacu pada
 Peraturan Gubernur Jawa Timur Nomor 28 Tahun 2025
 dan ketentuan yang berlaku.
+
 </p>
+
 
 <a href="https://docs.google.com/gview?embedded=1&url=https://raw.githubusercontent.com/ambulan119/RSSA/main/Nodin%20dan%20daftar%20tarif%20pelyanan%20ambulan%20pergub%2028%202025.pdf"
    target="_blank"
@@ -1569,6 +1882,7 @@ dan ketentuan yang berlaku.
 Lihat PDF Tarif
 
 </a>
+
 
 <a href="https://docs.google.com/gview?embedded=1&url=https://raw.githubusercontent.com/ambulan119/RSSA/main/Nodin%20dan%20daftar%20tarif%20pelyanan%20ambulan%20pergub%2028%202025.pdf"
    target="_blank"
@@ -1581,15 +1895,17 @@ Download PDF
 </a>
 
 </div>
+
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      KONTAK
-======================================================= -->
+========================================================= -->
 
 <section class="py-5">
 
@@ -1598,16 +1914,25 @@ Download PDF
 <div class="card contact-card text-center">
 
 <h2 class="text-primary mb-4">
+
 <i class="fas fa-headset me-2"></i>
+
 Hubungi Ambulans 119 RSSA
+
 </h2>
 
+
 <div class="contact-number mb-2">
+
 <a href="tel:0341320118"
    class="text-decoration-none text-primary">
+
 (0341) 320118
+
 </a>
+
 </div>
+
 
 <div class="contact-wa">
 
@@ -1617,38 +1942,48 @@ Hubungi Ambulans 119 RSSA
    class="text-decoration-none text-success fw-bold">
 
 <i class="fab fa-whatsapp me-2"></i>
+
 0821-3109-0119
 
 </a>
 
 </div>
 
+
 <p class="mt-3 mb-0 text-secondary">
+
 Melayani 24 Jam Setiap Hari
+
 </p>
 
 </div>
 
 </div>
+
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      FOOTER
-======================================================= -->
+========================================================= -->
 
 <footer class="footer text-center">
 
 <div class="container">
 
 <div class="footer-brand mb-2">
+
 <i class="fas fa-truck-medical me-2"></i>
+
 AMBULANS 119 RSSA
+
 </div>
 
 <p class="mb-2">
+
 "Siaga 24 Jam, Cepat Merespon,
 Aman Mengantar, Profesional Melayani."
+
 </p>
 
 <small>
