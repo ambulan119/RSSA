@@ -13,7 +13,7 @@
 
 /* =========================================================
    AMBULANS 119 RSSA
-   PREMIUM • ELEGANT • RESPONSIVE
+   PREMIUM • ELEGANT • RESPONSIVE • FINAL
 ========================================================= */
 
 :root{
@@ -22,6 +22,7 @@
     --green:#0e8543;
     --green-dark:#075c30;
     --red:#dc3545;
+    --red-bright:#ff1730;
     --ink:#10243e;
     --muted:#64748b;
     --soft:#f4f7fb;
@@ -184,6 +185,10 @@ body{
     animation:sirenRed .7s infinite;
 }
 
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
 .hero-title{
     font-size:clamp(2.5rem,6vw,4.5rem);
     font-weight:850;
@@ -191,6 +196,26 @@ body{
     margin-bottom:8px;
 
     animation:fadeUp 1s ease;
+}
+
+/* 119 MERAH KEDIP */
+
+.hero-119{
+    display:inline-block;
+
+    color:#ff263d;
+
+    font-weight:950;
+    letter-spacing:5px;
+
+    text-shadow:
+        0 0 5px rgba(255,30,50,.9),
+        0 0 15px rgba(255,30,50,.75),
+        0 0 35px rgba(255,30,50,.45);
+
+    animation:
+        emergency119 1s infinite,
+        emergencyGlow 1.4s ease-in-out infinite;
 }
 
 .hero-subtitle{
@@ -241,6 +266,38 @@ body{
 
 .call-box a:hover{
     opacity:.75;
+}
+
+/* =========================================================
+   CALL 119 BADGE
+========================================================= */
+
+.call-119-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:13px;
+    padding:7px 15px;
+
+    color:#fff;
+    background:var(--red);
+
+    border-radius:999px;
+
+    font-size:.78rem;
+    font-weight:850;
+    letter-spacing:1.2px;
+
+    box-shadow:
+        0 5px 18px rgba(220,53,69,.30);
+
+    animation:badge119 1s infinite;
+}
+
+.call-119-badge i{
+    font-size:.7rem;
 }
 
 /* =========================================================
@@ -472,12 +529,39 @@ section{
 
     box-shadow:
         0 15px 40px rgba(220,53,69,.18);
+
+    padding:18px!important;
 }
 
+/* Gambar KAPAN HUBUNGI diperbesar */
+
 .emergency-banner{
-    max-height:500px;
+    display:block;
+
+    width:100%;
+    max-width:1250px;
+
+    height:auto;
+
+    margin:0 auto;
+
     object-fit:contain;
-    border-radius:15px;
+
+    border-radius:17px;
+
+    filter:
+        drop-shadow(0 12px 28px rgba(0,0,0,.18));
+
+    transition:
+        transform .4s ease,
+        filter .4s ease;
+}
+
+.emergency-banner:hover{
+    transform:scale(1.012);
+
+    filter:
+        drop-shadow(0 18px 38px rgba(0,0,0,.24));
 }
 
 /* =========================================================
@@ -849,6 +933,53 @@ section{
     }
 }
 
+/* 119 HERO */
+
+@keyframes emergency119{
+    0%,38%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    45%,72%{
+        opacity:.28;
+        transform:scale(.97);
+    }
+
+    78%{
+        opacity:1;
+        transform:scale(1.03);
+    }
+}
+
+@keyframes emergencyGlow{
+    0%,100%{
+        text-shadow:
+            0 0 5px rgba(255,30,50,.9),
+            0 0 15px rgba(255,30,50,.75),
+            0 0 35px rgba(255,30,50,.45);
+    }
+
+    50%{
+        text-shadow:
+            0 0 8px rgba(255,30,50,1),
+            0 0 25px rgba(255,30,50,.95),
+            0 0 55px rgba(255,30,50,.7);
+    }
+}
+
+@keyframes badge119{
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.72;
+        transform:scale(1.04);
+    }
+}
+
 @keyframes fadeUp{
     from{
         opacity:0;
@@ -891,10 +1022,24 @@ section{
         letter-spacing:1px;
     }
 
+    .hero-119{
+        letter-spacing:3px;
+    }
+
     .call-box{
         width:100%;
         max-width:390px;
         padding:20px 15px;
+    }
+
+    .emergency{
+        padding:10px!important;
+    }
+
+    .emergency-banner{
+        width:100%;
+        max-width:none;
+        border-radius:13px;
     }
 
     .equipment-detail{
@@ -922,12 +1067,20 @@ section{
         font-size:2.35rem;
     }
 
+    .hero-119{
+        letter-spacing:2px;
+    }
+
     .hero-description{
         font-size:1rem;
     }
 
     .section-title{
         margin-bottom:32px;
+    }
+
+    .emergency{
+        border-radius:17px;
     }
 
 }
@@ -1063,7 +1216,11 @@ WhatsApp
 </div>
 
 <h1 class="hero-title">
-AMBULANS 119 RSSA
+
+AMBULANS
+<span class="hero-119">119</span>
+RSSA
+
 </h1>
 
 <h4 class="hero-subtitle fw-light mb-3">
@@ -1110,6 +1267,13 @@ CALL CENTER 24 JAM
 </a>
 
 </h3>
+
+<div class="call-119-badge">
+
+<i class="fas fa-circle"></i>
+AMBULANS 119 • SIAGA 24 JAM
+
+</div>
 
 </div>
 
@@ -1326,7 +1490,7 @@ Buka Pendidikan & Pelatihan
 
 <div class="container">
 
-<div class="card emergency p-4">
+<div class="card emergency">
 
 <div class="text-center">
 
@@ -1975,7 +2139,9 @@ Melayani 24 Jam Setiap Hari
 
 <i class="fas fa-truck-medical me-2"></i>
 
-AMBULANS 119 RSSA
+AMBULANS
+<span class="hero-119">119</span>
+RSSA
 
 </div>
 
