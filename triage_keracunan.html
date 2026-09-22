@@ -8,8 +8,7 @@
 
 <style>
 /* =========================================================
-   TRIAGE IGD KERACUNAN — GODMODE PRESENTATION
-   52 SLIDE — SINGLE HTML — OFFLINE
+   TRIAGE IGD KERACUNAN 
 ========================================================= */
 
 :root{
@@ -117,13 +116,13 @@ body{
 }
 
 .brand-logo{
-    width:36px;
-    height:36px;
+    width:80px;
+    height:80px;
 
     display:grid;
     place-items:center;
 
-    border-radius:11px;
+    border-radius:20px;
 
     color:var(--cyan);
 
@@ -138,6 +137,15 @@ body{
 
     box-shadow:
         0 0 20px rgba(66,232,208,.08);
+
+    overflow:hidden;
+}
+
+.brand-logo img{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+    display:block;
 }
 
 .top-actions{
@@ -1309,23 +1317,85 @@ th{
 
     z-index: 9999;
 
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
 
     letter-spacing: .4px;
 
-    color: rgba(255,255,255,.65);
+    color: rgba(255,255,255,.75);
 
     white-space: nowrap;
 
     pointer-events: none;
+
+    line-height: 1.5;
+
+    text-align: right;
 }
 
 .educator-header strong {
     color: #fff;
     font-weight: 800;
+    font-size: 14px;
 }
 
+.educator-header .liveDateTime {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,.70);
+    letter-spacing: .2px;
+    margin-top: 2px;
+}
+
+/* =========================================================
+   EDUCATOR — SOFT ANIMATION
+========================================================= */
+
+.educator-header {
+    animation: educatorFade 1s ease-out both;
+}
+
+.educator-header strong {
+    animation: educatorGlow 2.5s ease-in-out infinite;
+}
+
+.educator-header .liveDateTime {
+    animation: timePulse 2s ease-in-out infinite;
+}
+
+@keyframes educatorFade {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes educatorGlow {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 0 rgba(255,255,255,0);
+    }
+
+    50% {
+        opacity: .85;
+        text-shadow: 0 0 8px rgba(255,255,255,.35);
+    }
+}
+
+@keyframes timePulse {
+    0%, 100% {
+        opacity: .65;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
 </style>
 </head>
 
@@ -1336,7 +1406,10 @@ th{
 <header class="topbar">
 
     <div class="brand">
-        <div class="brand-logo">✚</div>
+        <div class="brand-logo">
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/Screenshot_2026-08-03_200824-removebg-preview.png"
+                alt="Logo RSSA">
+        </div>
         <span>TRIAGE IGD 2026 • KERACUNAN • </span>
     </div>
 
@@ -1418,7 +1491,7 @@ html:`
 <div class="center-content">
 
 <div class="kicker">
-MATERI PEMBELAJARAN TRIAGE • IGD • KONTEKS di INDONESIA
+MATERI PEMBELAJARAN WORKSHOP TRIAGE • IGD RSUD Dr. Saiful Anwar
 </div>
 
 <h1>
@@ -2203,7 +2276,7 @@ Beberapa toksin mempunyai
 ========================================================= */
 
 {
-title:"Prioritas 4–5",
+title:"Skala Prioritas IGD RSSA — Toksikologi Klinis",
 
 html:`
 
@@ -2212,69 +2285,113 @@ SLIDE 12
 </div>
 
 <h2>
-Prioritas 4–5
+Skala Prioritas IGD RSSA
 </h2>
 
-<div class="grid">
+<div class="grid g3">
 
 <div class="card">
 
-<div class="big blue">
-4
+<div class="medium red">
+P1
 </div>
 
 <h3>
-LESS URGENT
+RESUSITASI
 </h3>
 
 <p>
-Pasien stabil dengan gejala ringan.
+Keracunan dengan ancaman nyawa atau gangguan fungsi vital.
+</p>
+
+<p>
+<strong>Contoh:</strong> henti napas, syok,
+koma, kejang berkepanjangan,
+atau gangguan airway berat.
 </p>
 
 </div>
 
+
 <div class="card">
 
-<div class="big purple">
-5
+<div class="medium yellow">
+P2
 </div>
 
 <h3>
-NON-URGENT
+TINDAKAN
 </h3>
 
 <p>
-Pasien stabil tanpa tanda toksisitas bermakna.
+Keracunan dengan kondisi serius yang
+memerlukan tindakan segera, tetapi
+belum memerlukan resusitasi.
+</p>
+
+<p>
+<strong>Contoh:</strong> penurunan kesadaran,
+gangguan napas, hipotensi,
+atau toksisitas yang berkembang.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="medium green">
+P3
+</div>
+
+<h3>
+OBSERVASI
+</h3>
+
+<p>
+Pasien relatif stabil tanpa ancaman
+fungsi vital saat triase, tetapi tetap
+memerlukan evaluasi dan observasi.
+</p>
+
+<p>
+<strong>Contoh:</strong> gejala ringan,
+tanda vital stabil, tanpa toksisitas berat.
 </p>
 
 </div>
 
 </div>
+
 
 <div
 class="card"
-style="margin-top:16px">
+style="margin-top:8px">
 
 <h3>
-Reassessment
+⚠️ Prioritas Dapat Berubah
 </h3>
 
 <p>
-Prioritas dapat berubah berdasarkan perkembangan gejala,
-hasil pemeriksaan, jenis toksin dan waktu pajanan.
+Pasien keracunan harus dilakukan
+<strong>re-triage</strong> bila terjadi perubahan
+kesadaran, jalan napas, pernapasan,
+sirkulasi, kejang, atau tanda toksisitas
+yang memburuk.
 </p>
 
 </div>
 
+
 <div class="source">
 
-Terminologi triase IGD 1–5:
-Resusitasi, Emergency, Urgent, Less Urgent, Non-Urgent.
+<strong>Prinsip IGD RSSA:</strong>
+P1 Resusitasi • P2 Tindakan • P3 Observasi
 
 <a
-href="https://satusehat.kemkes.go.id/platform/docs/id/interoperability/igd/"
+href="https://www.rsusaifulanwar.jatimprov.go.id/"
 target="_blank">
-SATUSEHAT — Pelayanan IGD
+RSUD Dr. Saiful Anwar — RSSA
 </a>
 
 </div>
@@ -2890,7 +3007,6 @@ tetapi tidak menggantikan ABCDE dan pemeriksaan diagnostik.
 /* =========================================================
    22
 ========================================================= */
-
 {
 title:"Kolinergik",
 
@@ -2906,63 +3022,74 @@ Kolinergik — Organofosfat / Karbamat
 
 <div class="grid">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Manifestasi
-</h3>
+        <h3>
+        Manifestasi
+        </h3>
 
-<ul>
+        <ul>
+            <li>Salivasi meningkat</li>
+            <li>Lakrimasi</li>
+            <li>Urinasi</li>
+            <li>Diare</li>
+            <li>Muntah</li>
+            <li>Bronkorea</li>
+            <li>Bronkospasme</li>
+            <li>Miosis</li>
+            <li>Bradikardia</li>
+        </ul>
 
-<li>Salivasi meningkat</li>
-<li>Lakrimasi</li>
-<li>Urinasi</li>
-<li>Diare</li>
-<li>Muntah</li>
-<li>Bronkorea</li>
-<li>Bronkospasme</li>
-<li>Miosis</li>
-<li>Bradikardia</li>
+    </div>
 
-</ul>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <div
+        class="big accent"
+        style="font-size:30px">
 
-<div
-class="big accent"
-style="font-size:50px">
+        SLUDGE
 
-SLUDGE
+        </div>
 
-</div>
+        <p><b>S</b> — Salivation</p>
+        <p><b>L</b> — Lacrimation</p>
+        <p><b>U</b> — Urination</p>
+        <p><b>D</b> — Defecation</p>
+        <p><b>G</b> — Gastrointestinal</p>
+        <p><b>E</b> — Emesis</p>
 
-<p>
-<b>S</b>alivation
-</p>
+    </div>
 
-<p>
-<b>L</b>acrimation
-</p>
 
-<p>
-<b>U</b>rination
-</p>
+    <div class="card">
 
-<p>
-<b>D</b>efecation
-</p>
+        <h3>
+        ☠️ Contoh Zat Toksik
+        </h3>
 
-<p>
-<b>G</b>astrointestinal
-</p>
+        <ul>
 
-<p>
-<b>E</b>mesis
-</p>
+            <li>
+            <strong>Organofosfat:</strong>
+            Chlorpyrifos, Diazinon, Malathion, Dichlorvos
+            </li>
 
-</div>
+            <li>
+            <strong>Karbamat:</strong>
+            Carbaryl, Propoxur, Methomyl, Bendiocarb
+            </li>
+
+        </ul>
+
+        <p style="margin-top:8px">
+        <strong>Umumnya:</strong>
+        insektisida/pestisida pertanian,
+        produk pembasmi hama, dan formulasi rumah tangga tertentu.
+        </p>
+
+    </div>
 
 </div>
 
@@ -2972,7 +3099,6 @@ SLUDGE
 /* =========================================================
    23
 ========================================================= */
-
 {
 title:"Antikolinergik",
 
@@ -2988,59 +3114,95 @@ Antikolinergik
 
 <div class="grid">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Manifestasi
-</h3>
+        <h3>
+        Manifestasi
+        </h3>
 
-<ul>
+        <ul>
+            <li>Mydriasis</li>
+            <li>Takikardia</li>
+            <li>Kulit kering</li>
+            <li>Retensi urin</li>
+            <li>Motilitas GI menurun</li>
+            <li>Hipertermia</li>
+            <li>Delirium</li>
+        </ul>
 
-<li>Mydriasis</li>
-<li>Takikardia</li>
-<li>Kulit kering</li>
-<li>Retensi urin</li>
-<li>Motilitas GI menurun</li>
-<li>Hipertermia</li>
-<li>Delirium</li>
+    </div>
 
-</ul>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <div class="big yellow">
+        DRY
+        </div>
 
-<div class="big yellow">
-DRY
-</div>
+        <div class="big">
+        +
+        </div>
 
-<div class="big">
-+
-</div>
+        <div class="big yellow">
+        DILATED PUPILS
+        </div>
 
-<div class="big yellow">
-DILATED PUPILS
-</div>
+        <div class="big">
+        +
+        </div>
 
-<div class="big">
-+
-</div>
+        <div class="big red">
+        DELIRIUM
+        </div>
 
-<div class="big red">
-DELIRIUM
-</div>
+    </div>
 
-</div>
+
+    <div class="card">
+
+        <h3>
+        ☠️ Contoh Obat/Zat
+        </h3>
+
+        <ul>
+
+            <li>
+            <strong>Antihistamin:</strong>
+            Diphenhydramine, Chlorpheniramine
+            </li>
+
+            <li>
+            <strong>Antidepresan trisiklik:</strong>
+            Amitriptyline, Imipramine
+            </li>
+
+            <li>
+            <strong>Antimuskarinik:</strong>
+            Atropine, Scopolamine
+            </li>
+
+            <li>
+            <strong>Tanaman:</strong>
+            Datura / Jimson weed
+            </li>
+
+        </ul>
+
+        <p style="margin-top:8px">
+        <strong>Petunjuk anamnesis:</strong>
+        tanyakan obat yang dikonsumsi, dosis,
+        waktu pajanan, dan kemungkinan konsumsi multipel.
+        </p>
+
+    </div>
 
 </div>
 
 `
 },
-
 /* =========================================================
    24
 ========================================================= */
-
 {
 title:"Opioid",
 
@@ -3056,60 +3218,92 @@ Opioid Toxidrome
 
 <div class="grid">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Kombinasi klasik
-</h3>
+        <h3>
+        Kombinasi klasik
+        </h3>
 
-<div class="big">
-Penurunan kesadaran
+        <div class="big">
+        Penurunan kesadaran
+        </div>
+
+        <div class="big">
+        +
+        </div>
+
+        <div class="big red">
+        Depresi napas
+        </div>
+
+        <div class="big">
+        +
+        </div>
+
+        <div class="big">
+        Miosis
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+        ☠️ Contoh Opioid
+        </h3>
+
+        <ul>
+
+            <li><strong>Morphine</strong></li>
+            <li><strong>Codeine</strong></li>
+            <li><strong>Fentanyl</strong></li>
+            <li><strong>Oxycodone</strong></li>
+            <li><strong>Hydromorphone</strong></li>
+            <li><strong>Methadone</strong></li>
+            <li><strong>Tramadol</strong></li>
+            <li><strong>Heroin</strong></li>
+
+        </ul>
+
+        <p style="margin-top:8px">
+        Tanyakan nama obat/zat, dosis,
+        waktu pajanan, rute, dan kemungkinan
+        konsumsi bersama zat lain.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+        🚨 Prioritas
+        </h3>
+
+        <div class="quote">
+        AIRWAY + BREATHING
+        </div>
+
+        <p>
+        Bila terjadi depresi napas,
+        lakukan dukungan ventilasi dan oksigenasi
+        sesuai kondisi klinis.
+        </p>
+
+        <p>
+        <strong>Nalokson</strong> dipertimbangkan
+        sesuai indikasi klinis dan protokol yang berlaku.
+        </p>
+
+    </div>
+
 </div>
 
-<div class="big">
-+
-</div>
-
-<div class="big red">
-Depresi napas
-</div>
-
-<div class="big">
-+
-</div>
-
-<div class="big">
-Miosis
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>
-Prioritas
-</h3>
-
-<div class="quote">
-AIRWAY + BREATHING
-</div>
-
-<p>
-Dukungan ventilasi dan oksigenasi menjadi prioritas
-ketika terjadi depresi napas.
-</p>
-
-<p>
-Nalokson dipertimbangkan sesuai indikasi klinis dan protokol.
-</p>
-
-</div>
-
-</div>
 
 <div class="source">
 
-AHA 2025:
+AHA 2025 —
 <a
 href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
 target="_blank">
@@ -3120,11 +3314,9 @@ Adult and Pediatric Special Circumstances of Resuscitation
 
 `
 },
-
 /* =========================================================
    25
 ========================================================= */
-
 {
 title:"Simpatomimetik",
 
@@ -3135,63 +3327,87 @@ SLIDE 25
 </div>
 
 <h2>
-Simpatomimetik
+Simpatomimetik — Stimulant Toxidrome
 </h2>
 
 <div class="grid">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Contoh pajanan
-</h3>
+        <h3>
+        ☠️ Contoh Obat/Zat
+        </h3>
 
-<p>
-Amfetamin • Kokain • Stimulan lainnya
-</p>
+        <ul>
+            <li><strong>Amfetamin</strong></li>
+            <li><strong>Metamfetamin</strong></li>
+            <li><strong>Kokain</strong></li>
+            <li><strong>MDMA - ecstasy</strong></li>
+            <li><strong>Ephedrine / pseudoephedrine</strong></li>
+            <li>Stimulan lainnya</li>
+        </ul>
 
-<h3>
-Manifestasi
-</h3>
+        <p style="margin-top:8px">
+        Tanyakan nama zat/obat, dosis,
+        waktu dan rute pajanan serta
+        kemungkinan kombinasi zat lain.
+        </p>
 
-<ul>
+    </div>
 
-<li>Agitasi</li>
-<li>Takikardia</li>
-<li>Hipertensi</li>
-<li>Mydriasis</li>
-<li>Diaforesis</li>
-<li>Kejang</li>
-<li>Hipertermia</li>
 
-</ul>
+    <div class="card">
+
+        <h3>
+        Manifestasi
+        </h3>
+
+        <ul>
+            <li>Agitasi - gelisah</li>
+            <li>Takikardia</li>
+            <li>Hipertensi</li>
+            <li>Mydriasis</li>
+            <li>Diaforesis</li>
+            <li>Kejang</li>
+            <li>Hipertermia</li>
+        </ul>
+
+        <div class="big yellow">
+        AGITASI + TAKIKARDIA + DIAFORESIS
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+        🚨 Komplikasi Berat
+        </h3>
+
+        <ul>
+            <li>Aritmia</li>
+            <li>Iskemia miokard</li>
+            <li>Rhabdomiolisis - nyeri/kelemahan otot, urin berwarna gelap, hipertermia</li>
+            <li>Asidosis metabolik</li>
+            <li>Hipertermia berat</li>
+            <li>Penurunan kesadaran</li>
+            <li>Henti jantung</li>
+        </ul>
+
+        <div class="quote">
+        ABC + TEMPERATUR + ECG
+        </div>
+
+    </div>
 
 </div>
 
-<div class="card">
-
-<h3>
-Komplikasi
-</h3>
-
-<ul>
-
-<li>Aritmia</li>
-<li>Iskemia miokard</li>
-<li>Rhabdomiolisis</li>
-<li>Asidosis</li>
-<li>Hipertermia berat</li>
-<li>Henti jantung</li>
-
-</ul>
-
-</div>
-
-</div>
 
 <div class="source">
 
-AHA 2025 membahas toksisitas simpatomimetik dalam konteks kegawatdaruratan keracunan.
+AHA 2025 — Special Circumstances of Resuscitation:
+toksisitas akibat stimulant/simpatomimetik.
 
 <a
 href="https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-and-pediatric-special-circumstances-of-resuscitation"
@@ -3218,50 +3434,89 @@ SLIDE 26
 </div>
 
 <h2>
-Sedatif-Hipnotik
+Sedatif-Hipnotik Toxidrome
 </h2>
 
 <div class="grid">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Manifestasi
-</h3>
+        <h3>
+        ☠️ Contoh Obat/Zat
+        </h3>
 
-<ul>
+        <ul>
 
-<li>Penurunan kesadaran</li>
-<li>Bicara pelo</li>
-<li>Ataksia</li>
-<li>Hipoventilasi</li>
-<li>Risiko aspirasi</li>
+            <li><strong>Benzodiazepin:</strong> Diazepam, Midazolam, Alprazolam</li>
 
-</ul>
+            <li><strong>Barbiturat:</strong> Phenobarbital</li>
 
-</div>
+            <li><strong>Obat tidur:</strong> Zolpidem</li>
 
-<div class="card">
+            <li><strong>Sedatif lain:</strong> sesuai jenis dan formulasi obat</li>
 
-<h3 class="accent">
-Jangan berhenti pada label “overdosis”
-</h3>
+        </ul>
 
-<p>
-Tetap cari:
-</p>
+        <p style="margin-top:8px">
+        Tanyakan nama obat/zat, dosis,
+        waktu pajanan, rute pemberian,
+        serta kemungkinan konsumsi multipel.
+        </p>
 
-<ul>
+    </div>
 
-<li>Hipoglikemia</li>
-<li>Trauma</li>
-<li>Hipoksia</li>
-<li>Pajanan multipel</li>
-<li>Penyebab lain penurunan kesadaran</li>
 
-</ul>
+    <div class="card">
 
-</div>
+        <h3>
+        Manifestasi
+        </h3>
+
+        <ul>
+
+            <li>Penurunan kesadaran</li>
+            <li>Bicara pelo</li>
+            <li>Ataksia</li>
+            <li>Hipoventilasi</li>
+            <li>Refleks proteksi menurun</li>
+            <li>Risiko aspirasi</li>
+
+        </ul>
+
+        <div class="big yellow">
+        Depresi Sistem Saraf Pusat
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3 class="accent">
+        🚨 Jangan berhenti pada label “overdosis”
+        </h3>
+
+        <p>
+        Penurunan kesadaran harus tetap
+        dicari penyebab lain, terutama:
+        </p>
+
+        <ul>
+
+            <li>Hipoglikemia</li>
+            <li>Hipoksia</li>
+            <li>Trauma kepala</li>
+            <li>Stroke / gangguan neurologis</li>
+            <li>Pajanan multipel</li>
+            <li>Gangguan metabolik</li>
+
+        </ul>
+
+        <div class="quote">
+        AIRWAY + BREATHING + GCS + GDS
+        </div>
+
+    </div>
 
 </div>
 
@@ -3271,7 +3526,6 @@ Tetap cari:
 /* =========================================================
    27
 ========================================================= */
-
 {
 title:"Investigasi",
 
@@ -3282,73 +3536,97 @@ SLIDE 27
 </div>
 
 <h2>
-Pemeriksaan Penunjang
+Pemeriksaan Penunjang pada Keracunan
 </h2>
 
 <div class="grid3">
 
-<div class="card">
+    <div class="card">
 
-<h3>
-Bedside
-</h3>
+        <h3>
+        🩺 Bedside — Prioritas Awal
+        </h3>
 
-<ul>
+        <ul>
+            <li><strong>GDS</strong> — skrining hipoglikemia</li>
+            <li><strong>SpO₂</strong> — oksigenasi</li>
+            <li><strong>Suhu</strong> — deteksi hiper/hipotermia</li>
+            <li><strong>EKG</strong> — irama & gangguan konduksi</li>
+            <li><strong>GCS</strong> — tingkat kesadaran</li>
+            <li><strong>Monitor tanda vital</strong></li>
+        </ul>
 
-<li>GDS</li>
-<li>SpO₂</li>
-<li>Suhu</li>
-<li>EKG</li>
+    </div>
 
-</ul>
+
+    <div class="card">
+
+        <h3>
+        🧪 Laboratorium — Sesuai Indikasi
+        </h3>
+
+        <ul>
+            <li>Darah lengkap</li>
+            <li>Elektrolit</li>
+            <li>Fungsi ginjal</li>
+            <li>Fungsi hati</li>
+            <li>AGD / analisis gas darah</li>
+            <li>Laktat</li>
+            <li>Creatine Kinase bila dicurigai rabdomiolisis</li>
+        </ul>
+
+        <p style="margin-top:8px">
+        Pemeriksaan dipilih berdasarkan
+        <strong>anamnesis, gejala, tanda klinis,
+        dan dugaan toksin.</strong>
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+        ☠️ Pemeriksaan Toksikologi
+        </h3>
+
+        <ul>
+            <li>Identifikasi zat bila tersedia</li>
+            <li>Kadar obat/toksin tertentu sesuai indikasi</li>
+            <li>Urine drug screening bila relevan</li>
+        </ul>
+
+        <div class="note">
+        Hasil toksikologi harus diinterpretasikan
+        bersama kondisi klinis pasien.
+        </div>
+
+        <div class="quote">
+        JANGAN TUNDA RESUSITASI
+        </div>
+
+    </div>
 
 </div>
 
-<div class="card">
+<div class="card" style="margin-top:16px">
 
-<h3>
-Laboratorium sesuai indikasi
-</h3>
+    <h3>
+    🔑 Prinsip Investigasi
+    </h3>
 
-<ul>
-
-<li>Darah lengkap</li>
-<li>Elektrolit</li>
-<li>Fungsi ginjal</li>
-<li>Fungsi hati</li>
-<li>AGD</li>
-<li>Laktat</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>
-Toksikologi
-</h3>
-
-<p>
-Kadar toksin atau pemeriksaan toksikologi
-dipertimbangkan bila tersedia dan relevan.
-</p>
-
-<div class="note">
-Jangan menunda resusitasi hanya karena menunggu hasil pemeriksaan.
-</div>
-
-</div>
+    <p>
+    <strong>Stabilisasi → identifikasi sindrom toksik →
+    cari komplikasi → tentukan pemeriksaan yang relevan.</strong>
+    </p>
 
 </div>
 
 `
 },
-
 /* =========================================================
    28
 ========================================================= */
-
 {
 title:"Dekontaminasi",
 
@@ -3362,59 +3640,95 @@ SLIDE 28
 Dekontaminasi
 </h2>
 
-<div class="flow">
+<div class="grid" style="grid-template-columns:1.5fr .8fr; align-items:stretch;">
 
-<div class="node">
-1<br>
-Apakah pasien<br>
-masih terkontaminasi?
+    <div>
+
+        <div class="flow">
+
+            <div class="node">
+            1<br>
+            Apakah pasien<br>
+            masih terkontaminasi?
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">
+            2<br>
+            PPE
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">
+            3<br>
+            Pisahkan dari<br>
+            sumber pajanan
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">
+            4<br>
+            Lepaskan pakaian<br>
+            terkontaminasi bila sesuai
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="node">
+            5<br>
+            Dekontaminasi<br>
+            sesuai zat
+            </div>
+
+        </div>
+
+        <div
+        class="quote"
+        style="margin-top:25px">
+
+        ⚠️ Hindari <strong>secondary exposure</strong>
+        terhadap petugas.
+
+        </div>
+
+    </div>
+
+
+    <div class="card"
+    style="
+        padding:10px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+    ">
+
+        <img
+        src="https://akcdn.detik.net.id/community/media/visual/2020/12/02/melihat-lebih-dekat-proses-dekontaminasi-petugas-medis-9_169.jpeg?w=700&q=90"
+        alt="Proses dekontaminasi petugas medis"
+        style="
+            width:100%;
+            max-height:310px;
+            object-fit:cover;
+            border-radius:12px;
+            display:block;
+        "
+        >
+
+    </div>
+
 </div>
 
-<div class="arrow">→</div>
-
-<div class="node">
-2<br>
-PPE
-</div>
-
-<div class="arrow">→</div>
-
-<div class="node">
-3<br>
-Pisahkan dari<br>
-sumber pajanan
-</div>
-
-<div class="arrow">→</div>
-
-<div class="node">
-4<br>
-Lepaskan pakaian<br>
-terkontaminasi bila sesuai
-</div>
-
-<div class="arrow">→</div>
-
-<div class="node">
-5<br>
-Dekontaminasi<br>
-sesuai zat
-</div>
-
-</div>
-
-<div
-class="quote"
-style="margin-top:25px">
-
-Hindari secondary exposure terhadap petugas.
-
-</div>
 
 <div class="source">
 
-WHO 2026 menekankan perlindungan tenaga kesehatan,
-identifikasi kontaminasi, dekontaminasi dan triase.
+<strong>WHO 2026:</strong>
+perlindungan tenaga kesehatan,
+identifikasi kontaminasi,
+dekontaminasi dan triase.
 
 <a
 href="https://www.who.int/publications/i/item/B09740"
@@ -3430,7 +3744,6 @@ WHO 2026
 /* =========================================================
    29
 ========================================================= */
-
 {
 title:"Ingesti",
 
@@ -3444,48 +3757,100 @@ SLIDE 29
 Keracunan melalui Ingesti
 </h2>
 
-<div class="grid">
+<div class="grid"
+style="grid-template-columns:1.35fr .8fr; align-items:stretch;">
 
-<div class="card">
+    <div>
 
-<h3 class="red">
-Jangan otomatis
-</h3>
+        <div class="grid">
 
-<ul>
+            <div class="card">
 
-<li>Memicu muntah</li>
-<li>Melakukan gastric lavage pada semua kasus</li>
-<li>Memberikan zat oral tanpa mempertimbangkan kondisi pasien</li>
+                <h3 class="red">
+                Jangan otomatis
+                </h3>
 
-</ul>
+                <ul>
 
-</div>
+                    <li>Memicu muntah</li>
 
-<div class="card">
+                    <li>
+                    Melakukan gastric lavage
+                    pada semua kasus
+                    </li>
 
-<h3 class="accent">
-Pertimbangkan
-</h3>
+                    <li>
+                    Memberikan zat oral tanpa
+                    mempertimbangkan kondisi pasien
+                    </li>
 
-<ul>
+                </ul>
 
-<li>Jenis toksin</li>
-<li>Waktu pajanan</li>
-<li>Airway</li>
-<li>Risiko aspirasi</li>
-<li>Indikasi dekontaminasi</li>
-<li>Konsultasi toksikologi</li>
+            </div>
 
-</ul>
 
-</div>
+            <div class="card">
 
-</div>
+                <h3 class="accent">
+                Pertimbangkan
+                </h3>
 
-<div class="note">
-Keputusan dekontaminasi harus berbasis toksin, kondisi pasien, waktu pajanan,
-risiko dan protokol fasilitas.
+                <ul>
+
+                    <li>Jenis toksin</li>
+
+                    <li>Waktu pajanan</li>
+
+                    <li>Airway</li>
+
+                    <li>Risiko aspirasi</li>
+
+                    <li>Indikasi dekontaminasi</li>
+
+                    <li>Konsultasi toksikologi</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="note"
+        style="margin-top:16px">
+
+        Keputusan dekontaminasi harus berbasis
+        <strong>toksin, kondisi pasien, waktu pajanan,
+        risiko dan protokol fasilitas.</strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="card"
+    style="
+        padding:10px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+    ">
+
+        <img
+        src="https://infobandungbarat.com/wp-content/uploads/2025/11/Keracunan-makanan-770x470.jpg"
+        alt="Ilustrasi keracunan melalui ingesti"
+        style="
+            width:100%;
+            max-height:330px;
+            object-fit:cover;
+            border-radius:12px;
+            display:block;
+        "
+        >
+
+    </div>
+
 </div>
 
 `
@@ -3593,7 +3958,7 @@ AHA 2025 — Special Circumstances of Resuscitation
 ========================================================= */
 
 {
-title:"Kapan Rujuk?",
+title:"Kapan ke Resusitasi?",
 
 html:`
 
@@ -3602,71 +3967,121 @@ SLIDE 31
 </div>
 
 <h2>
-Kapan Pasien Perlu Rujukan?
+Kapan Pasien Keracunan Masuk Resusitasi IGD?
 </h2>
 
 <div class="grid3">
 
-<div class="card">
-<h3>
-🫁 Ventilator
-</h3>
-</div>
+<div class="card red">
 
-<div class="card">
 <h3>
-❤️ Syok refrakter
+🫁 AIRWAY & BREATHING
 </h3>
-</div>
 
-<div class="card">
-<h3>
-⚡ Aritmia berat
-</h3>
-</div>
+<ul>
 
-<div class="card">
-<h3>
-💉 Antidot tidak tersedia
-</h3>
-</div>
+<li>Airway terancam</li>
 
-<div class="card">
-<h3>
-🧪 Fasilitas toksikologi
-</h3>
-</div>
+<li>Apnea / gasping</li>
 
-<div class="card">
-<h3>
-🩸 Hemodialisis / eliminasi
-</h3>
-</div>
+<li>Depresi napas berat</li>
 
-<div class="card">
-<h3>
-🏥 ICU
-</h3>
-</div>
+<li>Hipoventilasi</li>
 
-<div class="card">
-<h3>
-☣ Dekontaminasi khusus
-</h3>
-</div>
+<li>Hipoksemia</li>
 
-<div class="card">
-<h3>
-🫀 ECMO kasus terpilih
-</h3>
-</div>
+<li>Sianosis</li>
+
+<li>Distress napas berat</li>
+
+</ul>
 
 </div>
+
+
+<div class="card yellow">
+
+<h3>
+🧠 NEUROLOGIS
+</h3>
+
+<ul>
+
+<li>Penurunan kesadaran berat</li>
+
+<li>Tidak mampu melindungi airway</li>
+
+<li>Kejang aktif / berulang</li>
+
+<li>Agitasi berat dengan risiko keselamatan</li>
+
+<li>Perubahan status mental yang cepat memburuk</li>
+
+</ul>
+
+</div>
+
+
+<div class="card red">
+
+<h3>
+❤️ CIRCULATION & TOXICITY
+</h3>
+
+<ul>
+
+<li>Syok / hipotensi</li>
+
+<li>Aritmia berat</li>
+
+<li>Henti jantung</li>
+
+<li>Bradikardia atau takikardia berat dengan instabilitas</li>
+
+<li>Hipertermia berat</li>
+
+<li>Toksisitas yang berkembang cepat</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<div class="card"
+style="margin-top:16px">
+
+<h3>
+🚨 KUNCI PETUGAS TRIAGE
+</h3>
+
+<div class="quote">
+
+ADA ANCAMAN AIRWAY • BREATHING • CIRCULATION
+→ LANGSUNG KE AREA RESUSITASI
+
+</div>
+
+<p style="margin-top:10px">
+
+Jangan menunggu diagnosis toksin pasti.
+<strong>Kenali ancaman fungsi vital,
+tentukan prioritas, dan segera eskalasi
+ke tim resusitasi.</strong>
+
+</p>
+
+</div>
+
 
 <div class="note">
-AHA 2025 menyebut VA-ECMO dapat dipertimbangkan pada keracunan
-dengan syok kardiogenik atau henti jantung yang persisten/refrakter
-meskipun terapi farmakologis telah diberikan, sesuai seleksi kasus dan fasilitas.
+
+<strong>Re-triage:</strong>
+Pasien yang awalnya stabil harus dinilai ulang
+bila terjadi perubahan kesadaran, pernapasan,
+sirkulasi, kejang, atau tanda toksisitas yang memburuk.
+
 </div>
 
 `
@@ -3712,7 +4127,7 @@ Waspadai
 <ul>
 
 <li>Gas</li>
-<li>Zat volatil</li>
+<li>Zat volatil Contoh: bensin, thinner, pelarut cat, dan hidrokarbon</li>
 <li>Pestisida</li>
 <li>Bahan korosif</li>
 <li>Kulit / pakaian terkontaminasi</li>
@@ -4822,7 +5237,7 @@ Tidak melakukan EKG pada toksin berisiko aritmia
 <ul>
 
 <li>
-Tidak menggunakan PPE
+Tidak menggunakan PPE (Personal Protective Equipment)/ APD
 </li>
 
 <li>
@@ -5348,31 +5763,13 @@ Lindungi Petugas.
 </div>
 
 <h3>
-DISCUSSION & CASE REVIEW
+WORKSHOP TRIAGE OFFICER IGD RSSA 2026
 </h3>
 
 <div class="note"
-style="text-align:left">
+style="text-align:CENTER">
 
-<b>Catatan instruktur:</b>
-Materi ini merupakan materi edukasi dan bukan pengganti
-SOP rumah sakit, protokol antidot, keputusan dokter,
-atau konsultasi toksikologi.
-
-<br><br>
-
-Untuk kasus nyata:
-<b>
-ABCDE → stabilisasi → identifikasi pajanan →
-pemeriksaan → terapi suportif/spesifik →
-konsultasi → disposition.
-</b>
-
-<br><br>
-
-Kualitas bukti untuk sebagian rekomendasi toksikologi
-masih terbatas; keputusan klinis harus mengikuti
-kondisi pasien, protokol dan sumber toksikologi yang berlaku.
+RSUD Dr. Saiful Anwar 
 
 </div>
 
@@ -5766,9 +6163,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
 /* =========================================================
-   INSTAGRAM EDUCATOR 
+   INSTAGRAM EDUCATOR — ALL SLIDES + LIVE TIME
 ========================================================= */
 
 function addEducatorHeader() {
@@ -5783,25 +6179,107 @@ function addEducatorHeader() {
 
         educator.className = "educator-header";
 
-        educator.innerHTML =
-            '📷 Instagram <strong>@mryungmalang</strong>';
+        educator.innerHTML = `
+            <div>
+                📷 Instagram <strong>@mryungmalang</strong>
+            </div>
+            <div class="liveDateTime">
+                Memuat waktu...
+            </div>
+        `;
 
         slide.appendChild(educator);
 
     });
 
+    updateEducatorTime();
 }
 
+
+/* =========================================================
+   UPDATE WAKTU
+========================================================= */
+
+function updateEducatorTime() {
+
+    const now = new Date();
+
+    const hari = now.toLocaleDateString("id-ID", {
+        weekday: "long"
+    });
+
+    const tanggal = now.toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+
+    const waktu = now.toLocaleTimeString("id-ID", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    });
+
+    document.querySelectorAll(".liveDateTime").forEach(function (el) {
+
+        el.textContent =
+            `${hari}, ${tanggal} • ${waktu} WIB`;
+
+    });
+}
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     addEducatorHeader();
 
+    updateEducatorTime();
+
 });
 
-const educatorObserver = new MutationObserver(function () {
 
-    addEducatorHeader();
+/* =========================================================
+   CLOCK — SETIAP DETIK
+========================================================= */
+
+setInterval(updateEducatorTime, 1000);
+
+
+/* =========================================================
+   OBSERVER — HANYA CEK SLIDE BARU
+   TIDAK MEMICU LOOP
+========================================================= */
+
+const educatorObserver = new MutationObserver(function (mutations) {
+
+    let adaSlideBaru = false;
+
+    mutations.forEach(function (mutation) {
+
+        mutation.addedNodes.forEach(function (node) {
+
+            if (
+                node.nodeType === 1 &&
+                (
+                    node.classList?.contains("slide") ||
+                    node.querySelector?.(".slide")
+                )
+            ) {
+                adaSlideBaru = true;
+            }
+
+        });
+
+    });
+
+    if (adaSlideBaru) {
+        addEducatorHeader();
+    }
 
 });
 
