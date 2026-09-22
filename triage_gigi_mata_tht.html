@@ -9,8 +9,7 @@
 <style>
 /* ============================================================
    TRIAGE GIGI • MATA • THT
-   GODMODE PREMIUM — SHARING KNOWLEDGE IGD
-   SELF CONTAINED / NO LIBRARY / NO CDN
+   SHARING KNOWLEDGE IGD RSSA 2026
    ============================================================ */
 
 :root{
@@ -1088,6 +1087,42 @@ html,body{
     from{opacity:0}
     to{opacity:1}
 }
+
+.live-datetime {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.45;
+    opacity: 0.85;
+}
+
+.live-datetime strong {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.cover-image {
+    width: min(100%, 320px);
+    margin: 8px auto 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #02021d;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.cover-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.brand-icon img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+}
 </style>
 </head>
 
@@ -1097,17 +1132,24 @@ html,body{
 
 <header class="topbar">
     <div class="brand">
-        <div class="brand-icon">🚑</div>
+        <div class="brand-icon">
+            <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/Screenshot_2026-08-03_200824-removebg-preview.png"
+                alt="Logo RSSA">
+        </div>
         <div class="brand-text">
             <div class="brand-title">SHARING KNOWLEDGE IGD</div>
             <div class="brand-sub">TRIAGE • GIGI • MATA • THT</div>
         </div>
     </div>
 
-    <div class="educator">
-        <small>EDUCATOR</small>
-        <strong>@mryungmalang</strong>
+<div class="educator">
+    <small>EDUCATOR</small>
+    <strong>@mryungmalang</strong>
+
+    <div id="liveDateTime" class="live-datetime">
+        Memuat waktu...
     </div>
+</div>
 
     <div class="top-actions">
         <button class="icon-btn" onclick="openOverview()" title="Daftar slide">☷</button>
@@ -1256,13 +1298,13 @@ const slides = [
 /* 01 */
 {
 section:"OPENING",
-title:"TRIAGE GIGI, MATA & THT DI IGD",
+title:".",
 html:`
 <div class="cover">
     <div class="cover-inner">
 
         <div class="cover-kicker">
-            🚨 SHARING KNOWLEDGE • IGD
+            🚨 SHARING KNOWLEDGE • IGD RSSA 2026
         </div>
 
         <h1>
@@ -1270,8 +1312,17 @@ html:`
             <span>GIGI • MATA • THT</span>
         </h1>
 
+        <!-- FOTO COVER -->
+        <div class="cover-image">
+            <img
+                src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/trauma%20wajah.png"
+                alt="Trauma wajah"
+                loading="eager"
+            >
+        </div>
+
         <p class="cover-sub">
-            Mengenali kegawatan yang tidak boleh menunggu,
+            Mengenali kegawatan,
             menentukan prioritas pemeriksaan,
             melakukan stabilisasi awal,
             dan melakukan eskalasi secara tepat.
@@ -1283,11 +1334,11 @@ html:`
             <div class="pill">AIRWAY</div>
             <div class="pill">TIME-CRITICAL</div>
             <div class="pill">RE-TRIAGE</div>
-            <div class="pill">@mryungmalang</div>
         </div>
 
     </div>
 </div>
+
 `
 },
 
@@ -1427,7 +1478,7 @@ html:`
 /* 05 */
 {
 section:"KONSEP TRIAGE",
-title:"ABCDE • Bahasa Universal Kegawatan",
+title:"ABCDE",
 html:`
 <div class="flow">
 
@@ -1542,12 +1593,10 @@ html:`
 </div>
 
 <div class="card cyan" style="max-width:1300px;margin:18px auto 0">
-    <h3>🎯 Cara berpikir</h3>
+    <h3>🎯 Berpikir kritis</h3>
     <p>
-        Jangan bertanya hanya “penyakit apa?”.
-        Tanyakan juga:
-        <strong>“Apa yang dapat memburuk dalam beberapa menit
-        jika pasien menunggu?”</strong>
+Jangan hanya memikirkan, <strong>“Pasien tersebut sakit apa?”</strong>
+Pikirkan juga: <strong>“Apa yang paling mengancam nyawa pasien saat ini, dan apa yang bisa memburuk dalam hitungan menit jika tidak segera ditangani?”</strong>
     </p>
 </div>
 `
@@ -1594,9 +1643,7 @@ html:`
     <div>
         <strong>Penting:</strong>
         <p>
-            Warna dan level triase tidak universal.
-            Gunakan sistem dan SOP yang berlaku di fasilitas Anda.
-            WHO IITT sendiri menggunakan red, yellow, green untuk triase rutin.
+            WHO IITT (Interagency Integrated Triage Tool) sendiri menggunakan red, yellow, green untuk standart triase.
         </p>
     </div>
 </div>
@@ -1654,7 +1701,7 @@ html:`
 /* 09 */
 {
 section:"TRIAGE GIGI",
-title:"🚨 Red Flags Gigi yang Tidak Boleh Menunggu",
+title:"🚨 Red Flags Gigi",
 html:`
 <div class="grid g2">
 
@@ -1852,7 +1899,7 @@ title:"CASE 01 • Pasien A atau Pasien B?",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 TANYAKAN KE AUDIENS • JANGAN BUKA JAWABAN DULU</div>
+    <div class="case-label">🎤 Diskusi Kasus 1</div>
 
     <div class="grid g2">
 
@@ -1896,7 +1943,7 @@ html:`
             </p>
             <p>
                 Pada triase, ancaman airway membuat prioritas meningkat
-                walaupun diagnosis definitif belum diketahui.
+                walaupun diagnosis definitif belum diketahui. Mungkin kita bisa menempatkan pasien pada P2 Monitor
             </p>
         </div>
     </div>
@@ -1912,7 +1959,7 @@ title:"CASE 02 • Nyeri Hebat vs Perdarahan",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 DISKUSI CEPAT • PILIH PRIORITAS</div>
+    <div class="case-label">🎤 DISKUSI • PILIH PRIORITAS</div>
 
     <div class="grid g2">
 
@@ -1955,7 +2002,7 @@ html:`
             </p>
             <p>
                 Nyeri berat tetap membutuhkan penanganan,
-                tetapi red flag sirkulasi pada pasien B meningkatkan urgensinya.
+                tetapi red flag sirkulasi pada pasien B lebih mengancam nyawa pasien.
             </p>
         </div>
     </div>
@@ -1966,49 +2013,43 @@ html:`
 
 /* 15 */
 {
-section:"TRIAGE GIGI",
-title:"Trauma Gigi • Apa yang Harus Dicari?",
-html:`
-<div class="grid g3">
+    section:"TRIAGE GIGI",
+    title:"Trauma Gigi • Apa yang Harus Dicari?",
+    html:`
+    <img src="https://raw.githubusercontent.com/ambulan119/RSSA/refs/heads/main/trauma%20gg.png"
+         style="width:50%;max-width:360px;height:145px;object-fit:cover;border-radius:12px;display:block;margin:0 auto 12px;">
 
-    <div class="card red">
-        <div class="icon">🫁</div>
-        <h3>Airway</h3>
-        <p>
-            Trauma wajah dapat menyebabkan darah,
-            jaringan, benda asing, atau edema yang mengganggu airway.
-        </p>
+    <div class="grid g3">
+
+        <div class="card red">
+            <div class="icon">🫁</div>
+            <h3>Airway</h3>
+            <p>Trauma wajah dapat menyebabkan darah, jaringan, benda asing, atau edema yang mengganggu airway.</p>
+        </div>
+
+        <div class="card yellow">
+            <div class="icon">🦷</div>
+            <h3>Gigi</h3>
+            <p>Avulsi, luksasi, fraktur mahkota, fraktur akar, atau gigi terdorong.</p>
+        </div>
+
+        <div class="card orange">
+            <div class="icon">🧠</div>
+            <h3>Trauma terkait</h3>
+            <p>Jangan lupa mencari cedera wajah, kepala, leher, dan perdarahan lain.</p>
+        </div>
+
     </div>
 
-    <div class="card yellow">
-        <div class="icon">🦷</div>
-        <h3>Gigi</h3>
+    <div class="card cyan" style="margin:18px auto;max-width:1300px">
+        <h3>🎯 Prinsip</h3>
         <p>
-            Avulsi, luksasi, fraktur mahkota,
-            fraktur akar, atau gigi terdorong.
+            Pada trauma, <strong>life threat tetap didahulukan</strong>.
+            Pemeriksaan gigi dilakukan setelah ancaman ABCDE
+            teridentifikasi dan ditangani.
         </p>
     </div>
-
-    <div class="card orange">
-        <div class="icon">🧠</div>
-        <h3>Trauma terkait</h3>
-        <p>
-            Jangan lupa mencari cedera wajah,
-            kepala, leher, dan perdarahan lain.
-        </p>
-    </div>
-
-</div>
-
-<div class="card cyan" style="margin:18px auto;max-width:1300px">
-    <h3>🎯 Prinsip</h3>
-    <p>
-        Pada trauma, <strong>life threat tetap didahulukan</strong>.
-        Pemeriksaan gigi dilakukan setelah ancaman ABCDE
-        teridentifikasi dan ditangani.
-    </p>
-</div>
-`
+    `
 },
 
 /* 16 */
@@ -2244,6 +2285,7 @@ html:`
     <p>
         <strong>Kurangi waktu kontak bahan kimia dengan mata.</strong>
         Semakin cepat pajanan dihentikan, semakin baik peluang mengurangi kerusakan.
+        💧 Asam maupun basa: segera irigasi dengan NaCl 0,9% atau Ringer Laktat. Lanjutkan hingga pH mata mencapai sekitar 7,0–7,4. Jika cairan steril tidak tersedia, gunakan air bersih mengalir—jangan menunda irigasi.
     </p>
 </div>
 `
@@ -2333,7 +2375,7 @@ html:`
 
 <div class="big-question" style="margin-top:20px">
     <div class="main" style="font-size:26px">
-        <span>Sudden vision loss = time-sensitive until proven otherwise.</span>
+        <span>Sudden vision loss = Penurunan atau kehilangan penglihatan yang terjadi tiba-tiba harus diprioritaskan untuk penilaian segera karena dapat menandakan kondisi yang mengancam penglihatan.</span>
     </div>
 </div>
 `
@@ -2442,7 +2484,7 @@ title:"CASE 03 • Mata Merah Biasa atau Kegawatan?",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 AUDIENS MENJAWAB DULU</div>
+    <div class="case-label">🎤 Diskusi 1</div>
 
     <div class="grid g2">
 
@@ -2496,7 +2538,7 @@ title:"CASE 04 • Bahan Kimia",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 PERTANYAAN UNTUK PESERTA</div>
+    <div class="case-label">🎤 Diskusi 2</div>
 
     <div class="case-patient">
         <h3>👤 Pasien</h3>
@@ -2746,6 +2788,7 @@ html:`
             Darah yang terus mengalir ke posterior
             dapat menimbulkan masalah jalan napas,
             terutama pada perdarahan berat.
+            Dudukkan pasien tegak, condongkan kepala ke depan, jangan menengadahkan kepala karena darah dapat mengalir ke tenggorokan.
         </p>
     </div>
 
@@ -2816,7 +2859,7 @@ title:"CASE 05 • Sakit Tenggorok",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 TANTANGAN UNTUK AUDIENS</div>
+    <div class="case-label">Diskusi 1</div>
 
     <div class="grid g2">
 
@@ -2872,7 +2915,7 @@ title:"CASE 06 • Mimisan",
 html:`
 <div class="case">
 
-    <div class="case-label">🎤 AUDIENS PILIH PRIORITAS</div>
+    <div class="case-label">Diskusi 2</div>
 
     <div class="grid g2">
 
@@ -2910,7 +2953,7 @@ html:`
             <p>
                 Perdarahan aktif yang banyak,
                 dampak terhadap kondisi umum,
-                dan potensi ancaman airway meningkatkan urgensi.
+                dan potensi ancaman airway masuk P1 curiga aspirasi.
             </p>
         </div>
     </div>
@@ -2984,7 +3027,7 @@ html:`
 /* 36 */
 {
 section:"INTEGRASI",
-title:"Perbandingan Cepat • Mana yang Tidak Boleh Menunggu?",
+title:"Perbandingan Cepat • Red Flag Points?",
 html:`
 <div class="grid g3">
 
@@ -3151,59 +3194,61 @@ html:`
 },
 
 /* 39 */
+
 {
-section:"TAKE HOME",
-title:"5 Kalimat yang Harus Pulang Bersama Peserta",
-html:`
-<div class="grid g2">
+    section:"TAKE HOME",
+    title:"5 Prinsip yang Harus Diingat",
+    html:`
+    <div class="grid g2">
 
-    <div class="card cyan">
-        <h3>01</h3>
-        <p>
-            <strong>Triase menentukan urgensi, bukan diagnosis akhir.</strong>
-        </p>
+        <div class="card cyan">
+            <h3>01</h3>
+            <p>
+                <strong>Kenali kegawatan sebelum mencari diagnosis.</strong>
+            </p>
+        </div>
+
+        <div class="card red">
+            <h3>02</h3>
+            <p>
+                <strong>
+                    Prioritas berubah bila ada ancaman airway,
+                    gangguan napas, atau perdarahan berat.
+                </strong>
+            </p>
+        </div>
+
+        <div class="card yellow">
+            <h3>03</h3>
+            <p>
+                <strong>
+                    Keluhan mata akut, trauma, dan pajanan kimia
+                    membutuhkan penilaian segera.
+                </strong>
+            </p>
+        </div>
+
+        <div class="card orange">
+            <h3>04</h3>
+            <p>
+                <strong>
+                    Jangan meremehkan gejala seperti stridor,
+                    drooling, suara berubah, atau distress napas.
+                </strong>
+            </p>
+        </div>
+
+        <div class="card green" style="grid-column:1/-1">
+            <h3>05 • KUNCI TRIAGE</h3>
+            <p>
+                <strong>
+                    KENALI → PRIORITASKAN → STABILISASI → ESKALASI → NILAI ULANG
+                </strong>
+            </p>
+        </div>
+
     </div>
-
-    <div class="card red">
-        <h3>02</h3>
-        <p>
-            <strong>
-                Ancaman airway selalu mengubah prioritas.
-            </strong>
-        </p>
-    </div>
-
-    <div class="card yellow">
-        <h3>03</h3>
-        <p>
-            <strong>
-                Kehilangan penglihatan mendadak dan pajanan kimia mata
-                adalah kondisi yang harus dianggap time-critical.
-            </strong>
-        </p>
-    </div>
-
-    <div class="card orange">
-        <h3>04</h3>
-        <p>
-            <strong>
-                Stridor, drooling, hot-potato voice, dan distress napas
-                bukan keluhan THT biasa sampai terbukti aman.
-            </strong>
-        </p>
-    </div>
-
-    <div class="card green" style="grid-column:1/-1">
-        <h3>05 • PALING PENTING</h3>
-        <p>
-            <strong>
-                RECOGNIZE → PRIORITIZE → STABILIZE → ESCALATE → REASSESS
-            </strong>
-        </p>
-    </div>
-
-</div>
-`
+    `
 },
 
 /* 40 */
@@ -3356,11 +3401,10 @@ html:`
     <div>
         <strong>Catatan penting untuk pembelajaran:</strong>
         <p>
-            Materi ini adalah bahan edukasi/Sharing Knowledge.
             Pelaksanaan triase, tindakan klinis, konsultasi,
             transfer, dan penggunaan kategori prioritas harus mengikuti
             kompetensi tenaga kesehatan, kebijakan rumah sakit,
-            SPO/SOP setempat, serta keputusan klinis tim yang menangani pasien.
+            SOP RSSA, serta keputusan klinis tim yang menangani pasien.
         </p>
     </div>
 </div>
@@ -3685,6 +3729,34 @@ document.addEventListener("touchend",function(e){
    ============================================================ */
 
 updateSlide();
+
+
+function updateLiveDateTime() {
+    const now = new Date();
+
+    const hari = now.toLocaleDateString('id-ID', {
+        weekday: 'long'
+    });
+
+    const tanggal = now.toLocaleDateString('id-ID', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+    });
+
+    const waktu = now.toLocaleTimeString('id-ID', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    });
+
+    document.getElementById('liveDateTime').innerHTML =
+        `${hari}, ${tanggal}<br><strong>${waktu} WIB</strong>`;
+}
+
+updateLiveDateTime();
+setInterval(updateLiveDateTime, 1000);
 
 </script>
 
