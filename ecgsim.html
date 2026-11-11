@@ -1,0 +1,1213 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ECG Simulator PRO  | Ambulans 119 RSSA</title>
+
+<style>
+:root{
+ --paper:#fffaf7;
+ --grid:#f3dadd;
+ --major:#e9b5ba;
+ --wave:#b51f32;
+ --ink:#252a32;
+ --dark:#171c25;
+ --panel:#222936;
+ --muted:#aeb8c7;
+ --red:#e22d43;
+ --orange:#f59e0b;
+ --blue:#3b82f6;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:#111722;color:#fff;
+ font-family:Arial,Helvetica,sans-serif;
+}
+header{
+ padding:13px 20px;background:#1c2430;
+ display:flex;align-items:center;justify-content:space-between;
+ flex-wrap:wrap;gap:12px;border-bottom:2px solid var(--wave);
+}
+.brand{font-size:19px;font-weight:900;letter-spacing:1px}
+.brand small{
+ display:block;color:#c2cad5;font-size:10px;
+ letter-spacing:2px;margin-top:4px
+}
+.tag{
+ background:#3b2029;border:1px solid #bd5260;
+ padding:7px 13px;border-radius:4px;
+ font-size:10px;font-weight:bold;color:#ffb9c0
+}
+main{
+ max-width:1650px;margin:auto;padding:14px;
+ display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px
+}
+.panel{
+ background:var(--panel);border:1px solid #394354;
+ border-radius:8px;padding:14px
+}
+.monitor{
+ background:var(--paper);color:#222;
+ border-radius:8px;padding:12px;
+ border:3px solid #d6d0cc;
+ box-shadow:0 5px 20px #0005
+}
+.topline{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:8px;flex-wrap:wrap;color:#4b4545;
+ font-size:11px;font-weight:bold;margin-bottom:9px
+}
+.ecg-label{color:#a71d32;font-size:13px;font-weight:900}
+canvas{
+ display:block;width:100%;height:390px;
+ background:var(--paper);border:1px solid #e4d4d1
+}
+.metrics{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:7px;margin-top:10px
+}
+.metric{
+ background:#fff;border:1px solid #e1d7d4;
+ padding:9px;border-radius:4px;min-width:0
+}
+.metric span{
+ display:block;font-size:10px;color:#777;
+ font-weight:bold;letter-spacing:.5px
+}
+.metric strong{
+ display:block;font-size:clamp(20px,3vw,29px);
+ color:#a91e32;margin-top:4px
+}
+.metric small{font-size:10px;color:#777}
+h3{
+ font-size:13px;margin:0 0 13px;
+ color:#f1f4f8;letter-spacing:.5px
+}
+label{
+ display:block;font-size:11px;color:#c4ccd7;
+ margin:12px 0 5px
+}
+select,input{
+ width:100%;padding:10px;
+ border:1px solid #536174;border-radius:5px;
+ background:#151c27;color:white;font-size:12px
+}
+input[type=range]{padding:0;accent-color:#e34b60}
+input[type=number]{min-width:0}
+button{
+ padding:10px 8px;border-radius:5px;
+ border:1px solid #65758b;background:#354256;
+ color:white;font-weight:bold;font-size:11px;cursor:pointer
+}
+button:hover{filter:brightness(1.2)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.green{background:#176c51;border-color:#39c89a}
+button.red{background:#772331;border-color:#d85a6c}
+button.full{width:100%;margin-top:9px}
+.buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.sidebar{display:flex;flex-direction:column;gap:12px}
+.status{font-size:11px;color:#bac5d3;line-height:1.7}
+.hidden{display:none!important}
+.alarm{
+ padding:8px;margin-top:8px;border-radius:4px;
+ background:#4b2028;color:#ffb8c0;
+ font-size:11px;font-weight:bold;text-align:center
+}
+.rhythm-info{
+ margin-top:8px;padding:9px;background:#151d29;
+ border-left:3px solid #dc475b;
+ font-size:11px;line-height:1.6;color:#dce2eb
+}
+.pulse-status{
+ display:inline-block;padding:5px 9px;border-radius:3px;
+ font-size:10px;font-weight:bold
+}
+.pulse-yes{background:#176c51;color:#b4ffe2}
+.pulse-no{background:#812333;color:#ffd0d6}
+footer{text-align:center;color:#8390a2;padding:14px;font-size:10px}
+.shortcut{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
+.shortcut span{
+ background:#151d29;padding:7px;border-radius:3px;
+ font-size:10px;color:#d3dce8
+}
+.patient-screen{
+ background:#10151d;min-height:100vh;padding:12px
+}
+.patient-screen .monitor{
+ min-height:calc(100vh - 24px);
+ display:flex;flex-direction:column;justify-content:center
+}
+.patient-screen canvas{height:min(62vh,650px)}
+.patient-screen .metric strong{font-size:clamp(28px,4vw,48px)}
+.patient-screen .topline{font-size:13px}
+@media(max-width:950px){
+ main{grid-template-columns:1fr}
+ .sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:550px){
+ .sidebar{grid-template-columns:1fr}
+ .metrics{grid-template-columns:repeat(2,1fr)}
+ canvas{height:270px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+<header>
+ <div class="brand">
+  ECG SIMULATOR PRO
+  <small> • AMBULANS 119 RSSA</small>
+ </div>
+ <div class="tag" id="modeTag">INSTRUCTOR CONSOLE</div>
+</header>
+
+<main id="mainLayout">
+<section>
+ <div class="monitor">
+  <div class="topline">
+   <span class="ecg-label">ECG • LEAD II</span>
+   <span id="patientName">PATIENT MONITOR 01</span>
+   <span>25 mm/s • 10 mm/mV</span>
+   <span id="monitorClock">MONITOR ACTIVE</span>
+  </div>
+
+  <canvas id="ecg"></canvas>
+
+  <div class="metrics">
+   <div class="metric">
+    <span>HEART RATE</span>
+    <strong id="hr">78</strong>
+    <small>BPM</small>
+   </div>
+   <div class="metric">
+    <span>SpO₂</span>
+    <strong id="spo">98</strong>
+    <small>%</small>
+   </div>
+   <div class="metric">
+    <span>NIBP</span>
+    <strong id="bp">120/80</strong>
+    <small>mmHg</small>
+   </div>
+   <div class="metric">
+    <span>RESP</span>
+    <strong id="rr">18</strong>
+    <small>/min</small>
+   </div>
+  </div>
+
+  <div id="instructorReadout"
+       style="margin-top:10px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+   <span id="pulseStatus" class="pulse-status pulse-yes">PULSE PRESENT</span>
+   <span id="rhythmName" style="font-size:11px;font-weight:900;color:#a91e32">
+    NORMAL SINUS RHYTHM
+   </span>
+  </div>
+
+  <div id="alarmBox" class="alarm hidden">
+   ⚠ CARDIAC ARREST / CRITICAL RHYTHM
+  </div>
+ </div>
+
+ <div class="panel" id="instructorNotes" style="margin-top:12px">
+  <h3>RHYTHM INTERPRETATION / INSTRUCTOR NOTES</h3>
+  <div id="rhythmInfo" class="rhythm-info"></div>
+ </div>
+</section>
+
+<aside class="sidebar" id="instructorPanel">
+
+ <div class="panel">
+  <h3>◈  RHYTHM CONTROL</h3>
+
+  <label>Pilih irama ECG</label>
+  <select id="rhythm">
+   <optgroup label="NORMAL / SINUS">
+    <option value="nsr">Normal Sinus Rhythm</option>
+    <option value="brady">Sinus Bradycardia</option>
+    <option value="tachy">Sinus Tachycardia</option>
+   </optgroup>
+   <optgroup label="ATRIAL / SUPRAVENTRICULAR">
+    <option value="af">Atrial Fibrillation</option>
+    <option value="flutter">Atrial Flutter</option>
+    <option value="svt">SVT</option>
+   </optgroup>
+   <optgroup label="VENTRICULAR ARRHYTHMIAS">
+    <option value="pvc">Sinus Rhythm + PVC</option>
+    <option value="vt">Monomorphic VT</option>
+    <option value="pvt">Polymorphic VT</option>
+    <option value="torsades">Torsades de Pointes</option>
+    <option value="vf">Ventricular Fibrillation</option>
+   </optgroup>
+   <optgroup label="CARDIAC ARREST">
+    <option value="pea">PEA - Organized Electrical Activity</option>
+    <option value="asystole">Asystole</option>
+   </optgroup>
+   <optgroup label="CONDUCTION DISORDERS">
+    <option value="av1">AV Block I</option>
+    <option value="av2m1">AV Block II Mobitz I</option>
+    <option value="av2m2">AV Block II Mobitz II</option>
+    <option value="av3">Complete Heart Block</option>
+   </optgroup>
+   <optgroup label="METABOLIC / ELECTRICAL">
+    <option value="hyperk">Hyperkalemia - Sine Wave</option>
+   </optgroup>
+  </select>
+
+  <label>Heart Rate / Electrical Rate:
+   <b id="bpmLabel">78 BPM</b>
+  </label>
+  <input type="range" id="bpm" min="20" max="240" value="78">
+
+  <div class="buttons" style="margin-top:12px">
+   <button id="pause">Ⅱ PAUSE</button>
+   <button id="reset">↺ RESET</button>
+  </div>
+  <button class="full green" id="openPatient">◉ BUKA MONITOR PESERTA</button>
+  <button class="full" id="fullscreen">⛶ FULLSCREEN</button>
+
+  <div class="status" style="margin-top:9px">
+   PEA: aktivitas listrik berjalan, tetapi HR/pulse monitor ditampilkan 0.
+  </div>
+ </div>
+
+ <div class="panel">
+  <h3>VITAL SIGN CONTROL</h3>
+  <label>SpO₂ (%)</label>
+  <input type="number" id="spoInput" min="0" max="100" value="98">
+  <label>Sistolik / Diastolik</label>
+  <div class="buttons">
+   <input type="number" id="sys" value="120">
+   <input type="number" id="dia" value="80">
+  </div>
+  <label>Respiratory Rate</label>
+  <input type="number" id="rrInput" min="0" max="80" value="18">
+  <button class="full" id="applyVital">TERAPKAN VITAL SIGN</button>
+ </div>
+
+ <div class="panel">
+  <h3>ECG DISPLAY SETTINGS</h3>
+  <label>ECG Gain</label>
+  <input type="range" id="gain" min="0.5" max="2" step="0.1" value="1">
+  <label>Sweep Speed</label>
+  <select id="speed">
+   <option value="25">25 mm/s</option>
+   <option value="50">50 mm/s</option>
+   <option value="12.5">12.5 mm/s</option>
+  </select>
+  <label>Noise / Artifact</label>
+  <input type="range" id="artifact" min="0" max="5" value="1">
+ </div>
+
+ <div class="panel">
+  <h3>SCENARIO AUTOMATION</h3>
+  <select id="scenario">
+   <option value="arrest">NSR → VT → VF → Asystole</option>
+   <option value="shock">NSR → Torsades → VF</option>
+   <option value="pea">NSR → PEA → Asystole</option>
+   <option value="stable">NSR → Tachycardia → NSR</option>
+   <option value="brady">NSR → Bradycardia → AV Block III</option>
+   <option value="hyper">NSR → Hyperkalemia → VF</option>
+  </select>
+  <label>Interval pergantian (detik)</label>
+  <input type="number" id="intervalSeconds" value="30" min="5">
+  <button class="full green" id="startScenario">▶ MULAI SKENARIO</button>
+  <div class="status" id="scenarioStatus">Skenario belum aktif.</div>
+ </div>
+
+ <div class="panel">
+  <h3>INSTRUCTOR SHORTCUT</h3>
+  <div class="shortcut">
+   <span>F1 - NSR</span><span>F2 - VT</span>
+   <span>F3 - VF</span><span>F4 - Asystole</span>
+   <span>F5 - Tachycardia</span><span>F6 - Bradycardia</span>
+   <span>F7 - AF</span><span>F8 - Torsades</span>
+   <span>F9 - PEA</span><span>F10 - HyperK</span>
+   <span>F11 - Pause</span><span>F12 - Fullscreen</span>
+  </div>
+ </div>
+</aside>
+</main>
+
+<footer>
+ ECG SIMULATOR PRO  • AMBULANS 119 RSSA • EDUCATIONAL USE ONLY
+</footer>
+</div>
+
+<script>
+(()=>{
+"use strict";
+
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);
+const isPatient=params.get("patient")==="1";
+
+if(isPatient){
+ document.body.classList.add("patient-screen");
+ $("instructorPanel").classList.add("hidden");
+ $("instructorReadout").classList.add("hidden");
+ $("instructorNotes").classList.add("hidden");
+ $("alarmBox").classList.add("hidden");
+ $("modeTag").textContent="PATIENT MONITOR";
+ $("patientName").textContent="PATIENT 01";
+ $("mainLayout").style.gridTemplateColumns="1fr";
+ document.title="Patient Monitor | RSSA";
+}
+
+const canvas=$("ecg");
+const ctx=canvas.getContext("2d");
+
+const names={
+ nsr:"NORMAL SINUS RHYTHM",
+ brady:"SINUS BRADYCARDIA",
+ tachy:"SINUS TACHYCARDIA",
+ af:"ATRIAL FIBRILLATION",
+ flutter:"ATRIAL FLUTTER",
+ svt:"SUPRAVENTRICULAR TACHYCARDIA",
+ pvc:"SINUS RHYTHM WITH PVC",
+ vt:"MONOMORPHIC VENTRICULAR TACHYCARDIA",
+ pvt:"POLYMORPHIC VENTRICULAR TACHYCARDIA",
+ torsades:"TORSADES DE POINTES",
+ vf:"VENTRICULAR FIBRILLATION",
+ pea:"PULSELESS ELECTRICAL ACTIVITY",
+ asystole:"ASYSTOLE",
+ av1:"FIRST DEGREE AV BLOCK",
+ av2m1:"SECOND DEGREE AV BLOCK - MOBITZ I",
+ av2m2:"SECOND DEGREE AV BLOCK - MOBITZ II",
+ av3:"THIRD DEGREE AV BLOCK",
+ hyperk:"HYPERKALEMIA - SINE WAVE"
+};
+
+const descriptions={
+ nsr:"Irama sinus normal. Gelombang P mendahului setiap QRS dengan interval PR dan QRS yang relatif normal.",
+ brady:"Sinus bradikardia. Gelombang P mendahului QRS dengan frekuensi lambat.",
+ tachy:"Sinus takikardia. Gelombang P mendahului QRS dengan frekuensi cepat.",
+ af:"Atrial fibrillation. Tidak terdapat gelombang P yang konsisten. Baseline fibrilatori dan interval R-R irregularly irregular.",
+ flutter:"Atrial flutter. Aktivitas atrium berbentuk saw-tooth dengan konduksi AV 2:1 pada model ini.",
+ svt:"Supraventricular tachycardia. Takikardia kompleks sempit; gelombang P dapat tidak terlihat jelas.",
+ pvc:"Sinus rhythm dengan premature ventricular complex. Kompleks prematur, lebar, dan berbeda morfologi.",
+ vt:"Monomorphic VT. Takikardia kompleks lebar dengan morfologi relatif seragam. Skenario ini diasumsikan pulseless VT.",
+ pvt:"Polymorphic VT. Kompleks ventrikel lebar dengan perubahan morfologi.",
+ torsades:"Torsades de Pointes. Polymorphic VT dengan amplitudo yang meningkat dan menurun.",
+ vf:"Ventricular fibrillation. Aktivitas ventrikel kacau tanpa kompleks QRS terorganisasi.",
+ pea:"PEA adalah kondisi klinis: aktivitas listrik terorganisasi tetap tampak, tetapi tidak ada nadi teraba. HR monitor ditampilkan 0.",
+ asystole:"Asystole. Tidak tampak aktivitas listrik ventrikel yang bermakna. Verifikasi koneksi elektroda dan lebih dari satu lead dalam praktik klinis.",
+ av1:"AV block derajat I. Interval PR memanjang dan relatif tetap.",
+ av2m1:"Mobitz I / Wenckebach. Interval PR memanjang bertahap sebelum satu QRS tidak terkonduksi.",
+ av2m2:"Mobitz II. Interval PR relatif tetap dengan QRS yang sesekali tidak terkonduksi.",
+ av3:"Complete heart block. Aktivitas atrium dan ventrikel berjalan independen (AV dissociation).",
+ hyperk:"Simulasi hiperkalemia berat dengan gelombang T tinggi, QRS melebar, dan pola sine-wave."
+};
+
+const defaults={
+ nsr:78,brady:45,tachy:140,af:120,flutter:150,
+ svt:190,pvc:78,vt:180,pvt:210,torsades:190,
+ vf:0,pea:0,asystole:0,
+ av1:75,av2m1:65,av2m2:55,av3:38,hyperk:120
+};
+
+// Irama yang pada skenario ini diasumsikan tanpa nadi.
+// Hyperkalemia tidak otomatis berarti pulseless.
+const noPulse=["vf","asystole","pea","vt","pvt","torsades"];
+
+let state={
+ rhythm:"nsr",bpm:78,spo:98,sys:120,dia:80,
+ rr:18,gain:1,speed:25,artifact:1,running:true
+};
+
+let W=900,H=390,dpr=1;
+const sampleRate=250;
+const duration=6;
+const buffer=new Float32Array(sampleRate*duration);
+
+let writeIndex=0;
+let time=0;
+let lastBeat=-1;
+let nextBeat=.1;
+let beatCount=0;
+let lastFrame=0;
+let scenarioTimer=null;
+let scenarioIndex=0;
+let patientWindow=null;
+let channel=null;
+
+try{
+ channel=new BroadcastChannel("RSSA_ECG_");
+ channel.onmessage=e=>{
+  if(isPatient && e.data?.type==="ECG_UPDATE"){
+   applyRemote(e.data.state);
+  }
+ };
+}catch(e){}
+
+function broadcast(){
+ if(isPatient)return;
+ const payload={...state};
+
+ if(channel){
+  channel.postMessage({type:"ECG_UPDATE",state:payload});
+ }
+
+ try{
+  localStorage.setItem("RSSA_ECG_STATE",JSON.stringify(payload));
+ }catch(e){}
+
+ if(patientWindow&&!patientWindow.closed){
+  patientWindow.postMessage({type:"ECG_UPDATE",state:payload},"*");
+ }
+}
+
+window.addEventListener("storage",e=>{
+ if(isPatient&&e.key==="RSSA_ECG_STATE"&&e.newValue){
+  try{applyRemote(JSON.parse(e.newValue))}catch(err){}
+ }
+});
+
+function resize(){
+ const rect=canvas.getBoundingClientRect();
+ dpr=Math.min(window.devicePixelRatio||1,2);
+ W=Math.max(300,Math.floor(rect.width*dpr));
+ H=Math.max(180,Math.floor(rect.height*dpr));
+ canvas.width=W;
+ canvas.height=H;
+ draw();
+}
+
+function gaussian(x,m,s){
+ return Math.exp(-.5*Math.pow((x-m)/s,2));
+}
+
+function noise(){
+ return Math.random()*2-1;
+}
+
+/* RHYTHM TIMING */
+
+function interval(){
+
+ // Electrical activity PEA tetap berjalan walau pulse HR = 0.
+ if(state.rhythm==="pea")return 60/38;
+
+ // Flutter: ventricular response 150/min (2:1 AV conduction).
+ if(state.rhythm==="flutter")return 60/150;
+
+ // Ventricular escape rhythm in complete heart block.
+ if(state.rhythm==="av3")return 60/38;
+
+ if(state.bpm<=0)return Infinity;
+
+ let v=60/state.bpm;
+
+ if(state.rhythm==="af"){
+  v*=.65+Math.random()*.7;
+ }
+
+ if(state.rhythm==="pvc"&&beatCount%5===0){
+  v*=.72;
+ }
+
+ return v;
+}
+
+/* BASIC MORPHOLOGY */
+
+function normalShape(phase,r,beatNo){
+
+ let y=0;
+ let pr=.20;
+
+ if(r==="av1")pr=.34;
+
+ if(r==="av2m1"){
+  const cycle=(beatNo-1)%4;
+  pr=[.16,.21,.27,.20][cycle];
+ }
+
+ if(r==="av2m2")pr=.20;
+
+ // P wave
+ y+=.13*gaussian(phase,-pr,.035);
+
+ // QRS
+ y+=-.16*gaussian(phase,-.025,.012);
+ y+=1.0*gaussian(phase,0,.013);
+ y+=-.28*gaussian(phase,.027,.015);
+
+ // T wave
+ y+=.30*gaussian(phase,.27,.065);
+
+ return y;
+}
+
+function ventricularShape(phase){
+ let y=0;
+ y+=-.25*gaussian(phase,-.045,.045);
+ y+=1.15*gaussian(phase,.015,.065);
+ y+=-.50*gaussian(phase,.12,.06);
+ return y;
+}
+
+function widePeaShape(phase){
+ let y=0;
+ y+=-.22*gaussian(phase,-.075,.055);
+ y+= .85*gaussian(phase,.015,.075);
+ y+=-.35*gaussian(phase,.140,.075);
+ y+= .16*gaussian(phase,.340,.130);
+ return y;
+}
+
+/* ECG SAMPLE GENERATOR */
+
+function sample(){
+
+ let y=0;
+ const r=state.rhythm;
+
+ // ASYSTOLE
+ if(r==="asystole"){
+  y=0;
+ }
+
+ // VENTRICULAR FIBRILLATION
+ else if(r==="vf"){
+  y=
+   .33*Math.sin(2*Math.PI*(4.1*time+.2*Math.sin(time*1.4)))+
+   .24*Math.sin(2*Math.PI*7.3*time+1.1)+
+   .14*Math.sin(2*Math.PI*10.7*time+time);
+  y*=.85+.2*Math.sin(time*.7);
+ }
+
+ // TORSADES / POLYMORPHIC VT
+ else if(r==="torsades"||r==="pvt"){
+
+  const frequency=r==="torsades"?5.5:6.8;
+
+  const envelope=r==="torsades"
+   ?.10+.95*Math.pow(.5+.5*Math.sin(2*Math.PI*.22*time),1.2)
+   :.58+.34*Math.sin(time*1.7);
+
+  y=envelope*(
+   Math.sin(2*Math.PI*frequency*time)+
+   .18*Math.sin(2*Math.PI*frequency*2.1*time)
+  );
+ }
+
+ // HYPERKALEMIA: TALL T / WIDENING SINE-LIKE MORPHOLOGY
+ else if(r==="hyperk"){
+
+  const freq=2.2;
+  y=1.05*Math.sin(2*Math.PI*freq*time);
+  y+=.22*Math.sin(2*Math.PI*freq*2*time);
+  y+=.08*Math.sin(2*Math.PI*freq*3*time);
+ }
+
+ // ATRIAL FLUTTER: CONTINUOUS F WAVES + 2:1 QRS
+ else if(r==="flutter"){
+
+  const atrialRate=300;
+  const fPhase=(time*(atrialRate/60))%1;
+
+  // Asymmetric continuous saw-tooth F waves.
+  y=.17*(1-2*fPhase);
+
+  if(time>=nextBeat){
+   lastBeat=time;
+   beatCount++;
+   nextBeat=time+interval();
+  }
+
+  if(lastBeat>=0){
+   const phase=time-lastBeat;
+
+   y+=-.16*gaussian(phase,-.025,.012);
+   y+= 1.00*gaussian(phase,0,.013);
+   y+=-.28*gaussian(phase,.025,.015);
+  }
+ }
+
+ // COMPLETE HEART BLOCK: independent atrial P waves and ventricular QRS
+ else if(r==="av3"){
+
+  if(time>=nextBeat){
+   lastBeat=time;
+   beatCount++;
+   nextBeat=time+interval();
+  }
+
+  // Independent atrial rhythm at approximately 75/min.
+  const atrialPeriod=60/75;
+  const atrialPhase=((time+atrialPeriod/2)%atrialPeriod)-atrialPeriod/2;
+  y+=.13*gaussian(atrialPhase,0,.035);
+
+  if(lastBeat>=0){
+   const phase=time-lastBeat;
+   y+=ventricularShape(phase);
+  }
+ }
+
+ // PEA, SINUS, AV BLOCKS, AF, PVC, SVT AND VT
+ else if(
+  r==="pea"||r==="nsr"||r==="brady"||r==="tachy"||
+  r==="av1"||r==="av2m1"||r==="av2m2"||
+  r==="pvc"||r==="af"||r==="svt"||r==="vt"
+ ){
+
+  if(time>=nextBeat){
+   lastBeat=time;
+   beatCount++;
+   nextBeat=time+interval();
+  }
+
+  if(lastBeat>=0){
+
+   const phase=time-lastBeat;
+
+   // PEA: organized, repeated, wide complexes.
+   // The monitor HR remains 0 through updateDisplay().
+   if(r==="pea"){
+    y=widePeaShape(phase);
+   }
+
+   // MONOMORPHIC VT
+   else if(r==="vt"){
+    y=ventricularShape(phase);
+   }
+
+   // ATRIAL FIBRILLATION
+   else if(r==="af"){
+    y=.035*Math.sin(time*2*Math.PI*7.1)+
+      .025*Math.sin(time*2*Math.PI*9.3)+
+      .018*Math.sin(time*2*Math.PI*5.7);
+
+    y+=-.16*gaussian(phase,-.025,.012);
+    y+=1.0*gaussian(phase,0,.013);
+    y+=-.30*gaussian(phase,.025,.015);
+    y+=.28*gaussian(phase,.23,.065);
+   }
+
+   // SVT
+   else if(r==="svt"){
+    y=-.17*gaussian(phase,-.015,.012);
+    y+=1.0*gaussian(phase,0,.014);
+    y-=.30*gaussian(phase,.025,.015);
+    y+=.08*gaussian(phase,.12,.04);
+   }
+
+   // MOBITZ I AND II
+   else if(r==="av2m1"||r==="av2m2"){
+
+    const dropped=
+     (r==="av2m1"&&beatCount%4===0)||
+     (r==="av2m2"&&beatCount%3===0);
+
+    if(dropped){
+     // P wave without conducted QRS.
+     y=.13*gaussian(phase,-.20,.035);
+    }else{
+     y=normalShape(phase,r,beatCount);
+    }
+   }
+
+   // PVC: every fifth complex becomes a premature wide complex.
+   else if(r==="pvc"&&beatCount%5===0){
+    y=ventricularShape(phase);
+   }
+
+   // NSR, BRADY, TACHY, AV1
+   else{
+    y=normalShape(phase,r,beatCount);
+   }
+  }
+ }
+
+ // LOW-LEVEL ARTIFACT
+ y+=noise()*.0015*state.artifact;
+
+ if(state.artifact>=4){
+  y+=Math.sin(time*8)*.035;
+ }
+
+ return y;
+}
+
+/* ECG PAPER */
+
+function drawGrid(){
+
+ ctx.fillStyle="#fffaf7";
+ ctx.fillRect(0,0,W,H);
+
+ const pxPerMm=H/45;
+ const small=pxPerMm;
+ const major=small*5;
+
+ ctx.lineWidth=.65*dpr;
+ ctx.strokeStyle="#f3dadd";
+ ctx.beginPath();
+
+ for(let x=0;x<=W;x+=small){
+  ctx.moveTo(x,0);
+  ctx.lineTo(x,H);
+ }
+ for(let y=0;y<=H;y+=small){
+  ctx.moveTo(0,y);
+  ctx.lineTo(W,y);
+ }
+ ctx.stroke();
+
+ ctx.lineWidth=1.25*dpr;
+ ctx.strokeStyle="#e9b5ba";
+ ctx.beginPath();
+
+ for(let x=0;x<=W;x+=major){
+  ctx.moveTo(x,0);
+  ctx.lineTo(x,H);
+ }
+ for(let y=0;y<=H;y+=major){
+  ctx.moveTo(0,y);
+  ctx.lineTo(W,y);
+ }
+ ctx.stroke();
+}
+
+function draw(){
+
+ drawGrid();
+
+ const mid=H*.53;
+ const scale=H*.29*state.gain;
+
+ ctx.save();
+ ctx.beginPath();
+ ctx.rect(0,0,W,H);
+ ctx.clip();
+
+ ctx.strokeStyle="#b51f32";
+ ctx.lineWidth=1.8*dpr;
+ ctx.lineJoin="round";
+ ctx.lineCap="round";
+ ctx.shadowColor="rgba(181,31,50,.15)";
+ ctx.shadowBlur=1.5*dpr;
+
+ ctx.beginPath();
+
+ for(let x=0;x<W;x++){
+
+  const back=Math.floor((W-1-x)/W*buffer.length);
+  const idx=(writeIndex-1-back+buffer.length*2)%buffer.length;
+  const v=buffer[idx]||0;
+  const yy=mid-v*scale;
+
+  if(x===0)ctx.moveTo(x,yy);
+  else ctx.lineTo(x,yy);
+ }
+
+ ctx.stroke();
+ ctx.restore();
+
+ // Calibration mark
+ ctx.save();
+ ctx.strokeStyle="#9d2538";
+ ctx.lineWidth=1.3*dpr;
+ ctx.beginPath();
+
+ const x=12*dpr,y=H-22*dpr;
+ ctx.moveTo(x,y);
+ ctx.lineTo(x,y-20*dpr);
+ ctx.lineTo(x+10*dpr,y-20*dpr);
+ ctx.lineTo(x+10*dpr,y);
+ ctx.stroke();
+ ctx.restore();
+}
+
+/* RESET ECG BUFFER */
+
+function resetWave(){
+ time=0;
+ lastBeat=-1;
+ beatCount=0;
+ nextBeat=.1;
+ writeIndex=0;
+ buffer.fill(0);
+ lastFrame=0;
+}
+
+/* MONITOR DISPLAY */
+
+function updateDisplay(){
+
+ const r=state.rhythm;
+ const displayHR=noPulse.includes(r)?0:state.bpm;
+
+ $("hr").textContent=displayHR;
+ $("spo").textContent=state.spo;
+ $("bp").textContent=state.sys+"/"+state.dia;
+ $("rr").textContent=state.rr;
+
+ if(!isPatient){
+
+  $("rhythmName").textContent=names[r]||r;
+  $("rhythmInfo").textContent=descriptions[r]||"";
+
+  const pulse=noPulse.includes(r);
+  $("pulseStatus").textContent=
+   pulse?"PULSELESS / NO PULSE":"PULSE PRESENT";
+
+  $("pulseStatus").className=
+   "pulse-status "+(pulse?"pulse-no":"pulse-yes");
+
+  const arrest=[
+   "vf","asystole","pea","vt","pvt","torsades"
+  ];
+
+  $("alarmBox").classList.toggle(
+   "hidden",!arrest.includes(r)
+  );
+
+  // PEA has electrical rate 38/min, but pulse HR is 0.
+  $("bpm").value=r==="pea"?38:state.bpm;
+  $("bpm").disabled=r==="pea";
+  $("bpmLabel").textContent=
+   r==="pea"?"0 BPM • PEA / ELECTRICAL 38":" "+state.bpm+" BPM";
+
+  $("rhythm").value=r;
+  $("spoInput").value=state.spo;
+  $("sys").value=state.sys;
+  $("dia").value=state.dia;
+  $("rrInput").value=state.rr;
+  $("gain").value=state.gain;
+  $("speed").value=state.speed;
+  $("artifact").value=state.artifact;
+ }
+
+ broadcast();
+}
+
+/* CHANGE RHYTHM */
+
+function setRhythm(key){
+
+ state.rhythm=key;
+ state.bpm=defaults[key];
+
+ if(key==="vf"||key==="asystole"||key==="pea"){
+  state.spo=0;
+  state.sys=0;
+  state.dia=0;
+  state.rr=0;
+ }
+
+ else if(["vt","pvt","torsades"].includes(key)){
+  state.spo=75;
+  state.sys=70;
+  state.dia=40;
+  state.rr=24;
+ }
+
+ else if(key==="hyperk"){
+  state.spo=85;
+  state.sys=75;
+  state.dia=45;
+  state.rr=22;
+ }
+
+ else if(key==="brady"){
+  state.spo=96;
+  state.sys=105;
+  state.dia=70;
+  state.rr=14;
+ }
+
+ else{
+  state.spo=98;
+  state.sys=120;
+  state.dia=80;
+  state.rr=18;
+ }
+
+ resetWave();
+ updateDisplay();
+}
+
+/* RECEIVE INSTRUCTOR STATE */
+
+function applyRemote(s){
+
+ const rhythmChanged=s.rhythm&&s.rhythm!==state.rhythm;
+
+ state={...state,...s};
+
+ // Do not reset the ECG buffer for every vital-sign update.
+ if(rhythmChanged){
+  resetWave();
+ }
+
+ updateDisplay();
+}
+
+/* ANIMATION LOOP */
+
+function frame(ts){
+
+ if(!state.running){
+  requestAnimationFrame(frame);
+  return;
+ }
+
+ if(!lastFrame)lastFrame=ts;
+
+ const elapsed=Math.min((ts-lastFrame)/1000,.05);
+ lastFrame=ts;
+
+ const speedFactor=state.speed/25;
+ const count=Math.max(
+  1,Math.floor(elapsed*sampleRate*speedFactor)
+ );
+
+ for(let i=0;i<count;i++){
+  time+=1/sampleRate;
+  buffer[writeIndex]=sample();
+  writeIndex=(writeIndex+1)%buffer.length;
+ }
+
+ draw();
+ requestAnimationFrame(frame);
+}
+
+/* SCENARIO CONTROL */
+
+const scenarios={
+ arrest:["nsr","vt","vf","asystole"],
+ shock:["nsr","torsades","vf"],
+ pea:["nsr","pea","asystole"],
+ stable:["nsr","tachy","nsr"],
+ brady:["nsr","brady","av3"],
+ hyper:["nsr","hyperk","vf"]
+};
+
+function stopScenario(){
+
+ if(scenarioTimer){
+  clearTimeout(scenarioTimer);
+  scenarioTimer=null;
+ }
+
+ if(!isPatient){
+  $("startScenario").textContent="▶ MULAI SKENARIO";
+  $("scenarioStatus").textContent="Skenario dihentikan.";
+ }
+}
+
+/* INSTRUCTOR CONSOLE */
+
+if(!isPatient){
+
+ $("rhythm").onchange=e=>{
+  stopScenario();
+  setRhythm(e.target.value);
+ };
+
+ $("bpm").oninput=e=>{
+
+  if(state.rhythm==="pea")return;
+
+  state.bpm=+e.target.value;
+  nextBeat=time+interval();
+
+  updateDisplay();
+ };
+
+ $("gain").oninput=e=>{
+  state.gain=+e.target.value;
+  draw();
+  broadcast();
+ };
+
+ $("speed").onchange=e=>{
+  state.speed=+e.target.value;
+  broadcast();
+ };
+
+ $("artifact").oninput=e=>{
+  state.artifact=+e.target.value;
+  broadcast();
+ };
+
+ $("applyVital").onclick=()=>{
+
+  state.spo=Math.max(0,Math.min(100,+$("spoInput").value||0));
+  state.sys=Math.max(0,+$("sys").value||0);
+  state.dia=Math.max(0,+$("dia").value||0);
+  state.rr=Math.max(0,+$("rrInput").value||0);
+
+  updateDisplay();
+ };
+
+ $("pause").onclick=()=>{
+  state.running=!state.running;
+  $("pause").textContent=
+   state.running?"Ⅱ PAUSE":"▶ RESUME";
+
+  lastFrame=0;
+  broadcast();
+ };
+
+ $("reset").onclick=()=>{
+  stopScenario();
+  setRhythm("nsr");
+  state.running=true;
+  $("pause").textContent="Ⅱ PAUSE";
+  broadcast();
+ };
+
+ $("fullscreen").onclick=()=>{
+  if(!document.fullscreenElement){
+   document.documentElement.requestFullscreen?.();
+  }else{
+   document.exitFullscreen?.();
+  }
+ };
+
+ $("openPatient").onclick=()=>{
+
+  if(patientWindow&&!patientWindow.closed){
+   patientWindow.focus();
+   broadcast();
+   return;
+  }
+
+  patientWindow=window.open(
+   location.href.split("?")[0]+"?patient=1",
+   "RSSA_PATIENT_MONITOR",
+   "width=1250,height=850"
+  );
+
+  if(!patientWindow){
+   alert("Popup diblokir. Izinkan popup pada browser.");
+   return;
+  }
+
+  setTimeout(broadcast,700);
+ };
+
+ const shortcuts={
+  F1:"nsr",F2:"vt",F3:"vf",F4:"asystole",
+  F5:"tachy",F6:"brady",F7:"af",
+  F8:"torsades",F9:"pea",F10:"hyperk"
+ };
+
+ document.addEventListener("keydown",e=>{
+
+  if(shortcuts[e.key]){
+   e.preventDefault();
+   stopScenario();
+   setRhythm(shortcuts[e.key]);
+  }
+
+  if(e.key==="F11"){
+   e.preventDefault();
+   $("pause").click();
+  }
+
+  if(e.key==="F12"){
+   e.preventDefault();
+   $("fullscreen").click();
+  }
+ });
+
+ $("startScenario").onclick=()=>{
+
+  if(scenarioTimer){
+   stopScenario();
+   return;
+  }
+
+  const sequence=scenarios[$("scenario").value];
+  const delay=Math.max(5,+$("intervalSeconds").value||30)*1000;
+
+  scenarioIndex=0;
+  $("startScenario").textContent="■ HENTIKAN SKENARIO";
+
+  function next(){
+
+   if(scenarioIndex>=sequence.length){
+    scenarioTimer=null;
+    $("startScenario").textContent="▶ MULAI SKENARIO";
+    $("scenarioStatus").textContent="Skenario selesai.";
+    return;
+   }
+
+   const key=sequence[scenarioIndex++];
+   setRhythm(key);
+
+   $("scenarioStatus").textContent=
+    "Tahap "+scenarioIndex+" / "+sequence.length+
+    " : "+names[key];
+
+   if(scenarioIndex<sequence.length){
+    scenarioTimer=setTimeout(next,delay);
+   }else{
+    scenarioTimer=setTimeout(()=>{
+     scenarioTimer=null;
+     $("startScenario").textContent="▶ MULAI SKENARIO";
+     $("scenarioStatus").textContent="Skenario selesai.";
+    },delay);
+   }
+  }
+
+  next();
+ };
+
+}else{
+
+ // PARTICIPANT MONITOR: no rhythm labels or instructor clues.
+ window.addEventListener("message",e=>{
+  if(e.data?.type==="ECG_UPDATE"){
+   applyRemote(e.data.state);
+  }
+ });
+
+ window.addEventListener("load",()=>{
+
+  try{
+   if(window.opener){
+    window.opener.postMessage(
+     {type:"PATIENT_READY"},"*"
+    );
+   }
+  }catch(e){}
+
+  try{
+   const saved=localStorage.getItem("RSSA_ECG_STATE");
+   if(saved)applyRemote(JSON.parse(saved));
+  }catch(e){}
+ });
+}
+
+/* MONITOR CLOCK */
+
+function updateClock(){
+
+ const d=new Date();
+
+ $("monitorClock").textContent=
+  d.toLocaleTimeString("id-ID",{hour12:false});
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+window.addEventListener("resize",resize);
+
+updateDisplay();
+resize();
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
